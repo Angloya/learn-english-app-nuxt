@@ -1,0 +1,25 @@
+{
+  "name": "learn-english-app-nuxt",
+  "version": "1.0.0",
+  "description": "My fantabulous Nuxt.js project",
+  "author": "Alena Borisova",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "bootstrap": "^4.1.3",
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "cross-env": "^5.2.0",
+    "firebase": "^5.8.0",
+    "firebaseui": "^3.5.2",
+    "nuxt": "^2.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
