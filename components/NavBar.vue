@@ -2,7 +2,7 @@
   <b-container>
 <b-navbar toggleable="md" type="dark" variant="info">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-  <b-navbar-brand href="#">NavBar</b-navbar-brand>
+  <b-navbar-brand to="/">NavBar</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
       <b-nav-item href="#">Link</b-nav-item>
@@ -25,8 +25,9 @@
         <template slot="button-content">
           <em>User</em>
         </template>
-        <b-dropdown-item href="#">Profile</b-dropdown-item>
-        <b-dropdown-item href="#">Signout</b-dropdown-item>
+        <b-dropdown-item v-if="!user" to="/authUser">SignIn</b-dropdown-item>
+        <b-dropdown-item v-if="user" to="/profile">Profile</b-dropdown-item>
+        <logout/>
       </b-nav-item-dropdown>
     </b-navbar-nav>
   </b-collapse>
@@ -35,8 +36,17 @@
 </template>
 
 <script>
+import Logout from '~/components/user/Logout.vue'
 export default {
-  name: 'Navigation'
+  name: 'navbar',
+  components: {
+    logout : Logout
+  },
+  computed: {
+    user () {
+      return this.$store.state.user
+    }
+  }
 }
 </script>
 
