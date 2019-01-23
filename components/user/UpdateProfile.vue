@@ -41,7 +41,7 @@ export default {
       if (this.displayName !== '' && this.file !== null) {
         this.$store.dispatch('updateProfile', { displayName: this.displayName, photoURL: this.file })
       } if (this.displayName === '' && this.file !== null) {
-        this.$store.dispatch('updateProfile', { displayName: this.user.name, photoURL: this.file })
+        this.$store.dispatch('updateProfile', { displayName: this.user.displayName, photoURL: this.file })
       } else {
         this.showProgress = false
         this.$store.dispatch('updateProfile', { displayName: this.displayName })

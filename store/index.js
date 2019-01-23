@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import firebase, {auth, GoogleProvider} from '@/services/fireinit.js'
+import firebase, {auth, GoogleProvider, storage} from '@/services/fireinit.js'
 import axios from 'axios'
 
 const createStore = () => {
@@ -11,8 +11,7 @@ const createStore = () => {
       error: null,
       photoURL: null,
       progress: null,
-      progressShow: false,
-      movies: null
+      progressShow: false
     },
     getters: {
       user (state) {
@@ -33,7 +32,6 @@ const createStore = () => {
     },
     mutations: {
       setUser (state, payload) {
-        debugger
         state.user = payload
       },
       setLoading (state, payload) {
@@ -152,7 +150,7 @@ const createStore = () => {
         commit('setLoading', true)
         if (auth.currentUser) {
           if (user.photoURL !== null && user.photoURL !== undefined) {
-            this.dispatch('uploadFileFirebase', [user, state.user.id, 'Avatar'])
+            this.dispatch('uploadFileFirebase', [user, state.user.uid, 'Avatar'])
           } else {
             auth.currentUser.updateProfile({
               displayName: user.displayName
@@ -194,7 +192,7 @@ const createStore = () => {
       uploadFileFirebase ({ commit, state }, [file, userID, fileName]) {
         // Нужно добавить сжатие картинок
         // Create a root reference
-        var storageRef = firebase.storage().ref()
+        var storageRef = storage.ref()
         var metadata = {
           contentType: 'image/jpeg/png'
         }

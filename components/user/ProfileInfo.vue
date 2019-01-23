@@ -4,17 +4,9 @@
     <b-row>
       <b-col>
         <b-img rounded width="200"
-        v-if='!defaultPhoto'
         height="300"
         thumbnail class="m-3"
-        :src='user.photoURL'
-        fluid alt="userIcon"/>
-        <b-img rounded width="200"
-        v-if='defaultPhoto'
-        height="200"
-        thumbnail class="m-3"
-        blank
-        blank-color="#777"
+        :src='photoURL'
         fluid alt="userIcon"/>
       </b-col>
       <b-col>
@@ -27,21 +19,12 @@
 
 <script>
 export default {
-  data () {
-    return {
-      defaultPhoto: false
-    }
-  },
   computed: {
     user () {
-      return this.$store.state.user || ''
-    }
-  },
-  created () {
-    if (this.user.photoURL) {
-      this.defaultPhoto = false
-    } else {
-      this.defaultPhoto = true
+         return this.$store.getters.user || {}
+    },
+    photoURL () {
+      return this.user.photoURL || "/image/avatar.png"
     }
   }
 }
