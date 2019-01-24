@@ -5,12 +5,12 @@ import 'firebase/database'
 import 'firebase/storage'
 
 const config = {
-  apiKey: 'AIzaSyBn2nxRkorKZ1-a7GWUczlo9bE_LXnyeG0',
-  authDomain: 'social-network-movie.firebaseapp.com',
-  databaseURL: 'https://social-network-movie.firebaseio.com',
-  projectId: 'social-network-movie',
-  storageBucket: 'social-network-movie.appspot.com',
-  messagingSenderId: '511734310402'
+  apiKey: "AIzaSyDl4MxyVv6we8ENhgrYRuvhmxsLitqMKC0",
+  authDomain: "learn-english-7f114.firebaseapp.com",
+  databaseURL: "https://learn-english-7f114.firebaseio.com",
+  projectId: "learn-english-7f114",
+  storageBucket: "learn-english-7f114.appspot.com",
+  messagingSenderId: "43843875311"
 }
 !firebase.apps.length ? firebase.initializeApp(config) : ''
 
