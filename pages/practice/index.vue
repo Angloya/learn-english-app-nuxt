@@ -1,6 +1,6 @@
 <template>
   <b-container class="text-center">
-     <cards/>
+     <cards _collection="structure" _document="practice"/>
   </b-container>
 </template>
 
@@ -9,10 +9,6 @@ import cards from '~/components/Cards.vue'
 
 export default {
   name: 'practice',
-  data () {
-    return {
-    }
-  },
   components: {
     cards
   }

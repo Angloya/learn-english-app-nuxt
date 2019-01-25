@@ -11,7 +11,8 @@ const createStore = () => {
       error: null,
       photoURL: null,
       progress: null,
-      progressShow: false
+      progressShow: false,
+      docsFB: []
     },
     getters: {
       user (state) {
@@ -28,6 +29,9 @@ const createStore = () => {
       },
       progress (state) {
         return state.progress
+      },
+      docsFB (state) {
+        return state.docsFB
       }
     },
     mutations: {
@@ -51,6 +55,9 @@ const createStore = () => {
       },
       setProgressShow (state, payload) {
         state.progressShow = payload
+      },
+      setDocsFB (state,payload) {
+        state.docsFB = payload
       }
     },
     actions: {
@@ -237,7 +244,20 @@ const createStore = () => {
               )
           })
         })
-      }
+      },
+      getDocFB ({ commit, state }, [colName, docName]) {
+        commit('setLoading', true)
+        return firebase.firestore().collection(colName).doc(docName).get().then((doc) => {
+          if (doc.exists) {
+            commit('setDocsFB', doc.data())
+            commit('setLoading', false)
+          } else {
+            console.log('No such document!')
+          }
+        }).catch((error) => {
+          console.log('Error getting document:', error)
+        })
+      },
     }
   })
 }
