@@ -56,8 +56,8 @@ const createStore = () => {
       setProgressShow (state, payload) {
         state.progressShow = payload
       },
-      setDocsFB (state,payload) {
-        state.docsFB = payload
+      setDocsFB (state,[doc, payload]) {
+        state.docsFB[doc] = payload
       }
     },
     actions: {
@@ -245,11 +245,11 @@ const createStore = () => {
           })
         })
       },
-      getDocFB ({ commit, state }, [colName, docName]) {
+      getDocFB ({ commit }, [colName, docName]) {
         commit('setLoading', true)
         return firebase.firestore().collection(colName).doc(docName).get().then((doc) => {
           if (doc.exists) {
-            commit('setDocsFB', doc.data())
+            commit('setDocsFB', [docName, doc.data()])
             commit('setLoading', false)
           } else {
             console.log('No such document!')

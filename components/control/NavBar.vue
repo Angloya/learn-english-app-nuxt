@@ -4,8 +4,8 @@
   <b-navbar-brand to="/">Learn english</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
-      <b-nav-item href="#">Link</b-nav-item>
-      <b-nav-item href="#" disabled>Disabled</b-nav-item>
+      <b-nav-item to="practice">Practice</b-nav-item>
+      <b-nav-item >Disabled</b-nav-item>
     </b-navbar-nav>
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
@@ -24,7 +24,7 @@
         </template>
         <b-dropdown-item v-if="!user" to="/authUser">SignIn</b-dropdown-item>
         <b-dropdown-item v-if="user" to="/profile">Profile</b-dropdown-item>
-        <logout/>
+        <logout v-if="user"/>
       </b-nav-item-dropdown>
     </b-navbar-nav>
   </b-collapse>

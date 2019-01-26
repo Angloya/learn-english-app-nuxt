@@ -3,12 +3,12 @@
     <b-card 
       v-for="card in cards"
       :key="card.id"
-      border-variant="primary"
-      header="Primary"
-      header-bg-variant="primary"
+      border-variant="info"
+      :header="card.name"
+      header-bg-variant="info"
       header-text-variant="white"
       align="center">
-      <p class="card-text">{{card.name}}
+      <p class="card-text">{{card.text}}
       </p>
     </b-card>
   </b-card-group>
@@ -35,10 +35,14 @@ export default {
       dbCards: {}
     }
   },
+  created () {
+    if (!this._cards && this._collection && this._document) {
+        this.getDBCards()
+    }
+  },
   computed: {
     cards () {
-      if (!this._cards && this._collection && this._document) {
-        this.getDBCards()
+      if (this.dbCards) {
         return this.dbCards
       } else {
         return this._cards || {}
@@ -48,9 +52,9 @@ export default {
   methods: {
     getDBCards () {
         this.$store.dispatch('getDocFB', [this._collection, this._document]).then(() => {
-          this.dbCards = this.$store.state.docsFB
+          this.dbCards = this.$store.state.docsFB[this._document]
           return this.dbCards
-    })
+      })
     }
   }
 }
