@@ -3,6 +3,7 @@
     <b-card 
       v-for="card in cards"
       :key="card.id"
+      @click="$emit('click', card.routName)"
       border-variant="info"
       :header="card.name"
       header-bg-variant="info"

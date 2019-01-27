@@ -4,8 +4,8 @@
   <b-navbar-brand to="/">Learn english</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
-      <b-nav-item to="practice">Practice</b-nav-item>
-      <b-nav-item >Disabled</b-nav-item>
+      <b-nav-item to="/practice">Practice</b-nav-item>
+      <b-nav-item to="/dictionary">Dictionary</b-nav-item>
     </b-navbar-nav>
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">

@@ -1,6 +1,6 @@
 <template>
   <b-container class="text-center">
-     <cards _collection="structure" _document="practice"/>
+     <cards _collection="structure" @click="choosePractice" _document="practice"/>
   </b-container>
 </template>
 
@@ -11,6 +11,11 @@ export default {
   name: 'practice',
   components: {
     cards
+  },
+  methods: {
+    choosePractice (e) {
+      this.$router.push('/practice/' + e)
+    }
   }
 }
 </script>
