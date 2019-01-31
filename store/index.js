@@ -61,7 +61,7 @@ const createStore = () => {
         state.docsFB[doc] = payload
       },
       setWord (state, payload) {
-        state.Word = payload
+        state.word = payload
       }
     },
     actions: {
@@ -265,9 +265,9 @@ const createStore = () => {
       getSkyengWord ({ commit }, word) {
         commit('setLoading', true)
         return axios.get("http://dictionary.skyeng.ru/api/public/v1/words/search?_format=json&search=" + word).then(response => {
-          console.log(response)
           commit('setWord', response.data)
           commit('setLoading', false)
+          return response.data
         })
           .catch(e => {
             console.log(e)
