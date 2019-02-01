@@ -13,7 +13,8 @@ const createStore = () => {
       progress: null,
       progressShow: false,
       docsFB: [],
-      word: null
+      word: null,
+      meanings: null
     },
     getters: {
       user (state) {
@@ -62,6 +63,9 @@ const createStore = () => {
       },
       setWord (state, payload) {
         state.word = payload
+      },
+      setMeanings (state, payload) {
+        state.meanings = payload
       }
     },
     actions: {
@@ -266,6 +270,18 @@ const createStore = () => {
         commit('setLoading', true)
         return axios.get("http://dictionary.skyeng.ru/api/public/v1/words/search?_format=json&search=" + word).then(response => {
           commit('setWord', response.data)
+          commit('setLoading', false)
+          return response.data
+        })
+          .catch(e => {
+            console.log(e)
+            commit('setError', e)
+          })
+      },
+      getSkyengMeanings ({ commit }, ids) {
+        commit('setLoading', true)
+        return axios.get("http://dictionary.skyeng.ru/api/public/v1/meanings?_format=json&ids=" + ids).then(response => {
+          commit('setMeanings', response.data)
           commit('setLoading', false)
           return response.data
         })
