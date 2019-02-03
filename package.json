@@ -17,6 +17,7 @@
     "cross-env": "^5.2.0",
     "firebase": "^5.8.0",
     "firebaseui": "^3.5.2",
+    "lodash": "^4.17.11",
     "nuxt": "^2.3.4"
   },
   "devDependencies": {

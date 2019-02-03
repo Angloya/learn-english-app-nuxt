@@ -255,7 +255,7 @@ const createStore = () => {
       },
       getDocFB ({ commit }, [colName, docName]) {
         commit('setLoading', true)
-        return firebase.firestore().collection(colName).doc(docName).get().then((doc) => {
+        return StoreDB.collection(colName).doc(docName).get().then((doc) => {
           if (doc.exists) {
             commit('setDocsFB', [docName, doc.data()])
             commit('setLoading', false)
@@ -289,7 +289,19 @@ const createStore = () => {
             console.log(e)
             commit('setError', e)
           })
-      }
+      },
+      addWordInDB ({ state }, data) {
+        StoreDB.collection('usersWord').doc(state.user.id).set({
+          user: state.user,
+          data
+        })
+          .then(() => {
+            console.log('Document successfully written!')
+          })
+          .catch((error) => {
+            console.error('Error writing document: ', error)
+          })
+      },
     }
   })
 }
