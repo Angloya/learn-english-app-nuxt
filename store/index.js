@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import firebase, {auth, GoogleProvider, storage} from '@/services/fireinit.js'
+import firebase, {auth, GoogleProvider, StoreDB, storage} from '@/services/fireinit.js'
 import axios from 'axios'
 
 const createStore = () => {
@@ -14,7 +14,8 @@ const createStore = () => {
       progressShow: false,
       docsFB: [],
       word: null,
-      meanings: null
+      meanings: null,
+      wordsForDictionary: null
     },
     getters: {
       user (state) {
@@ -66,7 +67,10 @@ const createStore = () => {
       },
       setMeanings (state, payload) {
         state.meanings = payload
-      }
+      },
+      setWordsForDictionary (state, payload) {
+        state.wordsForDictionary = payload
+      },
     },
     actions: {
       // authorization
@@ -291,8 +295,7 @@ const createStore = () => {
           })
       },
       addWordInDB ({ state }, data) {
-        StoreDB.collection('usersWord').doc(state.user.id).set({
-          user: state.user,
+        StoreDB.collection(state.user.id).doc(data.id).set({
           data
         })
           .then(() => {
@@ -302,8 +305,21 @@ const createStore = () => {
             console.error('Error writing document: ', error)
           })
       },
+      getWordsFromDB ({ commit, state }) {
+        var words = []
+        commit('setLoading', true)
+        return StoreDB.collection(state.user.id).get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) =>  {
+            let word = doc.data()
+            words.push(word.data)
+          })
+          commit('setWordsForDictionary', words)
+          commit('setLoading', false)
+        }).catch((error) => {
+          console.log('Error getting document:', error)
+        })
+      }
     }
   })
 }
-
 export default createStore

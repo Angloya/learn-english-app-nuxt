@@ -15,6 +15,7 @@ export default {
       this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
         if( this.$store.state.meanings.length === 5) {
           this.start = true
+          this.wrongAnswer = []
           this.setWordMeans()
           return this.$store.state.meanings
         } else {
@@ -30,6 +31,19 @@ export default {
       }
       return randomNum
     },
+    setWrongAnswer (answer) {
+      var wrongAnswer = answer
+      for (let item of this.wrongAnswers) {
+        if (answer.id === item.id) {
+          var wrongAnswer = {}
+        }
+      }
+        if (this.user && wrongAnswer.id) {
+          this.$store.dispatch('addWordInDB', wrongAnswer).then(() => {
+            this.wrongAnswers.push(answer)
+        })
+      }
+    },
     checkAnswer (answer) {
       clearTimeout(timerId)
       if (this.meanings[this.meanId].id == answer.id) {
@@ -44,11 +58,7 @@ export default {
           }
         }
         this.keyColor = 'danger'
-        if (this.user) {
-          this.$store.dispatch('addWordInDB', answer).then(() => {
-            this.wrongAnswer.push(answer)
-          })
-        }
+        this.setWrongAnswer(answer)
       }
       var timerId = setTimeout(() => {
         this.setMeanId()
