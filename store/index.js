@@ -17,26 +17,6 @@ const createStore = () => {
       meanings: null,
       wordsForDictionary: null
     },
-    getters: {
-      user (state) {
-        return state.user
-      },
-      loading (state) {
-        return state.loading
-      },
-      error (state) {
-        return state.error
-      },
-      photoURL (state) {
-        return state.photoURL
-      },
-      progress (state) {
-        return state.progress
-      },
-      docsFB (state) {
-        return state.docsFB
-      }
-    },
     mutations: {
       setUser (state, payload) {
         state.user = payload

@@ -12,6 +12,7 @@
       <b-nav-form @keyup.enter="getWordFromDictionary">
         <b-form-input size="sm" class="mr-sm-2" v-model="searchWord" type="text" placeholder="Search"/>
         <b-button size="sm" class="my-2 my-sm-0" type="submit"
+        to="/dictionary"
         @click="getWordFromDictionary">Search</b-button>
       </b-nav-form>
       <b-nav-item-dropdown text="Lang" right>
@@ -51,11 +52,9 @@ export default {
   },
   methods: {
     getWordFromDictionary () {
-      debugger
       if (this.searchWord) {
-        debugger
-        this.$router.push('/dictionary/' +  this.searchWord)
-        this.searchValue = ''
+        this.$router.push("/dictionary/" + this.searchWord)
+        this.searchWord = ''
       } 
     }
   }

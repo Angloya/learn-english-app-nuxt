@@ -19,11 +19,12 @@
       class="mt-3 text-center"  
       v-if="!start && wrongAnswers.length">
       <h2>Words added to your dictionary</h2>
-      <b-row class="justify-content-center">
-       <b-col v-for="word in wrongAnswers" :key="word.id">
+      <b-row class="justify-content-center"
+        align-h="center">
+       <b-col cols="auto" md="auto" sm="auto" v-for="word in wrongAnswers" :key="word.id">
       <cardWord
         class="mb-3"
-        :_imageWord="word.images[0].url || ''"
+        :_imageWord="getMeaningImg(word)"
         :_title="word.text"
         :_text="word.translation.text"
         :_transcription="word.transcription"
@@ -34,11 +35,11 @@
       <wordForLearn v-if="start" 
         @change="checkAnswer"
         @clicked="setMeanId"
-        :_title="meanings[meanId].text"
-        :_audio="meanings[meanId].soundUrl"
-        :_answerId="meanings[meanId].id"
+        :_title="meaning.text"
+        :_audio="meaning.soundUrl"
+        :_answerId="meaning.id"
         :_answers="answers"
-        :_image="meanings[meanId].images[0].url || ''"
+        :_image="getMeaningImg(meaning)"
         :_show="show"
         :key="keyColor"
         _answerLabel="translation" />
@@ -74,6 +75,9 @@ export default {
   computed: {
     meanings () {
       return this.$store.state.meanings || []
+    },
+    meaning () {
+      return this.meanings[this.meanId]
     }
   },
   methods: {
@@ -89,6 +93,7 @@ export default {
         this.setWordMeans()
       } else {
         this.start = false
+        this.meanId = 0
       }
     }
   },

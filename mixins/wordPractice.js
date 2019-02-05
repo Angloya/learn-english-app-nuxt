@@ -15,13 +15,20 @@ export default {
       this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
         if( this.$store.state.meanings.length === 5) {
           this.start = true
-          this.wrongAnswer = []
+          this.wrongAnswers = []
           this.setWordMeans()
           return this.$store.state.meanings
         } else {
           this.getSkyengMeanings()
         }
       })
+    },
+    getMeaningImg (mean) {
+      if (mean.images.length != 0) {
+        return mean.images[0].url
+      } else {
+        return ''
+      }
     },
     randomIds () {
       var randomNum = []

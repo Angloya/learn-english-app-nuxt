@@ -1,5 +1,5 @@
 <template>
-  <b-container class="text-center">
+   <b-container class="text-center">
      <b-row class="justify-content-center" v-if="!isShowAllMeanings">
       <cardWord
       v-if="wordMeaning"
