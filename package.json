@@ -15,10 +15,11 @@
     "bootstrap": "^4.1.3",
     "bootstrap-vue": "^2.0.0-rc.11",
     "cross-env": "^5.2.0",
-    "firebase": "^5.8.0",
+    "firebase": "^5.8.2",
     "firebaseui": "^3.5.2",
     "lodash": "^4.17.11",
-    "nuxt": "^2.3.4"
+    "nuxt": "^2.4.2",
+    "nuxt-material-design-icons": "^1.0.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

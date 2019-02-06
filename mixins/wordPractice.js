@@ -15,7 +15,7 @@ export default {
       this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
         if( this.$store.state.meanings.length === 5) {
           this.start = true
-          this.wrongAnswers = []
+          this.wrongAnswers = {}
           this.setWordMeans()
           return this.$store.state.meanings
         } else {
@@ -40,6 +40,7 @@ export default {
     },
     setWrongAnswer (answer) {
       var wrongAnswer = answer
+      this.wrongAnswers.id = answer
       for (let item of this.wrongAnswers) {
         if (answer.id === item.id) {
           var wrongAnswer = {}

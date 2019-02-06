@@ -1,10 +1,13 @@
 <template>
    <b-container class="text-center">
-     <b-row class="justify-content-center" v-if="!isShowAllMeanings">
+    <loading v-if="loading"/>
+    <h2 v-if="!wordMeaning && !loading">Sorry we can't find the word "{{searchWord}}"</h2>
+    <b-row class="justify-content-center"
+      v-if="!isShowAllMeanings && !loading">
       <cardWord
       v-if="wordMeaning"
       :_imageWord="wordMeaning.imageUrl"
-      :_title="$route.params.id"
+      :_title="word[0].text"
       :_text="wordMeaning.translation.text"
       :_note="wordMeaning.translation.note"
       :_transcription="wordMeaning.transcription"
@@ -17,12 +20,11 @@
        <b-col v-for="word in words" :key="word.id">
       <cardWord
         class="mb-3"
-        :_imageWord="word.meanings[0].imageUrl"
-        :_title="word.text"
-        :_text="word.meanings[0].translation.text"
-        :_note="word.meanings[0].translation.note"
-        :_transcription="word.meanings[0].transcription"
-        :_audio="word.meanings[0].soundUrl"/>
+        :_imageWord="word.imageUrl"
+        :_title="searchWord"
+        :_text="word.translation.text"
+        :_transcription="word.transcription"
+        :_audio="word.soundUrl"/>
       </b-col>
      </b-row>
     </b-container>
@@ -31,10 +33,13 @@
 
 <script>
 import cardWord from '~/components/CardWord.vue'
+import loading from '~/components/loading.vue'
+
 export default {
   name: 'dictionary',
   components: {
-    cardWord
+    cardWord,
+    loading
   },
   data () {
     return {
@@ -42,23 +47,29 @@ export default {
     }
   },
   computed: {
+    searchWord () {
+      return this.$route.params.word
+    },
+    loading () {
+      return this.$store.state.loading
+    },
     word () {
       return this.$store.state.word
     },
     wordMeaning () {
-      if (this.word) {
+      if (this.word && this.word.length != 0) {
         return this.word[0].meanings[0]
       }
     },
     words () {
-      if (this.word) {
-        return this.word
+       if (this.word && this.word.length != 0) {
+        return this.word[0].meanings
       }
     }
   },
   created () {
-    this.$store.dispatch('getSkyengWord', this.$route.params.id).then(() => {
-      return this.$store.state.word[0].meanings[0]
+    this.$store.dispatch('getSkyengWord', this.searchWord).then(() => {
+      return this.$store.state.word
     })
   },
   methods: {

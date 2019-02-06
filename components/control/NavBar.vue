@@ -9,11 +9,10 @@
     </b-navbar-nav>
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
-      <b-nav-form @keyup.enter="getWordFromDictionary">
+      <b-nav-form @keyup.enter.prevent="getWordFromDictionary">
         <b-form-input size="sm" class="mr-sm-2" v-model="searchWord" type="text" placeholder="Search"/>
-        <b-button size="sm" class="my-2 my-sm-0" type="submit"
-        to="/dictionary"
-        @click="getWordFromDictionary">Search</b-button>
+        <b-button size="sm" class="my-2 my-sm-0 d-flex justify-content-center align-items-center" type="submit"
+        @click.prevent="getWordFromDictionary"><i class="material-icons md-light">search</i></b-button>
       </b-nav-form>
       <b-nav-item-dropdown text="Lang" right>
         <b-dropdown-item href="#">EN</b-dropdown-item>
