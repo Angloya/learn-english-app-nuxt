@@ -25,6 +25,7 @@
         :_text="word.translation.text"
         :_transcription="word.transcription"
         :_audio="word.soundUrl"/>
+    </b-button>
       </b-col>
      </b-row>
     </b-container>

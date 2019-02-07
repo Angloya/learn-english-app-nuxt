@@ -25,6 +25,11 @@
       <b-button @click="$emit('click')">{{_showAllMean}}
         </b-button>
       </b-card-footer>
+      <b-button 
+        v-if="_isDictionary"
+        @click="$emit('delete')">
+      <i class="material-icons md-light">delete</i>
+    </b-button>
   </b-card>
 </template>
 
@@ -57,6 +62,10 @@ export default {
     },
     _showAllMean: {
       type: String
+    },
+    _isDictionary: {
+      type: Boolean,
+      default: false
     }
   }
 }

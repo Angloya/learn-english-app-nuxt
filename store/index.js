@@ -298,6 +298,13 @@ const createStore = () => {
         }).catch((error) => {
           console.log('Error getting document:', error)
         })
+      },
+      deleteWordsFromDB ({ state }, id) {
+        return StoreDB.collection(state.user.id).doc(id).delete().then(() => {
+          console.log("Document successfully deleted!")
+        }).catch(function(error) {
+          console.error("Error removing document: ", error);
+        })
       }
     }
   })
