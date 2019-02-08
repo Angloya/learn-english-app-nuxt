@@ -21,8 +21,8 @@
       :_text="word.translation.text"
       :_transcription="word.transcription"
       :_audio="word.soundUrl"
-      :_isDictionary='true'
-      @delete="deleteWord(word.id, idx)"/>
+      :_isExtraButtonShow='true'
+      @change="deleteWord(word.id, idx)"/>
     </b-col>
     </b-row>
   </b-container>
@@ -45,7 +45,7 @@ export default {
     }
   },
   created () {
-    this.getWord()
+    this.getWords()
   },
   computed: {
     user () {
@@ -59,7 +59,7 @@ export default {
     }
   },
   methods: {
-    getWord () {
+    getWords () {
       if (this.user) {
         this.$store.dispatch('getWordsFromDB').then(() => {
           return this.$store.state.wordsForDictionary

@@ -275,7 +275,7 @@ const createStore = () => {
           })
       },
       addWordInDB ({ state }, data) {
-        StoreDB.collection(state.user.id).doc(data.id).set({
+        StoreDB.collection(state.user.id).doc(String(data.id)).set({
           data
         })
           .then(() => {

@@ -26,9 +26,9 @@
         </b-button>
       </b-card-footer>
       <b-button 
-        v-if="_isDictionary"
-        @click="$emit('delete')">
-      <i class="material-icons md-light">delete</i>
+        v-if="_isExtraButtonShow && user"
+        @click="$emit('change')">
+      <i class="material-icons md-light">{{_extraButton}}</i>
     </b-button>
   </b-card>
 </template>
@@ -63,11 +63,20 @@ export default {
     _showAllMean: {
       type: String
     },
-    _isDictionary: {
+    _isExtraButtonShow: {
       type: Boolean,
       default: false
+    },
+    _extraButton: {
+      type: String,
+      default: 'delete'
     }
-  }
+  },
+   computed: {
+    user () {
+      return this.$store.state.user
+    }
+   }
 }
 </script>
 

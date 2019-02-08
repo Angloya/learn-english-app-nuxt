@@ -13,7 +13,10 @@
       :_transcription="wordMeaning.transcription"
       :_audio="wordMeaning.soundUrl"
       _showAllMean="More translations"
-      @click="showAllMeanings"/>
+      @click="showAllMeanings"
+      :_isExtraButtonShow="wordInDB(wordMeaning)"
+      :_extraButton="wordAdded"
+      @change="addWordinDB"/>
      </b-row>
      <b-container class="text-center" v-if="isShowAllMeanings">
       <b-row class="justify-content-center">
@@ -25,7 +28,6 @@
         :_text="word.translation.text"
         :_transcription="word.transcription"
         :_audio="word.soundUrl"/>
-    </b-button>
       </b-col>
      </b-row>
     </b-container>
@@ -35,6 +37,7 @@
 <script>
 import cardWord from '~/components/CardWord.vue'
 import loading from '~/components/loading.vue'
+import { delay } from 'q';
 
 export default {
   name: 'dictionary',
@@ -44,7 +47,8 @@ export default {
   },
   data () {
     return {
-      isShowAllMeanings: false
+      isShowAllMeanings: false,
+      wordAdded: 'add'
     }
   },
   computed: {
@@ -54,6 +58,9 @@ export default {
     loading () {
       return this.$store.state.loading
     },
+    user () {
+      return this.$store.state.user
+    },
     word () {
       return this.$store.state.word
     },
@@ -61,6 +68,9 @@ export default {
       if (this.word && this.word.length != 0) {
         return this.word[0].meanings[0]
       }
+    },
+    wordsForDictionary () {
+       return this.$store.state.wordsForDictionary
     },
     words () {
        if (this.word && this.word.length != 0) {
@@ -72,10 +82,37 @@ export default {
     this.$store.dispatch('getSkyengWord', this.searchWord).then(() => {
       return this.$store.state.word
     })
+    if (!this.wordsForDictionary) {
+      this.getWords()
+    }
   },
   methods: {
     showAllMeanings () {
       this.isShowAllMeanings = !this.isShowAllMeanings
+    },
+    getWords () {
+      if (this.user) {
+        this.$store.dispatch('getWordsFromDB').then(() => {
+          return this.$store.state.wordsForDictionary
+        })
+      }
+    },
+    addWordinDB () {
+      this.wordAdded = 'school'
+      this.$store.dispatch('getSkyengMeanings', this.wordMeaning.id).then(() => {
+          this.$store.dispatch('addWordInDB', this.$store.state.meanings[0])
+      })
+    },
+    wordInDB (wordMeaning) {
+      var isNotWordDB = true
+      if (this.wordsForDictionary) {
+       this.wordsForDictionary.forEach(wordForDictionary => {
+          if (wordForDictionary.id === String(wordMeaning.id)) {
+            isNotWordDB = false
+          }
+        })
+      }
+      return isNotWordDB
     }
   }
 }
