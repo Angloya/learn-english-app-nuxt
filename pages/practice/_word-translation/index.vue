@@ -17,7 +17,7 @@
   </b-card>
     <b-container 
       class="mt-3 text-center"  
-      v-if="!start && wrongAnswers.length">
+      v-if="!start && wrongAnswers">
       <h2>Words added to your dictionary</h2>
       <b-row class="justify-content-center">
        <b-col v-for="word in wrongAnswers" :key="word.id">
@@ -52,7 +52,7 @@ import cardWord from '~/components/CardWord.vue'
 import _ from 'lodash'
 
 export default {
-  name: 'word',
+  name: 'word-translation',
   components: {
     wordForLearn,
     cardWord
@@ -62,7 +62,7 @@ export default {
       start: false,
       meanId: 0,
       keyColor: '',
-      wrongAnswers: [],
+      wrongAnswers: null,
       answers: null,
       show: {
         title: true,
@@ -73,7 +73,7 @@ export default {
   },
   computed: {
     meanings () {
-      return this.$store.state.meanings || []
+      return this.$store.state.appLogic.meanings || []
     }
   },
   methods: {

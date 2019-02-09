@@ -2,13 +2,13 @@
   <b-container class="text-center">
     <b-row class="justify-content-center">
         <b-card
-          title="Word - Translation"
+          title="Translation - Word"
           v-if="!start"
           img-src="/image/wordPractice.png"
           style="max-width: 20rem;"
           class="mb-2">
     <p class="card-text">
-      Here you need to select one correct translation of the word.
+      Here you need to select one correct word of the translation.
     </p>
     <b-button
       @click="getSkyengMeanings"> 
@@ -17,7 +17,7 @@
   </b-card>
     <b-container 
       class="mt-3 text-center"  
-      v-if="!start && wrongAnswers.length">
+      v-if="!start && wrongAnswers">
       <h2>Words added to your dictionary</h2>
       <b-row class="justify-content-center"
         align-h="center">
@@ -35,14 +35,13 @@
       <wordForLearn v-if="start" 
         @change="checkAnswer"
         @clicked="setMeanId"
-        :_title="meaning.text"
+        :_title="meaning.translation.text"
         :_audio="meaning.soundUrl"
         :_answerId="meaning.id"
         :_answers="answers"
         :_image="getMeaningImg(meaning)"
         :_show="show"
-        :key="keyColor"
-        _answerLabel="translation" />
+        :key="keyColor" />
       </b-row>
   </b-container>
 </template>
@@ -53,7 +52,7 @@ import cardWord from '~/components/CardWord.vue'
 import _ from 'lodash'
 
 export default {
-  name: 'word',
+  name: 'translation-word',
   components: {
     wordForLearn,
     cardWord
@@ -63,7 +62,7 @@ export default {
       start: false,
       meanId: 0,
       keyColor: '',
-      wrongAnswers: [],
+      wrongAnswers: null,
       answers: null,
       show: {
         title: true,

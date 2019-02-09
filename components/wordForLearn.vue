@@ -29,9 +29,15 @@
       :key="answer.id">
       <b-list-group-item 
         :variant="answer.color"
-        v-if="answer[_answerLabel].text"
+        v-if="_answerLabel"
         @click="$emit('change', answer)">
         {{answer[_answerLabel].text}}
+      </b-list-group-item>
+      <b-list-group-item 
+        :variant="answer.color"
+        v-if="!_answerLabel"
+        @click="$emit('change', answer)">
+        {{answer.text}}
       </b-list-group-item>
     </b-list-group>
   </b-card>

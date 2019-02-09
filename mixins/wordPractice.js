@@ -39,16 +39,9 @@ export default {
       return randomNum
     },
     setWrongAnswer (answer) {
-      var wrongAnswer = answer
-      this.wrongAnswers.id = answer
-      for (let item of this.wrongAnswers) {
-        if (answer.id === item.id) {
-          var wrongAnswer = {}
-        }
-      }
-        if (this.user && wrongAnswer.id) {
-          this.$store.dispatch('addWordInDB', wrongAnswer).then(() => {
-            this.wrongAnswers.push(answer)
+        if (this.user && answer.id) {
+          this.$store.dispatch('addWordInDB', answer).then(() => {
+            this.wrongAnswers[answer.id] = answer
         })
       }
     },
