@@ -50,13 +50,13 @@ export default {
   },
   computed: {
     user () {
-      return this.$store.state.user
+      return this.$store.state.appLogic.user
     },
     progress () {
-      return this.$store.state.progress
+      return this.$store.state.appLogic.progress
     },
     progressShow () {
-      return this.$store.state.progressShow
+      return this.$store.state.appLogic.progressShow
     }
   }
 }

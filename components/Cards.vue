@@ -53,7 +53,7 @@ export default {
   methods: {
     getDBCards () {
         this.$store.dispatch('getDocFB', [this._collection, this._document]).then(() => {
-          this.dbCards = this.$store.state.docsFB[this._document]
+          this.dbCards = this.$store.state.appLogic.docsFB[this._document]
           return this.dbCards
       })
     }

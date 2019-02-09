@@ -61,20 +61,20 @@ export default {
   },
   computed: {
     user () {
-      return this.$store.state.user
+      return this.$store.state.appLogic.user
     },
     loading () {
-      return this.$store.state.loading
+      return this.$store.state.appLogic.loading
     },
     wordsForDictionary () {
-      return this.words || this.$store.state.wordsForDictionary || []
+      return this.words || this.$store.state.appLogic.wordsForDictionary || []
     }
   },
   methods: {
     getWords () {
       if (this.user) {
         this.$store.dispatch('getWordsFromDB').then(() => {
-          return this.$store.state.wordsForDictionary
+          return this.$store.state.appLogic.wordsForDictionary
         })
       }
     },

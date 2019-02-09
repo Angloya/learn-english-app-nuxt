@@ -1,7 +1,7 @@
 export default {
   computed: {
     user () {
-      return this.$store.state.user
+      return this.$store.state.appLogic.user
     }
   },
   methods: {
@@ -13,11 +13,11 @@ export default {
     },
     getSkyengMeanings () {
       this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
-        if( this.$store.state.meanings.length === 5) {
+        if( this.$store.state.appLogic.meanings.length === 5) {
           this.start = true
           this.wrongAnswers = {}
           this.setWordMeans()
-          return this.$store.state.meanings
+          return this.$store.state.appLogic.meanings
         } else {
           this.getSkyengMeanings()
         }

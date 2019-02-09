@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     meanings () {
-      return this.$store.state.meanings || []
+      return this.$store.state.appLogic.meanings || []
     },
     meaning () {
       return this.meanings[this.meanId]

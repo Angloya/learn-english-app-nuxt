@@ -56,13 +56,13 @@ export default {
       return this.password !== this.confirmPassword ? 'Passwords do not match' : ''
     },
     user () {
-      return this.$store.state.user
+      return this.$store.state.appLogic.user
     },
     error () {
-      return this.$store.state.error
+      return this.$store.state.appLogic.error
     },
     loading () {
-      return this.$store.state.loading
+      return this.$store.state.appLogic.loading
     }
   },
   watch: {

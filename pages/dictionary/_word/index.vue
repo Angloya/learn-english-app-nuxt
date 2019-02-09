@@ -64,13 +64,13 @@ export default {
       return this.$route.params.word
     },
     loading () {
-      return this.$store.state.loading
+      return this.$store.state.appLogic.loading
     },
     user () {
-      return this.$store.state.user
+      return this.$store.state.appLogic.user
     },
     word () {
-      return this.$store.state.word
+      return this.$store.state.appLogic.word
     },
     wordMeaning () {
       if (this.word && this.word.length != 0) {
@@ -78,7 +78,7 @@ export default {
       }
     },
     wordsForDictionary () {
-       return this.$store.state.wordsForDictionary
+       return this.$store.state.appLogic.wordsForDictionary
     },
     words () {
        if (this.word && this.word.length != 0) {
@@ -88,7 +88,7 @@ export default {
   },
   created () {
     this.$store.dispatch('getSkyengWord', this.searchWord).then(() => {
-      return this.$store.state.word
+      return this.$store.state.appLogic.word
     })
     if (!this.wordsForDictionary) {
       this.getWords()
@@ -101,14 +101,14 @@ export default {
     getWords () {
       if (this.user) {
         this.$store.dispatch('getWordsFromDB').then(() => {
-          return this.$store.state.wordsForDictionary
+          return this.$store.state.appLogic.wordsForDictionary
         })
       }
     },
     addWordinDB () {
       this.wordAdded = 'school'
       this.$store.dispatch('getSkyengMeanings', this.wordMeaning.id).then(() => {
-          this.$store.dispatch('addWordInDB', this.$store.state.meanings[0])
+          this.$store.dispatch('addWordInDB', this.$store.state.appLogic.meanings[0])
       })
     },
     wordInDB (wordMeaning) {
