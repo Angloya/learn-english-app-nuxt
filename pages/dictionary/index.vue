@@ -8,12 +8,21 @@
           <b-form-input @input="searchWordInDictionary" size="md" class="my-3" v-model="searchWord" type="text" placeholder="Search"/>
           <b-button size="md" type="submit"
             class="d-flex justify-content-center align-items-center mx-3"
-            @click.prevent="searchWordInDictionary"><i class="material-icons md-light">search</i></b-button>
+            @click.prevent="searchWordInDictionary">
+            <i class="material-icons md-light">search</i>
+          </b-button>
         </b-form>
       </b-col>
      </b-row>
+     <emptySearch
+      :_searchWord="searchWord"
+      v-if="words && words.length == 0"/>
     <b-row class="justify-content-center" v-if="!loading">
-      <b-col v-for="(word, idx) in wordsForDictionary" :key="word.id">
+      <b-col
+        cols="auto"
+        md="auto"
+        v-for="(word, idx) in wordsForDictionary"
+        :key="word.id">
     <cardWord
       class="mb-3"
       :_imageWord="getMeaningImg(word)"
@@ -31,17 +40,20 @@
 <script>
 import cardWord from '~/components/CardWord.vue'
 import loading from '~/components/loading.vue'
+import emptySearch from '~/components/EmptySearch.vue'
 import { delay } from 'q';
 export default {
   name: 'dictionary',
   components: {
     cardWord,
-    loading
+    loading,
+    emptySearch
   },
   data () {
     return {
       searchWord: '',
-      words: null
+      words: null,
+      searchWord: false
     }
   },
   created () {

@@ -14,7 +14,7 @@
       <b-list-group-item v-if="_note">
         {{_note}}
       </b-list-group-item>
-      <b-list-group-item>{{_transcription}}</b-list-group-item>
+      <b-list-group-item v-if="_transcription">{{_transcription}}</b-list-group-item>
     </b-list-group>
     <b-card-body>
       <audio controls style="width: 250px;">
@@ -53,8 +53,7 @@ export default {
       type: String
     },
     _transcription: {
-      type: String,
-      default: ''
+      type: String
     },
     _audio: {
       type: String,

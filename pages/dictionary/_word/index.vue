@@ -1,7 +1,7 @@
 <template>
    <b-container class="text-center">
     <loading v-if="loading"/>
-    <h2 v-if="!wordMeaning && !loading">Sorry we can't find the word "{{searchWord}}"</h2>
+    <emptySearch v-if="!wordMeaning && !loading" :_searchWord="searchWord"/>
     <b-row class="justify-content-center"
       v-if="!isShowAllMeanings && !loading">
       <cardWord
@@ -20,16 +20,22 @@
      </b-row>
      <b-container class="text-center" v-if="isShowAllMeanings">
       <b-row class="justify-content-center">
-       <b-col v-for="word in words" :key="word.id">
-      <cardWord
-        class="mb-3"
-        :_imageWord="word.imageUrl"
-        :_title="searchWord"
-        :_text="word.translation.text"
-        :_transcription="word.transcription"
-        :_audio="word.soundUrl"/>
-      </b-col>
-     </b-row>
+        <b-col
+          cols="auto"
+          md="auto"
+          v-for="word in words"
+          :key="word.id">
+          <cardWord
+            class="mb-3"
+            :_imageWord="word.imageUrl"
+            :_title="searchWord"
+            :_text="word.translation.text"
+            _showAllMean="Hide translations"
+            :_transcription="word.transcription"
+            @click="showAllMeanings"
+            :_audio="word.soundUrl"/>
+        </b-col>
+      </b-row>
     </b-container>
   </b-container>
 </template>
@@ -37,13 +43,15 @@
 <script>
 import cardWord from '~/components/CardWord.vue'
 import loading from '~/components/loading.vue'
+import emptySearch from '~/components/EmptySearch.vue'
 import { delay } from 'q';
 
 export default {
   name: 'dictionary',
   components: {
     cardWord,
-    loading
+    loading,
+    emptySearch
   },
   data () {
     return {
