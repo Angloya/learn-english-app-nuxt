@@ -39,11 +39,10 @@ export default {
       return randomNum
     },
     setWrongAnswer (answer) {
-        if (this.user && answer.id) {
-          this.$store.dispatch('addWordInDB', answer).then(() => {
-            this.wrongAnswers[answer.id] = answer
-        })
+      if (this.user && answer.id) {
+        this.$store.dispatch('addWordInDB', answer)
       }
+      this.wrongAnswers[answer.id] = answer
     },
     checkAnswer (answer) {
       clearTimeout(timerId)

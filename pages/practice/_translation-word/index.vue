@@ -18,7 +18,8 @@
     <b-container 
       class="mt-3 text-center"  
       v-if="!start && wrongAnswers">
-      <h2>Words added to your dictionary</h2>
+      <h2 v-if="user">Words added to your dictionary</h2>
+       <h2 v-if="!user">Wrong answers</h2>
       <b-row class="justify-content-center"
         align-h="center">
        <b-col cols="auto" md="auto" sm="auto" v-for="word in wrongAnswers" :key="word.id">
@@ -66,7 +67,7 @@ export default {
       answers: null,
       show: {
         title: true,
-        audio: true,
+        audio: false,
         image: true
       }
     }

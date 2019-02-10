@@ -1,6 +1,6 @@
 <template>
   <b-card no-body
-    style="max-width: 20rem;">
+    style="max-width: 20rem; min-width: 18rem;">
     <b-container slot="header" class="px-0">
       <b-row class="text-center">
         <b-col cols="10" class="px-0">
