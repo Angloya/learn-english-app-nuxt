@@ -2,47 +2,33 @@
   <b-container class="text-center">
     <b-row class="justify-content-center">
         <b-card
-          title="Translation - Word"
+          title="Make a word"
           v-if="!start"
-          img-src="/image/wordPractice.png"
+          img-src="/image/wordImage2.png"
           style="max-width: 20rem;"
           class="mb-2">
     <p class="card-text">
-      Here you need to select one correct word of the translation.
+      You need to collect the word from the provided letters.
     </p>
     <b-button
       @click="getSkyengMeanings"> 
         begin to learn the words
     </b-button>
   </b-card>
-    <b-container 
-      class="mt-3 text-center"  
-      v-if="!start && wrongAnswers">
-      <h2 v-if="user">Words added to your dictionary</h2>
-       <h2 v-if="!user">Wrong answers</h2>
-      <b-row class="justify-content-center"
-        align-h="center">
-       <b-col cols="auto" md="auto" sm="auto" v-for="word in wrongAnswers" :key="word.id">
-      <cardWord
-        class="mb-3"
-        :_imageWord="getMeaningImg(word)"
-        :_title="word.text"
-        :_text="word.translation.text"
-        :_transcription="word.transcription"
-        :_audio="word.soundUrl"/>
-      </b-col>
-     </b-row>
-    </b-container>
+      <wrongAnswers 
+        :_wrongAnswers='wrongAnswers' 
+        v-if="!start && wrongAnswers"/>
       <wordForLearn v-if="start" 
         @change="checkAnswer"
         @clicked="setMeanId"
-        :_title="meaning.translation.text"
-        :_audio="meaning.soundUrl"
-        :_answerId="meaning.id"
+        :_title="meanings[meanId].text"
+        :_audio="meanings[meanId].soundUrl"
+        :_answerId="meanings[meanId].id"
         :_answers="answers"
-        :_image="getMeaningImg(meaning)"
+        :_image="meanings[meanId].images[0].url || ''"
         :_show="show"
-        :key="keyColor" />
+        :key="keyColor"
+        _answerLabel="translation" />
       </b-row>
   </b-container>
 </template>
@@ -50,13 +36,15 @@
 <script>
 import wordForLearn from '~/components/wordForLearn.vue'
 import cardWord from '~/components/CardWord.vue'
+import wrongAnswers from '~/components/wrong-answers.vue'
 import _ from 'lodash'
 
 export default {
-  name: 'translation-word',
+  name: 'word-translation',
   components: {
     wordForLearn,
-    cardWord
+    cardWord,
+    wrongAnswers
   },
   data () {
     return {
@@ -67,7 +55,7 @@ export default {
       answers: null,
       show: {
         title: true,
-        audio: false,
+        audio: true,
         image: true
       }
     }
@@ -75,9 +63,6 @@ export default {
   computed: {
     meanings () {
       return this.$store.state.appLogic.meanings || []
-    },
-    meaning () {
-      return this.meanings[this.meanId]
     }
   },
   methods: {
@@ -93,7 +78,6 @@ export default {
         this.setWordMeans()
       } else {
         this.start = false
-        this.meanId = 0
       }
     }
   },

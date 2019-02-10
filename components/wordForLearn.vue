@@ -6,17 +6,17 @@
         <b-col cols="10" class="px-0">
           <h4 v-if="_show.title">
             {{_title}}</h4>
-      </b-col>
-      <b-col class="px-0">
-        <b-img
-          slot="header"
-          @click="showImage = !showImage"
-          height="30"
-          src="/image/tip.png"/>
-      </b-col>
+        </b-col>
+        <b-col class="px-0">
+          <b-img
+            slot="header"
+            @click="showImage = !showImage"
+            height="30"
+            src="/image/tip.png"/>
+        </b-col>
       </b-row>
     </b-container>
-     <b-img thumbnail fluid :src="_image"
+    <b-img thumbnail fluid :src="_image"
       v-if="showImage && _show.image"   
       :alt="_title"/>
     <b-card-body v-if="_show.audio">

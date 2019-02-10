@@ -7,31 +7,18 @@
           img-src="/image/wordPractice.png"
           style="max-width: 20rem;"
           class="mb-2">
-    <p class="card-text">
-      Here you need to select one correct translation of the word.
-    </p>
-    <b-button
-      @click="getSkyengMeanings"> 
-        begin to learn the words
-    </b-button>
-  </b-card>
-    <b-container 
-      class="mt-3 text-center"  
-      v-if="!start && wrongAnswers">
-      <h2>Words added to your dictionary</h2>
-      <b-row class="justify-content-center">
-       <b-col v-for="word in wrongAnswers" :key="word.id">
-      <cardWord
-        class="mb-3"
-        :_imageWord="word.images[0].url || ''"
-        :_title="word.text"
-        :_text="word.translation.text"
-        :_transcription="word.transcription"
-        :_audio="word.soundUrl"/>
-      </b-col>
-     </b-row>
-    </b-container>
-      <wordForLearn v-if="start" 
+        <p class="card-text">
+          Here you need to select one correct translation of the word.
+        </p>
+        <b-button
+          @click="getSkyengMeanings"> 
+            begin to learn the words
+        </b-button>
+      </b-card>
+      <wrongAnswers 
+    :_wrongAnswers='wrongAnswers' 
+    v-if="!start && wrongAnswers"/>
+      <!-- <wordForLearn v-if="start" 
         @change="checkAnswer"
         @clicked="setMeanId"
         :_title="meanings[meanId].text"
@@ -41,7 +28,7 @@
         :_image="meanings[meanId].images[0].url || ''"
         :_show="show"
         :key="keyColor"
-        _answerLabel="translation" />
+        _answerLabel="translation" /> -->
       </b-row>
   </b-container>
 </template>
@@ -49,13 +36,15 @@
 <script>
 import wordForLearn from '~/components/wordForLearn.vue'
 import cardWord from '~/components/CardWord.vue'
+import wrongAnswers from '~/components/wrong-answers.vue'
 import _ from 'lodash'
 
 export default {
   name: 'word-translation',
   components: {
     wordForLearn,
-    cardWord
+    cardWord,
+    wrongAnswers
   },
   data () {
     return {
