@@ -18,7 +18,7 @@
       <wrongAnswers 
     :_wrongAnswers='wrongAnswers' 
     v-if="!start && wrongAnswers"/>
-      <!-- <wordForLearn v-if="start" 
+      <wordForLearn v-if="start" 
         @change="checkAnswer"
         @clicked="setMeanId"
         :_title="meanings[meanId].text"
@@ -28,7 +28,7 @@
         :_image="meanings[meanId].images[0].url || ''"
         :_show="show"
         :key="keyColor"
-        _answerLabel="translation" /> -->
+        _answerLabel="translation" />
       </b-row>
   </b-container>
 </template>
@@ -66,10 +66,17 @@ export default {
     }
   },
   methods: {
-    setWordMeans () {
-      this.answers = []
-      this.answers = _.cloneDeep(this.meanings)
-      this.sortArray(this.answers)
+    getSkyengMeanings () {
+      this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
+        if( this.$store.state.appLogic.meanings.length === 5) {
+          this.start = true
+          this.wrongAnswers = {}
+          this.setWordMeans(this.meanings)
+          return this.$store.state.appLogic.meanings
+        } else {
+          this.getSkyengMeanings()
+        }
+      })
     },
     setMeanId () {
       if (this.meanings && this.meanId != this.meanings.length - 1) {

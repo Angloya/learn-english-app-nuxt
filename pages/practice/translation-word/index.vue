@@ -68,10 +68,17 @@ export default {
     }
   },
   methods: {
-    setWordMeans () {
-      this.answers = []
-      this.answers = _.cloneDeep(this.meanings)
-      this.sortArray(this.answers)
+    getSkyengMeanings () {
+      this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
+        if( this.$store.state.appLogic.meanings.length === 5) {
+          this.start = true
+          this.wrongAnswers = {}
+          this.setWordMeans(this.meanings)
+          return this.$store.state.appLogic.meanings
+        } else {
+          this.getSkyengMeanings()
+        }
+      })
     },
     setMeanId () {
       if (this.meanings && this.meanId != this.meanings.length - 1) {

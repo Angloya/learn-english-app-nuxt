@@ -1,34 +1,31 @@
 <template>
   <b-container class="text-center">
     <b-row class="justify-content-center">
-        <b-card
-          title="Make a word"
-          v-if="!start"
-          img-src="/image/wordImage2.png"
-          style="max-width: 20rem;"
-          class="mb-2">
-    <p class="card-text">
-      You need to collect the word from the provided letters.
-    </p>
-    <b-button
-      @click="getSkyengMeanings"> 
-        begin to learn the words
-    </b-button>
-  </b-card>
+      <b-card
+        title="Make a word"
+        v-if="!start"
+        img-src="/image/wordImage2.png"
+        style="max-width: 20rem;"
+        class="mb-2">
+        <p class="card-text">
+          You need to collect the word from the provided letters.
+        </p>
+        <b-button
+          @click="getSkyengMeanings"> 
+            begin to learn the words
+        </b-button>
+      </b-card>
       <wrongAnswers 
         :_wrongAnswers='wrongAnswers' 
         v-if="!start && wrongAnswers"/>
-      <wordForLearn v-if="start" 
+      <wordConstructor v-if="start" 
         @change="checkAnswer"
         @clicked="setMeanId"
-        :_title="meanings[meanId].text"
+        :_title="meanings[meanId].translation.text"
+        :_letters="getLetters(meanings[meanId].text)"
         :_audio="meanings[meanId].soundUrl"
-        :_answerId="meanings[meanId].id"
-        :_answers="answers"
-        :_image="meanings[meanId].images[0].url || ''"
         :_show="show"
-        :key="keyColor"
-        _answerLabel="translation" />
+        :key="keyColor" />
       </b-row>
   </b-container>
 </template>
@@ -36,15 +33,16 @@
 <script>
 import wordForLearn from '~/components/wordForLearn.vue'
 import cardWord from '~/components/CardWord.vue'
-import wrongAnswers from '~/components/wrong-answers.vue'
+import wordConstructor from '~/components/word-constructor.vue'
 import _ from 'lodash'
+import { delay } from 'q';
 
 export default {
-  name: 'word-translation',
+  name: 'make-word',
   components: {
     wordForLearn,
     cardWord,
-    wrongAnswers
+    wordConstructor
   },
   data () {
     return {
@@ -66,10 +64,23 @@ export default {
     }
   },
   methods: {
-    setWordMeans () {
-      this.answers = []
-      this.answers = _.cloneDeep(this.meanings)
-      this.sortArray(this.answers)
+    getSkyengMeanings () {
+      this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
+        if( this.$store.state.appLogic.meanings.length === 5) {
+          this.start = true
+          this.wrongAnswers = {}
+          return this.$store.state.appLogic.meanings
+        } else {
+          this.getSkyengMeanings()
+        }
+      })
+    },
+    
+    getLetters (word) {
+      debugger
+      var letters = word.split('')
+      this.sortArray(letters)
+      return letters
     },
     setMeanId () {
       if (this.meanings && this.meanId != this.meanings.length - 1) {

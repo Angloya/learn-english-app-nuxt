@@ -5,23 +5,16 @@ export default {
     }
   },
   methods: {
-    sortArray(array) {
+    setWordMeans (meanings) {
+      this.answers = []
+      this.answers = _.cloneDeep(meanings)
+      this.sortArray(this.answers)
+    },
+    sortArray (array) {
       array.sort(this.compareRandom)
     },
-    compareRandom(a, b) {
+    compareRandom () {
       return Math.random() - 0.5
-    },
-    getSkyengMeanings () {
-      this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
-        if( this.$store.state.appLogic.meanings.length === 5) {
-          this.start = true
-          this.wrongAnswers = {}
-          this.setWordMeans()
-          return this.$store.state.appLogic.meanings
-        } else {
-          this.getSkyengMeanings()
-        }
-      })
     },
     getMeaningImg (mean) {
       if (mean.images.length != 0) {
