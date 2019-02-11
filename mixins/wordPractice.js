@@ -5,15 +5,10 @@ export default {
     }
   },
   methods: {
-    setWordMeans (meanings) {
-      this.answers = []
-      this.answers = _.cloneDeep(meanings)
-      this.sortArray(this.answers)
-    },
-    sortArray (array) {
+    sortArray(array) {
       array.sort(this.compareRandom)
     },
-    compareRandom () {
+    compareRandom(a, b) {
       return Math.random() - 0.5
     },
     getMeaningImg (mean) {

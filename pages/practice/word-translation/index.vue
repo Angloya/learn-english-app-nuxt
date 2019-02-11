@@ -66,12 +66,17 @@ export default {
     }
   },
   methods: {
+    setWordMeans () {
+      this.answers = []
+      this.answers = _.cloneDeep(this.meanings)
+      this.sortArray(this.answers)
+    },
     getSkyengMeanings () {
       this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
         if( this.$store.state.appLogic.meanings.length === 5) {
           this.start = true
           this.wrongAnswers = {}
-          this.setWordMeans(this.meanings)
+          this.setWordMeans()
           return this.$store.state.appLogic.meanings
         } else {
           this.getSkyengMeanings()
