@@ -20,19 +20,20 @@
         v-if="!start && wrongAnswers"/>
       <wordConstructor v-if="start" 
         @change="checkAnswer"
-        @clicked="setMeanId"
+        @next="setMeanId"
         :_title="meanings[meanId].translation.text"
         :_letters="getLetters(meanings[meanId].text)"
         :_audio="meanings[meanId].soundUrl"
         :_show="show"
         :_color="keyColor"
+        :_check="checkWord"
         :key="keyColor" />
       </b-row>
   </b-container>
 </template>
 
 <script>
-import wordForLearn from '~/components/wordForLearn.vue'
+import wrongAnswers from '~/components/wrong-answers.vue'
 import cardWord from '~/components/CardWord.vue'
 import wordConstructor from '~/components/word-constructor.vue'
 import _ from 'lodash'
@@ -41,7 +42,7 @@ import { delay } from 'q';
 export default {
   name: 'make-word',
   components: {
-    wordForLearn,
+    wrongAnswers,
     cardWord,
     wordConstructor
   },
@@ -51,7 +52,7 @@ export default {
       meanId: 0,
       keyColor: '',
       wrongAnswers: null,
-      answers: null,
+      checkWord: false,
       show: {
         title: true,
         audio: true,
@@ -77,13 +78,12 @@ export default {
       })
     },
     checkAnswer (answer) {
-      if (this.meanings[meanId].text == answer.id) {
-        answer.color = 'success'
+      this.checkWord = true
+      if (this.meanings[this.meanId].text == answer) {
         this.keyColor = 'success'
       } else {
-        answer.color = 'danger'
         this.keyColor = 'danger'
-        this.setWrongAnswer(this.meanings[meanId])
+        this.setWrongAnswer(this.meanings[this.meanId])
       }
     },
     getLetters (word) {
@@ -95,7 +95,7 @@ export default {
       if (this.meanings && this.meanId != this.meanings.length - 1) {
         this.meanId += 1
         this.keyColor = ''
-        this.setWordMeans()
+        this.checkWord = false
       } else {
         this.start = false
       }

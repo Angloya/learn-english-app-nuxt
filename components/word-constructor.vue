@@ -1,6 +1,6 @@
 <template>
   <b-card no-body
-    bg-variant="_color"
+    :bg-variant="_color"
     style="max-width: 60rem; min-width: 20rem;">
     <b-container slot="header" class="px-0">
       <b-row class="text-center pb-5">
@@ -16,6 +16,7 @@
         </b-col>
         <b-col class="px-0">
           <i slot="header"
+            v-if="!_check"
             @click="resetLetters"
             class="material-icons md-light">cached</i>
         </b-col>
@@ -37,8 +38,17 @@
       {{answer}}
     </b-card-body>
     <b-card-body>
-      <b-button size="lg" @click="$emit('change', answer)">
+      <b-button
+        v-if="!_check"
+        size="lg"
+        @click="$emit('change', answer)">
         Check
+      </b-button>
+      <b-button
+        v-if="_check"
+        size="lg"
+        @click="$emit('next')">
+        continue
       </b-button>
     </b-card-body>
   </b-card>
@@ -55,6 +65,10 @@ export default {
     _color: {
       type: String,
       default: ''
+    },
+    _check: {
+      type: Boolean,
+      default: false
     },
     _letters: { 
       type: Array,
