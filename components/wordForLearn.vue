@@ -8,11 +8,9 @@
             {{_title}}</h4>
         </b-col>
         <b-col class="px-0">
-          <b-img
-            slot="header"
+           <i slot="header"
             @click="showImage = !showImage"
-            height="30"
-            src="/image/tip.png"/>
+            class="material-icons md-light">help</i>
         </b-col>
       </b-row>
     </b-container>

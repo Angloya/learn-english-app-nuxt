@@ -1,35 +1,46 @@
 <template>
   <b-card no-body
-    style="max-width: 40rem; min-width: 18rem;">
+    bg-variant="_color"
+    style="max-width: 60rem; min-width: 20rem;">
     <b-container slot="header" class="px-0">
-      <b-row class="text-center py-5">
-        <b-col cols="10" class="px-0">
-          <h3 v-if="_show.title">
+      <b-row class="text-center pb-5">
+        <b-col cols="9" class="px-0">
+          <h3 slot="header" v-if="_show.title">
           {{_title}}
           </h3>
         </b-col>
         <b-col class="px-0">
-          <b-img
-            slot="header"
+          <i slot="header"
             @click="showAudio = !showAudio"
-            height="30"
-            src="/image/tip.png"/>
+            class="material-icons md-light">help</i>
+        </b-col>
+        <b-col class="px-0">
+          <i slot="header"
+            @click="resetLetters"
+            class="material-icons md-light">cached</i>
         </b-col>
       </b-row>
       <b-card-body v-if="_show.audio && showAudio">
-      <audio controls style="width: 250px;">
-        <source :src="_audio" type="audio/mpeg">
-      </audio>
-    </b-card-body>
+        <audio controls style="width: 250px;">
+          <source :src="_audio" type="audio/mpeg">
+        </audio>
+      </b-card-body>
       <b-row class="text-center py-5">
-        <b-col v-for="(letter, idx) in _letters" :key="idx" class="px-1">
-        <b-button size="lg">
-           {{letter}}
-        </b-button>
+        <b-col v-for="(letter, idx) in letters" :key="idx" class="px-1">
+          <b-button size="lg" @click="setLetter(idx)">
+            {{letter}}
+          </b-button>
         </b-col>
       </b-row>
-              <!-- @click="$emit('change', answer)" -->
     </b-container>
+    <b-card-body>
+      {{answer}}
+    </b-card-body>
+    <b-card-body>
+      <b-button size="lg" @click="$emit('change', answer)">
+        Check
+      </b-button>
+    </b-card-body>
   </b-card>
 </template>
 
@@ -38,6 +49,10 @@ export default {
   name: 'word-constructor',
   props: {
     _title: { 
+      type: String,
+      default: ''
+    },
+    _color: {
       type: String,
       default: ''
     },
@@ -55,7 +70,19 @@ export default {
   },
   data () {
     return {
-      showAudio: false
+      showAudio: false,
+      answer: '',
+      letters: [...this._letters] || []
+    }
+  },
+  methods: {
+    resetLetters () {
+      this.letters = [...this._letters]
+      this.answer = ''
+    },
+    setLetter (id) {
+      this.answer += this.letters[id]
+      this.letters.splice(id, 1)
     }
   }
 }

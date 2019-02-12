@@ -25,6 +25,7 @@
         :_letters="getLetters(meanings[meanId].text)"
         :_audio="meanings[meanId].soundUrl"
         :_show="show"
+        :_color="keyColor"
         :key="keyColor" />
       </b-row>
   </b-container>
@@ -75,9 +76,17 @@ export default {
         }
       })
     },
-    
+    checkAnswer (answer) {
+      if (this.meanings[meanId].text == answer.id) {
+        answer.color = 'success'
+        this.keyColor = 'success'
+      } else {
+        answer.color = 'danger'
+        this.keyColor = 'danger'
+        this.setWrongAnswer(this.meanings[meanId])
+      }
+    },
     getLetters (word) {
-      debugger
       var letters = word.split('')
       this.sortArray(letters)
       return letters
