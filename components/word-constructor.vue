@@ -1,6 +1,7 @@
 <template>
   <b-card no-body
     :bg-variant="_color"
+    :text-variant="_check ? 'white' : ''"
     style="max-width: 60rem; min-width: 20rem;">
     <b-container slot="header" class="px-0">
       <b-row class="text-center pb-5">
@@ -28,14 +29,17 @@
       </b-card-body>
       <b-row class="text-center py-5">
         <b-col v-for="(letter, idx) in letters" :key="idx" class="px-1">
-          <b-button size="lg" @click="setLetter(idx)">
+          <b-button size="lg" class='word-constructor-letter-button' v-if="!_check" @click="setLetter(idx)">
+            {{letter}}
+          </b-button>
+          <b-button size="lg" class='word-constructor-letter-button' v-if="_check">
             {{letter}}
           </b-button>
         </b-col>
       </b-row>
     </b-container>
     <b-card-body>
-      {{answer}}
+      <h3>{{answer}}</h3>
     </b-card-body>
     <b-card-body>
       <b-button

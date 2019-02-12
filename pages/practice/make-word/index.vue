@@ -22,8 +22,8 @@
         @change="checkAnswer"
         @next="setMeanId"
         :_title="meanings[meanId].translation.text"
-        :_letters="getLetters(meanings[meanId].text)"
-        :_audio="meanings[meanId].soundUrl"
+        :_letters="checkWord ? meanings[meanId].text.split('') : getLetters(meanings[meanId].text) "
+        :_audio="meanings[meanId].soundUrl || ''"
         :_show="show"
         :_color="keyColor"
         :_check="checkWord"
@@ -98,6 +98,9 @@ export default {
         this.checkWord = false
       } else {
         this.start = false
+        this.keyColor = ''
+        this.checkWord = false
+        this.meanId = 0
       }
     }
   },
