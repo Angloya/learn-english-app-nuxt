@@ -19,7 +19,8 @@
     "firebaseui": "^3.5.2",
     "lodash": "^4.17.11",
     "nuxt": "^2.4.2",
-    "nuxt-material-design-icons": "^1.0.4"
+    "nuxt-material-design-icons": "^1.0.4",
+    "vue-switches": "^2.0.1"
   },
   "devDependencies": {
     "node-sass": "^4.11.0",

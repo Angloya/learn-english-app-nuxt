@@ -42,6 +42,7 @@
         v-model="currentPage"
         :per-page="10"/>
     </b-row>
+    <!-- <switches theme="bootstrap" color="primary" v-model="enabled"></switches> -->
   </b-container>
 </template>
 
@@ -49,20 +50,23 @@
 import cardWord from '~/components/CardWord.vue'
 import loading from '~/components/loading.vue'
 import emptySearch from '~/components/EmptySearch.vue'
+import Switches from 'vue-switches';
 import { delay } from 'q';
 export default {
   name: 'dictionary',
   components: {
     cardWord,
     loading,
-    emptySearch
+    emptySearch,
+    Switches
   },
   data () {
     return {
       searchWord: '',
       words: null,
       searchWord: false,
-      currentPage: 1
+      currentPage: 1,
+      enabled: false
     }
   },
   created () {
