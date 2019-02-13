@@ -1,5 +1,5 @@
 <template>
-<b-navbar toggleable="md" type="dark" variant="info" class="mb-4">
+<b-navbar toggleable="md" type="dark" variant="primary" class="mb-4">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   <b-navbar-brand to="/">Learn english</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
@@ -24,7 +24,7 @@
           User
         </template>
         <b-dropdown-item v-if="!user" to="/authUser">SignIn</b-dropdown-item>
-        <b-dropdown-item v-if="user" to="/profile">Profile</b-dropdown-item>
+        <b-dropdown-item v-b-popover.hover="user.email" :title="user.name" v-if="user" to="/profile">Profile</b-dropdown-item>
         <logout v-if="user"/>
       </b-nav-item-dropdown>
     </b-navbar-nav>

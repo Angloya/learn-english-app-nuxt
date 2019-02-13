@@ -4,7 +4,7 @@
     :text-variant="_check ? 'white' : ''"
     style="max-width: 60rem; min-width: 20rem;">
     <b-container slot="header" class="px-0">
-      <b-row class="text-center pb-5">
+      <b-row class="text-center">
         <b-col cols="9" class="px-0">
           <h3 slot="header" v-if="_show.title">
           {{_title}}
@@ -21,34 +21,45 @@
             @click="resetLetters"
             class="material-icons md-light">cached</i>
         </b-col>
-      </b-row>
-      <b-card-body v-if="_show.audio && showAudio">
-        <audio controls style="width: 250px;">
-          <source :src="_audio" type="audio/mpeg">
-        </audio>
-      </b-card-body>
+        </b-row>
+    </b-container>
+    <b-card-body v-if="_show.audio && showAudio">
+      <audio controls style="width: 250px;">
+        <source :src="_audio" type="audio/mpeg">
+      </audio>
+    </b-card-body>
+    <b-card-body>
       <b-row class="text-center py-5">
         <b-col v-for="(letter, idx) in letters" :key="idx" class="px-1">
-          <b-button size="lg" class='word-constructor-letter-button' v-if="!_check" @click="setLetter(idx)">
+          <b-button
+            size="lg"
+            variant="primary"
+            class='word-constructor-letter-button'
+            v-if="!_check"
+            @click="setLetter(idx)">
             {{letter}}
           </b-button>
-          <b-button size="lg" class='word-constructor-letter-button' v-if="_check">
+          <b-button
+            size="lg"
+            variant="primary"
+            class='word-constructor-letter-button'
+            v-if="_check">
             {{letter}}
           </b-button>
         </b-col>
       </b-row>
-    </b-container>
-    <b-card-body>
-      <h3>{{answer}}</h3>
     </b-card-body>
+     <b-card v-if="!_check" :title="answer"/>
     <b-card-body>
       <b-button
+        variant="primary"
         v-if="!_check"
         size="lg"
         @click="$emit('change', answer)">
         Check
       </b-button>
       <b-button
+        variant="primary"
         v-if="_check"
         size="lg"
         @click="$emit('next')">

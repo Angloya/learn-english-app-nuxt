@@ -13,8 +13,8 @@
           </b-button>
         </b-form>
       </b-col>
-     </b-row>
-     <emptySearch
+    </b-row>
+    <emptySearch
       :_searchWord="searchWord"
       v-if="words && words.length == 0"/>
     <b-row class="justify-content-center" v-if="!loading">
@@ -23,16 +23,24 @@
         md="auto"
         v-for="(word, idx) in wordsForDictionary"
         :key="word.id">
-    <cardWord
-      class="mb-3"
-      :_imageWord="getMeaningImg(word)"
-      :_title="word.text"
-      :_text="word.translation.text"
-      :_transcription="word.transcription"
-      :_audio="word.soundUrl"
-      :_isExtraButtonShow='true'
-      @change="deleteWord(word.id, idx)"/>
-    </b-col>
+        <cardWord
+          class="mb-3"
+          :_imageWord="getMeaningImg(word)"
+          :_title="word.text"
+          :_text="word.translation.text"
+          :_transcription="word.transcription"
+          :_audio="word.soundUrl"
+          :_isExtraButtonShow='true'
+          @change="deleteWord(word.id, idx)"/>
+      </b-col>
+    </b-row>
+    <b-row class="justify-content-center" v-if="!loading">
+      <b-pagination
+        size="md"
+        v-if="paginatorTotalsRow > 10 && !words"
+        :total-rows="paginatorTotalsRow"
+        v-model="currentPage"
+        :per-page="10"/>
     </b-row>
   </b-container>
 </template>
@@ -53,7 +61,8 @@ export default {
     return {
       searchWord: '',
       words: null,
-      searchWord: false
+      searchWord: false,
+      currentPage: 1
     }
   },
   created () {
@@ -63,12 +72,20 @@ export default {
     user () {
       return this.$store.state.appLogic.user
     },
+    paginatorTotalsRow () {
+      if (this.stateWords) {
+        return this.stateWords.length
+      }
+    },
     loading () {
       return this.$store.state.appLogic.loading
     },
     wordsForDictionary () {
-      return this.words || this.$store.state.appLogic.wordsForDictionary || []
-    }
+      return this.words || this.stateWords.slice((this.currentPage - 1) * 10, this.currentPage * 10) || []
+    },
+    stateWords () {
+      return this.$store.state.appLogic.wordsForDictionary
+    },
   },
   methods: {
     getWords () {
@@ -92,7 +109,7 @@ export default {
     },
     searchWordInDictionary () {
       if (this.searchWord) {
-         this.words = this.wordsForDictionary.filter((word) => {
+         this.words =this.stateWords.filter((word) => {
           return word.text.toLowerCase().includes(this.searchWord.toLowerCase()) || word.translation.text.toLowerCase().includes(this.searchWord.toLowerCase())
         })
       } else {

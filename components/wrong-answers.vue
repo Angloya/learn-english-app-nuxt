@@ -3,7 +3,11 @@
     class="mt-3 text-center"  >
     <h2>Words added to your dictionary</h2>
     <b-row class="justify-content-center">
-      <b-col v-for="word in _wrongAnswers" :key="word.id">
+      <b-col
+        cols="auto"
+        md="auto"
+        v-for="word in _wrongAnswers"
+        :key="word.id">
         <cardWord
           class="mb-3"
           :_imageWord="word.images[0].url || ''"
