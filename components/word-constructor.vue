@@ -33,7 +33,7 @@
         <b-col v-for="(letter, idx) in letters" :key="idx" class="px-1">
           <b-button
             size="lg"
-            variant="primary"
+            variant="light"
             class='word-constructor-letter-button'
             v-if="!_check"
             @click="setLetter(idx)">
@@ -41,7 +41,7 @@
           </b-button>
           <b-button
             size="lg"
-            variant="primary"
+            variant="light"
             class='word-constructor-letter-button'
             v-if="_check">
             {{letter}}
@@ -52,14 +52,14 @@
      <b-card v-if="!_check" :title="answer"/>
     <b-card-body>
       <b-button
-        variant="primary"
+        variant="light"
         v-if="!_check"
         size="lg"
         @click="$emit('change', answer)">
         Check
       </b-button>
       <b-button
-        variant="primary"
+        variant="light"
         v-if="_check"
         size="lg"
         @click="$emit('next')">

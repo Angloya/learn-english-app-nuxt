@@ -36,7 +36,7 @@
       placeholder="Enter Name"
       required/>
     </b-form-group>
-    <b-button @click="onSignup" variant="primary" class="mr-1">Submit</b-button>
+    <b-button @click="onSignup" variant="light" class="mr-1">Submit</b-button>
     <b-button type="reset" @click="resetForm" variant="danger">Reset</b-button>
   </b-form>
 </template>

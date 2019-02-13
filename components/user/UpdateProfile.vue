@@ -15,7 +15,7 @@
           </b-form-file>
         </b-row>
       </b-col>
-      <b-button class="mb-4" variant="primary" @click.prevent="updateProfile">Save</b-button>
+      <b-button class="mb-4" variant="light" @click.prevent="updateProfile">Save</b-button>
       <b-progress
       v-if="progressShow"
       :value="progress"

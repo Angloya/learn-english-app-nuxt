@@ -30,7 +30,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~assets/css/main.css'
+    '~assets/styles/main.scss',
+    'bootstrap-vue/dist/bootstrap-vue.css'
   ],
 
   /*

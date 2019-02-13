@@ -4,10 +4,10 @@
       v-for="card in _cards"
       :key="card.id"
       @click="$emit('click', card.routName)"
-      border-variant="primary"
+      border-variant="dark"
       :header="card.name"
-      header-bg-variant="primary"
-      header-text-variant="white"
+      header-bg-variant="light"
+      header-text-variant="dark"
       align="center">
       <p class="card-text">{{card.text}}
       </p>

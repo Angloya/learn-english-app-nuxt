@@ -1,6 +1,6 @@
 <template>
   <div class="loginWithGoogle">
-    <b-button variant="primary" @click.prevent="onSigninGoogle" class="google">Login with
+    <b-button variant="light" @click.prevent="onSigninGoogle" class="google">Login with
       <img src="/image/google.png">oogle
     </b-button>
   </div>

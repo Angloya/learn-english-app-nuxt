@@ -27,7 +27,7 @@
       </b-form-group>
          <b-row align-h="center">
         <b-col cols="auto">
-      <b-button class="mr-1" @click="onSignin" variant="primary">Login</b-button>
+      <b-button class="mr-1" @click="onSignin" variant="light">Login</b-button>
       </b-col>
       <b-col cols="auto">
       <b-button type="reset" @click="resetForm" variant="danger">Reset</b-button>
