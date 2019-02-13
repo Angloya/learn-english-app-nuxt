@@ -3,6 +3,11 @@
     <h2  class="my-2">Dictionary</h2>
     <loading v-if="loading"/>
     <b-row class="my-4 justify-content-center" v-if="!loading">
+      <b-col cols="4" sm="4" md="4">Cards</b-col>
+      <switches theme="bootstrap" color="primary" v-model="enabledTableView"></switches>
+      <b-col cols="4" sm="4" md="4">Table</b-col>
+    </b-row>
+    <b-row class="my-4 justify-content-center" v-if="!loading">
       <b-col cols="8" sm="8" md="4">
         <b-form @keyup.enter.prevent="searchWordInDictionary" class="d-flex justify-content-center align-items-center">
           <b-form-input @input="searchWordInDictionary" size="md" class="my-3" v-model="searchWord" type="text" placeholder="Search"/>
@@ -17,7 +22,7 @@
     <emptySearch
       :_searchWord="searchWord"
       v-if="words && words.length == 0"/>
-    <b-row class="justify-content-center" v-if="!loading">
+    <b-row class="justify-content-center" v-if="!loading && !enabledTableView">
       <b-col
         cols="auto"
         md="auto"
@@ -34,6 +39,9 @@
           @change="deleteWord(word.id, idx)"/>
       </b-col>
     </b-row>
+    <b-row class="justify-content-center" v-if="!loading && enabledTableView">
+       <b-table striped hover :items="wordsForDictionary" :fields="fields"/>
+    </b-row>
     <b-row class="justify-content-center" v-if="!loading">
       <b-pagination
         size="md"
@@ -42,7 +50,6 @@
         v-model="currentPage"
         :per-page="10"/>
     </b-row>
-    <!-- <switches theme="bootstrap" color="primary" v-model="enabled"></switches> -->
   </b-container>
 </template>
 
@@ -66,7 +73,19 @@ export default {
       words: null,
       searchWord: false,
       currentPage: 1,
-      enabled: false
+      enabledTableView: false,
+      fields: [
+        {
+          key: 'text',
+          label: 'Word',
+          sortable: true
+        },
+        {
+          key: 'translation.text',
+          label: 'Translation',
+          sortable: false
+        }
+      ],
     }
   },
   created () {
