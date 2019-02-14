@@ -3,9 +3,9 @@
     <h2  class="my-2">Dictionary</h2>
     <loading v-if="loading"/>
     <b-row class="my-4 justify-content-center" v-if="!loading">
-      <b-col cols="4" sm="4" md="4">Cards</b-col>
+      <b-col cols="4" sm="2" md="1">Cards</b-col>
         <toggle-button class="vue-switcher" v-model="enabledTableView"/>
-      <b-col cols="4" sm="4" md="4">Table</b-col>
+      <b-col cols="4" sm="2" md="1">Table</b-col>
     </b-row>
     <b-row class="my-4 justify-content-center" v-if="!loading">
       <b-col cols="8" sm="8" md="4">
@@ -26,10 +26,17 @@
       <b-col
         cols="auto"
         md="auto"
+        class="mb-3"
         v-for="(word, idx) in wordsForDictionary"
         :key="word.id">
+        <b-button
+          class="mt-1"
+          style="min-width: 20rem;"
+          size="sm"
+          @click="getWordPage(word.id)">
+           Learn more
+        </b-button>
         <cardWord
-          class="mb-3"
           :_imageWord="getMeaningImg(word)"
           :_title="word.text"
           :_text="word.translation.text"
@@ -46,7 +53,13 @@
         :current-page="currentPage"
         per-page="10"
         :items="stateWords" 
-        :fields="fields"/>
+        :fields="fields">
+          <template slot="actions" slot-scope="row">
+             <b-button size="sm" @click="getWordPage(row.item.id)" class="mr-1">
+           Learn more
+        </b-button>
+          </template>
+       </b-table>
     </b-row>
     <b-row class="justify-content-center" v-if="!loading">
       <b-pagination
@@ -89,6 +102,10 @@ export default {
           key: 'translation.text',
           label: 'Translation',
           sortable: false
+        },
+        { 
+          key: 'actions',
+          label: 'Actions' 
         }
       ]
     }
@@ -144,6 +161,9 @@ export default {
         this.words = null
       }
       return this.words
+    },
+    getWordPage (id) {
+       this.$router.push("/dictionary/id/" + id)
     }
   }
 }
