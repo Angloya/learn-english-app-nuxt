@@ -20,7 +20,7 @@
     "lodash": "^4.17.11",
     "nuxt": "^2.4.2",
     "nuxt-material-design-icons": "^1.0.4",
-    "vue-switches": "^2.0.1"
+    "vue-libs-simple-toggle": "^1.0.6"
   },
   "devDependencies": {
     "node-sass": "^4.11.0",

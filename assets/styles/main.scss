@@ -8,3 +8,21 @@
 .word-constructor-letter-button {
   height: 50px
 }
+// SWITCH
+.vue-libs-simple-toggle {
+  height: 20px !important;
+  width: 56px !important;;
+  input:checked + .slider {
+    background-color: $primary !important;
+  }
+  .slider.round {
+    border-radius: 30px !important;
+  }
+  .slider:before {
+    background-color: lighten($primary, 30) !important;
+    top: -6px !important;
+    left: 0 !important;
+    height: 30px !important;
+    width: 30px !important;
+  }
+}

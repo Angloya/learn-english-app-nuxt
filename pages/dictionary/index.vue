@@ -4,7 +4,7 @@
     <loading v-if="loading"/>
     <b-row class="my-4 justify-content-center" v-if="!loading">
       <b-col cols="4" sm="4" md="4">Cards</b-col>
-      <switches theme="bootstrap" color="primary" v-model="enabledTableView"></switches>
+      <toggle class="vue-switcher" v-model="enabledTableView"/>
       <b-col cols="4" sm="4" md="4">Table</b-col>
     </b-row>
     <b-row class="my-4 justify-content-center" v-if="!loading">
@@ -40,7 +40,13 @@
       </b-col>
     </b-row>
     <b-row class="justify-content-center" v-if="!loading && enabledTableView">
-       <b-table striped hover :items="wordsForDictionary" :fields="fields"/>
+       <b-table
+        striped
+        hover
+        :current-page="currentPage"
+        per-page="10"
+        :items="stateWords" 
+        :fields="fields"/>
     </b-row>
     <b-row class="justify-content-center" v-if="!loading">
       <b-pagination
@@ -57,15 +63,16 @@
 import cardWord from '~/components/CardWord.vue'
 import loading from '~/components/loading.vue'
 import emptySearch from '~/components/EmptySearch.vue'
-import Switches from 'vue-switches';
-import { delay } from 'q';
+import Toggle from 'vue-libs-simple-toggle'
+import { delay } from 'q'
+
 export default {
   name: 'dictionary',
   components: {
     cardWord,
     loading,
     emptySearch,
-    Switches
+    Toggle
   },
   data () {
     return {
@@ -85,7 +92,7 @@ export default {
           label: 'Translation',
           sortable: false
         }
-      ],
+      ]
     }
   },
   created () {
@@ -107,8 +114,8 @@ export default {
       return this.words || this.stateWords.slice((this.currentPage - 1) * 10, this.currentPage * 10) || []
     },
     stateWords () {
-      return this.$store.state.appLogic.wordsForDictionary
-    },
+      return this.words || this.$store.state.appLogic.wordsForDictionary
+    }
   },
   methods: {
     getWords () {
