@@ -29,13 +29,6 @@
         class="mb-3"
         v-for="(word, idx) in wordsForDictionary"
         :key="word.id">
-        <b-button
-          class="mt-1"
-          style="min-width: 20rem;"
-          size="sm"
-          @click="getWordPage(word.id)">
-           Learn more
-        </b-button>
         <cardWord
           :_imageWord="getMeaningImg(word)"
           :_title="word.text"
@@ -44,6 +37,13 @@
           :_audio="word.soundUrl"
           :_isExtraButtonShow='true'
           @change="deleteWord(word.id, idx)"/>
+        <b-button
+          class="mt-1"
+          style="min-width: 10rem;"
+          size="sm"
+          @click="getWordPage(word.id)">
+           Learn more
+        </b-button>
       </b-col>
     </b-row>
     <b-row class="justify-content-center" v-if="!loading && enabledTableView">
