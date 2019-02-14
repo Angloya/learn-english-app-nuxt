@@ -24,11 +24,11 @@ export default {
     },
     practices () {
       return this.$store.state.appLogic.docsFB.practice || {}   
-      }
+    }
   },
   methods: {
     choosePractice (e) {
-      this.$router.push('/practice/' + e)
+      this.$router.push('/practice/' + e )
     },
     async getDBCards () {
       await this.$store.dispatch('getDocFB', ['structure', 'practice'])

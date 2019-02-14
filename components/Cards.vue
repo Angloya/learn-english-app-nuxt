@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import firebase, {StoreDB} from '@/services/fireinit.js'
 
 export default {
   name: 'cards',

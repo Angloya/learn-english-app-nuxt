@@ -1,10 +1,29 @@
 export default {
+  created () {
+    this.getDBCards()
+  },
   computed: {
     user () {
       return this.$store.state.appLogic.user
+    },
+    practices () {
+      return this.$store.state.appLogic.docsFB.practice || {}   
+    },
+    loading () {
+      return this.$store.state.appLogic.loading
     }
   },
   methods: {
+    async getDBCards () {
+      await this.$store.dispatch('getDocFB', ['structure', 'practice']).then(() => {
+        for (var practice in this.practices) {
+          if (practice == this.name) {
+            this.info = this.practices[practice]
+            break
+          }
+        }
+      })
+    },
     sortArray(array) {
       array.sort(this.compareRandom)
     },
