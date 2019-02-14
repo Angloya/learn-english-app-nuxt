@@ -4,7 +4,7 @@
     <loading v-if="loading"/>
     <b-row class="my-4 justify-content-center" v-if="!loading">
       <b-col cols="4" sm="4" md="4">Cards</b-col>
-      <toggle class="vue-switcher" v-model="enabledTableView"/>
+        <toggle-button class="vue-switcher" v-model="enabledTableView"/>
       <b-col cols="4" sm="4" md="4">Table</b-col>
     </b-row>
     <b-row class="my-4 justify-content-center" v-if="!loading">
@@ -63,7 +63,6 @@
 import cardWord from '~/components/CardWord.vue'
 import loading from '~/components/loading.vue'
 import emptySearch from '~/components/EmptySearch.vue'
-import Toggle from 'vue-libs-simple-toggle'
 import { delay } from 'q'
 
 export default {
@@ -71,8 +70,7 @@ export default {
   components: {
     cardWord,
     loading,
-    emptySearch,
-    Toggle
+    emptySearch
   },
   data () {
     return {

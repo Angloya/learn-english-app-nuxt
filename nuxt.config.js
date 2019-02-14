@@ -38,7 +38,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/fireauth'
+    '~/plugins/fireauth',
+    { src: '~/plugins/toggle-button', ssr: false }
   ],
 
   /*
