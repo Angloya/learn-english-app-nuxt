@@ -50,6 +50,8 @@
        <b-table
         striped
         hover
+        bordered
+        responsive
         :current-page="currentPage"
         per-page="10"
         :items="stateWords" 
