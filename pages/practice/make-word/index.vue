@@ -10,7 +10,7 @@
         @change="checkAnswer"
         @next="setMeanId"
         :_title="meanings[meanId].translation.text"
-        :_letters="checkWord ? meanings[meanId].text.split('') : getLetters(meanings[meanId].text) "
+        :_letters="checkWord ? meanings[meanId].text.split('') : getLetters(meanings[meanId].text)"
         :_audio="meanings[meanId].soundUrl || ''"
         :_show="show"
         :_color="keyColor"

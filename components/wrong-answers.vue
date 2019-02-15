@@ -1,7 +1,8 @@
 <template>
   <b-container 
     class="mt-3 text-center"  >
-    <h2>Words added to your dictionary</h2>
+    <h2 v-if="user">Words added to your dictionary</h2>
+    <h2 v-else>Wrong answers</h2>
     <b-row class="justify-content-center">
       <b-col
         cols="auto"
@@ -32,6 +33,11 @@ export default {
     _wrongAnswers: {
       type: Object,
       default: () => {}
+    }
+  }, 
+  computed: {
+    user () {
+      return this.$store.state.appLogic.user
     }
   }
 }
