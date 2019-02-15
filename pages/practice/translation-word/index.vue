@@ -1,23 +1,11 @@
 <template>
   <b-container class="text-center">
+    <practice-card
+      v-if="!start && infoPractice"
+      :_practiceInfo="infoPractice"
+      :_wrongAnswers="wrongAnswers"
+      @click="getSkyengMeanings" />
     <b-row class="justify-content-center">
-        <b-card
-          title="Translation - Word"
-          v-if="!start"
-          img-src="/image/wordImage.png"
-          style="max-width: 20rem;"
-          class="mb-2">
-        <p class="card-text">
-          Here you need to select one correct word of the translation.
-        </p>
-        <b-button
-          @click="getSkyengMeanings"> 
-            begin to learn the words
-        </b-button>
-      </b-card>
-      <wrongAnswers 
-        :_wrongAnswers='wrongAnswers' 
-        v-if="!start && wrongAnswers"/>
       <wordForLearn v-if="start" 
         @change="checkAnswer"
         @clicked="setMeanId"
@@ -35,7 +23,7 @@
 <script>
 import wordForLearn from '~/components/wordForLearn.vue'
 import cardWord from '~/components/CardWord.vue'
-import wrongAnswers from '~/components/wrong-answers.vue'
+import practiceCard from '~/components/Practice-card.vue'
 import _ from 'lodash'
 
 export default {
@@ -43,7 +31,7 @@ export default {
   components: {
     wordForLearn,
     cardWord,
-    wrongAnswers
+    practiceCard
   },
   data () {
     return {

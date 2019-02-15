@@ -1,23 +1,11 @@
 <template>
   <b-container class="text-center">
+    <practice-card
+      v-if="!start && infoPractice"
+      :_practiceInfo="infoPractice"
+      :_wrongAnswers="wrongAnswers"
+      @click="getSkyengMeanings" />
     <b-row class="justify-content-center">
-      <b-card
-        title="Make a word"
-        v-if="!start"
-        img-src="/image/wordImage2.png"
-        style="max-width: 20rem;"
-        class="mb-2">
-        <p class="card-text">
-          You need to collect the word from the provided letters.
-        </p>
-        <b-button
-          @click="getSkyengMeanings"> 
-            begin to learn the words
-        </b-button>
-      </b-card>
-      <wrongAnswers 
-        :_wrongAnswers='wrongAnswers' 
-        v-if="!start && wrongAnswers"/>
       <wordConstructor v-if="start" 
         @change="checkAnswer"
         @next="setMeanId"
@@ -33,16 +21,15 @@
 </template>
 
 <script>
-import wrongAnswers from '~/components/wrong-answers.vue'
+import practiceCard from '~/components/Practice-card.vue'
 import cardWord from '~/components/CardWord.vue'
 import wordConstructor from '~/components/word-constructor.vue'
 import _ from 'lodash'
-import { delay } from 'q';
 
 export default {
   name: 'make-word',
   components: {
-    wrongAnswers,
+    practiceCard,
     cardWord,
     wordConstructor
   },

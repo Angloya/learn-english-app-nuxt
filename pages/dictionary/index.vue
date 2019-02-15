@@ -53,7 +53,7 @@
         bordered
         responsive
         :current-page="currentPage"
-        per-page="10"
+        :per-page="10"
         :items="stateWords" 
         :fields="fields">
           <template slot="actions" slot-scope="row">

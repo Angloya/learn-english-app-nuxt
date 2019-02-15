@@ -1,4 +1,9 @@
 export default {
+  data () {
+    return {
+      infoPractice: {}
+    }
+  },
   created () {
     this.getDBCards()
   },
@@ -17,8 +22,8 @@ export default {
     async getDBCards () {
       await this.$store.dispatch('getDocFB', ['structure', 'practice']).then(() => {
         for (var practice in this.practices) {
-          if (practice == this.name) {
-            this.info = this.practices[practice]
+          if (practice == this.$options.name) {
+            this.infoPractice = this.practices[practice]
             break
           }
         }
