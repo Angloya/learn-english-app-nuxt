@@ -6,32 +6,34 @@
       :_wrongAnswers="wrongAnswers"
       @click="getSkyengMeanings" />
     <b-row class="justify-content-center">
-      <wordConstructor v-if="start" 
+      <word-audio v-if="start" 
         @change="checkAnswer"
         @next="setMeanId"
         :_title="meanings[meanId].translation.text"
-        :_letters="checkWord ? meanings[meanId].text.split('') : getLetters(meanings[meanId].text) "
         :_audio="meanings[meanId].soundUrl || ''"
         :_show="show"
+        :_answer="meanings[meanId]"
         :_color="keyColor"
         :_check="checkWord"
         :key="keyColor" />
       </b-row>
+    <meaning-info :_meaning="meanings[meanId]" v-if="start && checkWord"/>  
   </b-container>
 </template>
 
 <script>
 import practiceCard from '~/components/Practice-card.vue'
 import cardWord from '~/components/CardWord.vue'
-import wordConstructor from '~/components/word-constructor.vue'
-import _ from 'lodash'
+import wordAudio from '~/components/word-audio.vue'
+import meaningInfo from '~/components/meaning-info.vue'
 
 export default {
   name: 'audition',
   components: {
     practiceCard,
     cardWord,
-    wordConstructor
+    wordAudio,
+    meaningInfo
   },
   data () {
     return {
@@ -72,11 +74,6 @@ export default {
         this.keyColor = 'danger'
         this.setWrongAnswer(this.meanings[this.meanId])
       }
-    },
-    getLetters (word) {
-      var letters = word.split('')
-      this.sortArray(letters)
-      return letters
     },
     setMeanId () {
       if (this.meanings && this.meanId != this.meanings.length - 1) {

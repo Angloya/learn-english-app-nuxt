@@ -20,14 +20,13 @@ export default {
   },
   methods: {
     async getDBCards () {
-      await this.$store.dispatch('getDocFB', ['structure', 'practice']).then(() => {
+      await this.$store.dispatch('getDocFB', ['structure', 'practice'])
         for (var practice in this.practices) {
           if (practice == this.$options.name) {
             this.infoPractice = this.practices[practice]
-            break
+            return this.infoPractice
           }
         }
-      })
     },
     sortArray(array) {
       array.sort(this.compareRandom)
