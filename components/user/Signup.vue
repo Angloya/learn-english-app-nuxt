@@ -35,6 +35,7 @@
       type="text"
       placeholder="Enter Name"
       required/>
+      <span class="font-weight-light" v-if="error">{{error.message}}</span>
     </b-form-group>
     <b-button @click="onSignup" variant="light" class="mr-1">Submit</b-button>
     <b-button type="reset" @click="resetForm" variant="danger">Reset</b-button>

@@ -17,6 +17,7 @@
         :_check="checkWord"
         :key="keyColor" />
       </b-row>
+      <meaning-info :_meaning="meanings[meanId]" v-if="start && checkWord"/>  
   </b-container>
 </template>
 
@@ -24,6 +25,7 @@
 import practiceCard from '~/components/Practice-card.vue'
 import cardWord from '~/components/CardWord.vue'
 import wordConstructor from '~/components/word-constructor.vue'
+import meaningInfo from '~/components/meaning-info.vue'
 import _ from 'lodash'
 
 export default {
@@ -31,7 +33,8 @@ export default {
   components: {
     practiceCard,
     cardWord,
-    wordConstructor
+    wordConstructor,
+    meaningInfo
   },
   data () {
     return {

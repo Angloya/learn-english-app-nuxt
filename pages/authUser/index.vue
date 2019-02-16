@@ -2,33 +2,16 @@
   <b-container class="text-center">
     <b-row>
       <b-col>
-        <signin/>
-      </b-col>
-      <b-col>
-        <signup/>
-        <loginWithGoogle class="mt-4"/>
+        <h3>For more features, it is recommended to log in</h3>
+        <b-button class="m-5" to="/authUser/signin">SignIn</b-button>
+        <b-button class="m-5" to="/authUser/signup">SignUp</b-button>
       </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
-import signin from '~/components/user/Signin.vue'
-import signup from '~/components/user/Signup.vue'
-import loginWithGoogle from '~/components/user/loginWithGoogle.vue'
-
 export default {
-  name: 'authUser',
-  components: {
-    signin,
-    signup,
-    loginWithGoogle
-
-  },
-  computed: {
-    user () {
-      return this.$store.state.appLogic.user
-    }
-  }
+  name: 'authUser'
 }
 </script>

@@ -23,7 +23,8 @@
         <template slot="button-content">
           User
         </template>
-        <b-dropdown-item v-if="!user" to="/authUser">SignIn</b-dropdown-item>
+        <b-dropdown-item v-if="!user" to="/authUser/auth-signin">SignIn</b-dropdown-item>
+        <b-dropdown-item v-if="!user" to="/authUser/auth-signup">SignUp</b-dropdown-item>
         <b-dropdown-item v-b-popover.hover="user.email" :title="user.name" v-if="user" to="/profile">Profile</b-dropdown-item>
         <logout v-if="user"/>
       </b-nav-item-dropdown>
