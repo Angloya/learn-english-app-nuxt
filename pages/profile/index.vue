@@ -1,45 +1,26 @@
 <template>
   <b-container class="text-center">
-    <ProfileInfo/>
-    <UpdateProfile v-if='update'/>
-    <b-button
-    class="m-3"
-    @click="UpdateProfileUser">
-    {{updateText}}
-    </b-button>
+    <h2>Profile</h2>
+    <b-row class="justify-content-center">
+      <b-col cols="auto" md="4" > 
+        <profile-info/>
+      </b-col>
+      <b-col cols="auto" md="8">
+        <tabs-profile/>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
 <script>
-import ProfileInfo from '~/components/user/ProfileInfo.vue'
-import UpdateProfile from '~/components/user/UpdateProfile.vue'
+import ProfileInfo from '~/components/user/Profile-info.vue'
+import TabsProfile from '~/components/control/Tabs-profile.vue'
 
 export default {
   name: 'Profile',
   components: {
     ProfileInfo,
-    UpdateProfile
-  },
-  data () {
-    return {
-      update: false,
-      updateText: 'Update profile'
-    }
-  },
-  computed: {
-    user () {
-      return this.$store.state.appLogic.user
-    }
-  },
-  methods: {
-    UpdateProfileUser () {
-      this.update = !this.update
-      if (this.update === false) {
-        this.updateText = 'Update profile'
-      } else {
-        this.updateText = 'Cancel'
-      }
-    }
+    TabsProfile
   }
 }
 </script>

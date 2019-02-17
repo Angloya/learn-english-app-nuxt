@@ -1,16 +1,15 @@
 <template>
   <b-container>
-    <h2>Profile info</h2>
-    <b-row>
-      <b-col>
+    <b-row class="justify-content-center">
+      <b-col cols="auto" md="auto">
         <b-img rounded width="200"
-        height="300"
-        thumbnail class="m-3"
-        :src='photoURL'
-        fluid alt="userIcon"/>
+          height="300"
+          thumbnail
+          :src='photoURL'
+          fluid alt="userIcon"/>
       </b-col>
-      <b-col>
-        <h2 class="m-3">{{ user.name }}</h2>
+      <b-col cols="auto" md="auto">
+        <h4 class="m-3">{{ user.name }}</h4>
         <p class="m-3"><b>Your email: </b> {{ user.email }}</p>
       </b-col>
     </b-row>
