@@ -4,18 +4,22 @@
       <b-tab title="Update profile" active>
         <update-profile/>
       </b-tab>
-      <b-tab title="Settigns">Tab Contents 2</b-tab>
+      <b-tab title="Settigns">
+        <settings/>
+      </b-tab>
     </b-tabs>
   </b-card>
 </template>
 
 <script>
 import UpdateProfile from '~/components/user/Update-profile.vue'
+import Settings from '~/components/user/Settings.vue'
 
 export default {
   name: 'tabs-profile',
   components: {
-    UpdateProfile
+    UpdateProfile,
+    Settings
   }
 }
 </script>
