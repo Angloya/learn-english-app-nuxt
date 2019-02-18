@@ -10,6 +10,12 @@ import NavBar from '~/components/control/NavBar.vue'
 export default {
   components:{
     navBar : NavBar
+  },
+  created () {
+    if (process.browser) {
+      this.$store.dispatch('colorScheme/restore')
+      this.$store.dispatch('wordsForPractice/restore')
+    }
   }
 }
 </script>

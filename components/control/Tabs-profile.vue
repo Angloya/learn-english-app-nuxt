@@ -4,7 +4,7 @@
       <b-tab title="Settigns">
         <settings/>
       </b-tab>
-      <b-tab title="Update profile" active>
+      <b-tab title="Update profile">
         <update-profile/>
       </b-tab>
     </b-tabs>
