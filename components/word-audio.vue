@@ -4,7 +4,7 @@
     :text-variant="_check ? 'white' : ''"
     style="max-width: 25rem; min-width: 15rem;">
     <b-container slot="header" class="px-0">
-      <b-row class="text-center">
+      <b-row class="text-center"  v-if="!_check">
         <b-col cols="10" class="px-0">
           <h3 slot="header">
           Listen to the word
@@ -15,12 +15,12 @@
             @click="showTip = !showTip"
             class="material-icons md-light">help</i>
         </b-col>
-            <b-card-body v-if="_show.audio">
+      </b-row>
+      <b-card-body v-if="_show.audio">
       <audio controls style="width: 250px;">
         <source :src="_audio" type="audio/mpeg">
       </audio>
-    </b-card-body>
-        </b-row>
+      </b-card-body>
     </b-container>
     <b-card-body v-if="_show.title && showTip">
       <h3>{{_title}}</h3>

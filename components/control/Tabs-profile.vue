@@ -1,11 +1,11 @@
 <template>
   <b-card no-body>
     <b-tabs card>
-      <b-tab title="Update profile" active>
-        <update-profile/>
-      </b-tab>
       <b-tab title="Settigns">
         <settings/>
+      </b-tab>
+      <b-tab title="Update profile" active>
+        <update-profile/>
       </b-tab>
     </b-tabs>
   </b-card>

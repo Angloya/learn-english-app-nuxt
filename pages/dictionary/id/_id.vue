@@ -8,13 +8,13 @@
 
 <script>
 import meaningInfo from '~/components/meaning-info.vue'
-import loading from '~/components/loading.vue'
+import Loading from '~/components/Loading.vue'
 
 export default {
   name: 'dictionary-word-id',
   components: {
     meaningInfo,
-    loading
+    Loading
   },
   created () {
     this.$store.dispatch('getSkyengMeanings', this.searchWordId).then(() => {

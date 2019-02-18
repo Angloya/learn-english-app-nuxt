@@ -7,13 +7,13 @@
 
 <script>
 import cards from '~/components/Cards.vue'
-import loading from '~/components/loading.vue'
+import Loading from '~/components/Loading.vue'
 
 export default {
   name: 'practice',
   components: {
     cards,
-    loading,
+    Loading,
   },
   created () {
     this.getDBCards()

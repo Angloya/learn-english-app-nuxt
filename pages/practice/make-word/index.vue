@@ -1,7 +1,7 @@
 <template>
   <b-container class="text-center">
     <practice-card
-      v-if="!start && infoPractice"
+      v-if="!start && infoPractice && !loading"
       :_practiceInfo="infoPractice"
       :_wrongAnswers="wrongAnswers"
       @click="getSkyengMeanings" />

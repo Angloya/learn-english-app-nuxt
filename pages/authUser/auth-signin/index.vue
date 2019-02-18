@@ -3,7 +3,7 @@
     <b-row>
       <b-col>
         <signin/>
-        <loginWithGoogle class="mt-4"/>
+        <login-with-google class="mt-4"/>
       </b-col>
     </b-row>
   </b-container>
@@ -11,13 +11,13 @@
 
 <script>
 import signin from '~/components/user/Signin.vue'
-import loginWithGoogle from '~/components/user/loginWithGoogle.vue'
+import LoginWithGoogle from '~/components/user/LoginWithGoogle.vue'
 
 export default {
   name: 'auth-signin',
   components: {
     signin,
-    loginWithGoogle
+    LoginWithGoogle
   }
 }
 </script>

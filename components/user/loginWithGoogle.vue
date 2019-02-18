@@ -1,5 +1,5 @@
 <template>
-  <div class="loginWithGoogle">
+  <div class="login-with-google">
     <b-button variant="light" @click.prevent="onSigninGoogle" class="google">Login with
       <img src="/image/google.png">oogle
     </b-button>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'loginWithGoogle',
+  name: 'login-with-google',
   computed: {
     user () {
       return this.$store.state.appLogic.user

@@ -1,12 +1,12 @@
 <template>
   <b-container class="text-center">
     <practice-card
-      v-if="!start && infoPractice"
+      v-if="!start && infoPractice && !loading"
       :_practiceInfo="infoPractice"
       :_wrongAnswers="wrongAnswers"
       @click="getSkyengMeanings" />
     <b-row class="justify-content-center">
-      <wordForLearn v-if="start" 
+      <word-for-learn v-if="start" 
         @change="checkAnswer"
         @clicked="setMeanId"
         :_title="meaning.translation.text"
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import wordForLearn from '~/components/wordForLearn.vue'
+import wordForLearn from '~/components/Word-for-learn.vue'
 import cardWord from '~/components/CardWord.vue'
 import practiceCard from '~/components/Practice-card.vue'
 import _ from 'lodash'
@@ -29,7 +29,7 @@ import _ from 'lodash'
 export default {
   name: 'translation-word',
   components: {
-    wordForLearn,
+    wordForLearns,
     cardWord,
     practiceCard
   },
