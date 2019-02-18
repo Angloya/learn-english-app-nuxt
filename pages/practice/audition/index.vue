@@ -39,7 +39,7 @@ export default {
     return {
       start: false,
       meanId: 0,
-      keyColor: '',
+      keyColor: null,
       wrongAnswers: null,
       checkWord: false,
       show: {

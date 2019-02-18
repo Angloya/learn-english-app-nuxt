@@ -3,6 +3,9 @@
     <b-card
       v-if="_practiceInfo"
       :title="_practiceInfo.name"
+      :border-variant="isColorDark ? 'light' : 'dark'"
+      :bg-variant="isColorDark ? 'dark' : 'light'"
+      :text-variant="isColorDark ? 'light' : 'dark'"
       img-src="/image/wordImage2.png"
       style="max-width: 20rem;"
       class="mb-2">
@@ -36,5 +39,10 @@ export default {
       type: Object
     }
   },
+  computed: {
+    isColorDark () {
+      return this.$store.state.colorScheme.isColorDark
+    }
+  }
 }
 </script>

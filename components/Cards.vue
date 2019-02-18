@@ -4,10 +4,10 @@
       v-for="card in _cards"
       :key="card.id"
       @click="$emit('click', card.routName)"
-      border-variant="dark"
+      :border-variant="isColorDark ? 'light' : 'dark'"
       :header="card.name"
-      header-bg-variant="light"
-      header-text-variant="dark"
+      :text-variant="isColorDark ? 'light' : 'dark'"
+      :bg-variant="isColorDark ? 'dark' : 'light'"
       align="center">
       <p class="card-text">{{card.text}}
       </p>
@@ -22,6 +22,11 @@ export default {
   props: {
     _cards: {
       type: Object
+    }
+  },
+  computed: {
+    isColorDark () {
+      return this.$store.state.colorScheme.isColorDark
     }
   }
 }

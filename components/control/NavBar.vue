@@ -1,5 +1,5 @@
 <template>
-<b-navbar toggleable="md" type="light" variant="light" class="mb-4">
+<b-navbar toggleable="md" :type="color" :variant="color" class="mb-4">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   <b-navbar-brand to="/">Learn english</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
@@ -48,6 +48,13 @@ export default {
   computed: {
     user () {
       return this.$store.state.appLogic.user
+    },
+    color () {
+      if (this.$store.state.colorScheme.isColorDark) {
+        return 'dark'
+      } else {
+        return 'light'
+      }
     }
   },
   methods: {

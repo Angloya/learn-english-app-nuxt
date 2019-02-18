@@ -1,7 +1,7 @@
 <template>
   <b-card no-body
-    :bg-variant="_color"
-    :text-variant="_check ? 'white' : ''"
+    :bg-variant="_color ? _color : isColorDark ? 'dark' : 'light'"
+    :text-variant="isColorDark ? 'light' : 'dark'"
     style="max-width: 25rem; min-width: 15rem;">
     <b-container slot="header" class="px-0">
       <b-row class="text-center"  v-if="!_check">
@@ -36,7 +36,10 @@
           placeholder="Enter word"/>
       </b-row>
     </b-card-body>
-     <b-card v-if="!_check" :title="answer"/>
+    <b-card
+      :bg-variant="isColorDark ? 'dark' : 'light'"
+      :text-variant="isColorDark ? 'light' : 'dark'"
+      v-if="!_check" :title="answer"/>
     <b-card-body>
       <b-button
         variant="light"
@@ -65,8 +68,7 @@ export default {
       default: ''
     },
     _color: {
-      type: String,
-      default: ''
+      type: String
     },
     _check: {
       type: Boolean,
@@ -84,6 +86,11 @@ export default {
     return {
       showTip: false,
       answer: ''
+    }
+  },
+  computed: {
+    isColorDark () {
+      return this.$store.state.colorScheme.isColorDark
     }
   }
 }

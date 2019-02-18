@@ -8,7 +8,9 @@
         v-if='_meaning'
         :img-src="getMeaningImg(_meaning)"
         :img-alt="_meaning.text"
-        bg-variant="light"
+        :bg-variant="isColorDark ? 'dark' : 'light'"
+        :text-variant="isColorDark ? 'light' : 'dark'"
+        :border-variant="isColorDark ? 'light' : 'dark'"
         :title="_meaning.text"
         style="max-width: 20rem;"
         :sub-title="_meaning.transcription">
@@ -18,7 +20,8 @@
             </audio>
           </b-card-body>
           <b-list-group flush>
-            <b-list-group-item>
+            <b-list-group-item
+              :variant="isColorDark ? 'dark' : 'light'">
               {{ _meaning.translation.text}}
             </b-list-group-item>
           </b-list-group>
@@ -31,12 +34,15 @@
         <b-card
           v-if='_meaning && _meaning.examples'
           title="Examples"
-          bg-variant="light"
+          :bg-variant="isColorDark ? 'dark' : 'light'"
+          :text-variant="isColorDark ? 'light' : 'dark'"
+          :border-variant="isColorDark ? 'light' : 'dark'"
           style="max-width: 20rem;"
           :sub-title="_meaning.text">
           <b-list-group flush>
             <b-list-group-item
             class="mb-1"
+            :variant="isColorDark ? 'dark' : 'light'"
             v-for="(example, exampleIdx) in _meaning.examples"
             :key="exampleIdx">
             <p class="card-text">
@@ -56,7 +62,9 @@
         <b-card
           v-if='_meaning && _meaning.definition && _meaning.alternativeTranslations'
           title="Definition"
-          bg-variant="light"
+          :bg-variant="isColorDark ? 'dark' : 'light'"
+          :text-variant="isColorDark ? 'light' : 'dark'"
+          :border-variant="isColorDark ? 'light' : 'dark'"
           style="max-width: 20rem;">
           <b-card-body>
             {{ _meaning.definition.text}}
@@ -70,17 +78,17 @@
 </template>
 
 <script>
-import cardWord from '~/components/CardWord.vue'
-
 export default {
   name: 'meaning-info',
-  components: {
-    cardWord
-  },
   props: {
     _meaning: {
       type: Object,
       default: () => {}
+    }
+  },
+  computed: {
+    isColorDark () {
+      return this.$store.state.colorScheme.isColorDark
     }
   },
   methods: {

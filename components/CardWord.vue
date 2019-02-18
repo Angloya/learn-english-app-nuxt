@@ -3,6 +3,8 @@
     style="max-width: 20rem;"
     :img-src="_imageWord"
     img-alt="Image"
+    :bg-variant="isColorDark ? 'dark' : 'light'"
+    :text-variant="isColorDark ? 'light' : 'dark'"
     img-top>
     <h4 slot="header">{{_title}}</h4>
     <b-card-body>
@@ -11,10 +13,14 @@
       </p>
     </b-card-body>
     <b-list-group flush>
-      <b-list-group-item v-if="_note">
+      <b-list-group-item 
+        :variant="isColorDark ? 'dark' : 'light'"
+        v-if="_note">
         {{_note}}
       </b-list-group-item>
-      <b-list-group-item v-if="_transcription">{{_transcription}}</b-list-group-item>
+      <b-list-group-item
+        :variant="isColorDark ? 'dark' : 'light'"
+        v-if="_transcription">{{_transcription}}</b-list-group-item>
     </b-list-group>
     <b-card-body>
       <audio controls style="width: 250px;">
@@ -69,13 +75,20 @@ export default {
     _extraButton: {
       type: String,
       default: 'delete'
+    },
+    _isColorSchemeDark: {
+      type: Boolean,
+      default: false
     }
   },
    computed: {
     user () {
       return this.$store.state.appLogic.user
+    },
+    isColorDark () {
+      return this.$store.state.colorScheme.isColorDark
     }
-   }
+  }
 }
 </script>
 

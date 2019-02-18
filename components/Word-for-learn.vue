@@ -1,5 +1,8 @@
 <template>
   <b-card no-body
+    :border-variant="isColorDark ? 'light' : 'dark'"
+    :bg-variant="isColorDark ? 'dark' : 'light'"
+    :text-variant="isColorDark ? 'light' : 'dark'"
     style="max-width: 20rem; min-width: 18rem;">
     <b-container slot="header" class="px-0">
       <b-row class="text-center">
@@ -26,13 +29,13 @@
       v-for="answer in _answers"
       :key="answer.id">
       <b-list-group-item 
-        :variant="answer.color"
+        :variant="answer.color ? answer.color : isColorDark ? 'dark' : 'light'"
         v-if="_answerLabel"
         @click="$emit('change', answer)">
         {{answer[_answerLabel].text}}
       </b-list-group-item>
       <b-list-group-item 
-        :variant="answer.color"
+        :variant="answer.color ? answer.color : isColorDark ? 'dark' : 'light'"
         v-if="!_answerLabel"
         @click="$emit('change', answer)">
         {{answer.text}}
@@ -74,6 +77,11 @@ export default {
   data () {
     return {
       showImage: false
+    }
+  },
+  computed: {
+    isColorDark () {
+      return this.$store.state.colorScheme.isColorDark
     }
   }
 }

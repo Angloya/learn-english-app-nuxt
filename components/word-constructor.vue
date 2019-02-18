@@ -1,7 +1,7 @@
 <template>
   <b-card no-body
-    :bg-variant="_color"
-    :text-variant="_check ? 'white' : ''"
+    :bg-variant="_color ? _color : isColorDark ? 'dark' : 'light'"
+    :text-variant="isColorDark ? 'light' : 'dark'"
     style="max-width: 60rem; min-width: 20rem;">
     <b-container slot="header" class="px-0">
       <b-row class="text-center">
@@ -49,7 +49,10 @@
         </b-col>
       </b-row>
     </b-card-body>
-     <b-card v-if="!_check" :title="answer"/>
+     <b-card
+      :bg-variant="_color ? _color : isColorDark ? 'dark' : 'light'"
+      :text-variant="isColorDark ? 'light' : 'dark'"
+      v-if="!_check" :title="answer"/>
     <b-card-body>
       <b-button
         variant="light"
@@ -102,6 +105,11 @@ export default {
       showAudio: false,
       answer: '',
       letters: [...this._letters] || []
+    }
+  },
+  computed: {
+    isColorDark () {
+      return this.$store.state.colorScheme.isColorDark
     }
   },
   methods: {

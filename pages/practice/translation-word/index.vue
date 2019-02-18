@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import wordForLearn from '~/components/Word-for-learn.vue'
+import WordForLearn from '~/components/Word-for-learn.vue'
 import cardWord from '~/components/CardWord.vue'
 import practiceCard from '~/components/Practice-card.vue'
 import _ from 'lodash'
@@ -29,7 +29,7 @@ import _ from 'lodash'
 export default {
   name: 'translation-word',
   components: {
-    wordForLearns,
+    WordForLearn,
     cardWord,
     practiceCard
   },
