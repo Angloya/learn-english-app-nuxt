@@ -2,6 +2,8 @@
   <b-card-group deck>
     <no-ssr>
       <b-card
+        :bg-variant="selectedColor ? 'dark' : 'light'"
+        :text-variant="selectedColor ? 'light' : 'dark'"
         :header="settings[0].header"
         :sub-title="settings[0].title">
           <toggle-button
@@ -13,6 +15,8 @@
             v-model="selectedColor"/>
       </b-card>
       <b-card
+        :bg-variant="selectedColor ? 'dark' : 'light'"
+        :text-variant="selectedColor ? 'light' : 'dark'"
         :header="settings[1].header"
         :sub-title="settings[1].title">
           <toggle-button
@@ -39,16 +43,16 @@ export default {
           title: 'You can choose the color scheme of the site',
           model: this.selectedColor || false,
           name: 'selectedColor',
-          checked: 'black',
-          unchecked: 'white'
+          checked: 'white',
+          unchecked: 'black'
         },
                 {
           header: 'Words from the dictionary',
           title: 'Use words from the dictionary in the exercises',
           model: this.selectedDictionary || false,
           name: 'selectedDictionary',
-          unchecked: 'random',
-          checked: 'dictionary'
+          unchecked: 'dictionary',
+          checked: 'random'
         }
       ]
     }

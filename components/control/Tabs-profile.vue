@@ -1,5 +1,7 @@
 <template>
-  <b-card no-body>
+  <b-card no-body
+    :bg-variant="isColorDark ? 'dark' : 'light'"
+    :text-variant="isColorDark ? 'light' : 'dark'">
     <b-tabs card>
       <b-tab title="Settigns">
         <settings/>
@@ -20,6 +22,11 @@ export default {
   components: {
     UpdateProfile,
     Settings
+  },
+  computed: {
+    isColorDark () {
+      return this.$store.state.colorScheme.isColorDark
+    }
   }
 }
 </script>

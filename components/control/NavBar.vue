@@ -1,5 +1,5 @@
 <template>
-<b-navbar toggleable="md" :type="color" :variant="color" class="mb-4">
+<b-navbar toggleable="md" :type="color" :variant="color" class="mb-4 border-bottom">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   <b-navbar-brand to="/">Learn english</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
@@ -15,8 +15,8 @@
         @click.prevent="getWordFromDictionary"><i class="material-icons md-light">search</i></b-button>
       </b-nav-form>
       <b-nav-item-dropdown text="Lang" right>
-        <b-dropdown-item href="#">EN</b-dropdown-item>
-        <b-dropdown-item href="#">RU</b-dropdown-item>
+        <b-dropdown-item :variant="color"  href="#">EN</b-dropdown-item>
+        <b-dropdown-item :variant="color"  href="#">RU</b-dropdown-item>
       </b-nav-item-dropdown>
       <b-nav-item-dropdown right>
         <!-- Using button-content slot -->

@@ -1,8 +1,10 @@
 <template>
   <b-container
-  fluid
-  :class="[isColorDark ? ['bg-dark', 'text-light']  : ['bg-light', 'text-dark']]"
-  class="px-0 h-100">
+    fluid
+    class="px-0 h-100"
+    style="min-height: 100vh;"
+    :class="color"
+    :key="key">
     <navBar/>
     <nuxt />
   </b-container>
@@ -13,10 +15,21 @@ import NavBar from '~/components/control/NavBar.vue'
 export default {
   components:{
     navBar : NavBar
+  }, 
+  data () {
+    return {
+      key: ''
+    }
   },
   computed: {
-  isColorDark () {
-    return this.$store.state.colorScheme.isColorDark
+    color () { 
+      if (this.$store.state.colorScheme.isColorDark) {
+        this.key='dark'
+        return ['bg-dark','text-light']
+      } else {
+        this.key='light'
+        return ['bg-light', 'text-dark']
+      }
     }
   },
   created () {
