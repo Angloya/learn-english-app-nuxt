@@ -1,9 +1,11 @@
 <template>
-  <b-card-group deck>
+  <b-card-group  deck>
     <no-ssr>
       <b-card
         :bg-variant="selectedColor ? 'dark' : 'light'"
         :text-variant="selectedColor ? 'light' : 'dark'"
+        :border-variant="selectedColor ? 'light' : 'dark'"
+        header-border-variant="light"
         :header="settings[0].header"
         :sub-title="settings[0].title">
           <toggle-button
@@ -17,6 +19,8 @@
       <b-card
         :bg-variant="selectedColor ? 'dark' : 'light'"
         :text-variant="selectedColor ? 'light' : 'dark'"
+        :border-variant="selectedColor ? 'light' : 'dark'"
+        header-border-variant="light"
         :header="settings[1].header"
         :sub-title="settings[1].title">
           <toggle-button

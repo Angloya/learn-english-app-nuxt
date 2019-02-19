@@ -1,8 +1,10 @@
 <template>
   <b-card no-body
     :bg-variant="isColorDark ? 'dark' : 'light'"
-    :text-variant="isColorDark ? 'light' : 'dark'">
-    <b-tabs card>
+    :border-variant="isColorDark ? 'light' : 'dark'"
+    :text-variant="isColorDark ? 'light' : 'dark'"
+    :header-border-variant="isColorDark ? 'dark' : 'light'">
+    <b-tabs card class="border-bottom">
       <b-tab title="Settigns">
         <settings/>
       </b-tab>
