@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     meanings () {
-      return this.$store.state.appLogic.meanings || []
+      return this.dictionaryWords || this.$store.state.appLogic.meanings || []
     }
   },
   methods: {

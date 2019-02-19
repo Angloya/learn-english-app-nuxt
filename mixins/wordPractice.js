@@ -1,7 +1,8 @@
 export default {
   data () {
     return {
-      infoPractice: {}
+      infoPractice: {},
+      dictionaryWords: []
     }
   },
   created () {
@@ -29,18 +30,34 @@ export default {
         }
     },
     getSkyengMeanings (setWordMeans) {
-      this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
-        if( this.$store.state.appLogic.meanings.length === 5) {
-          this.start = true
-          this.wrongAnswers = {}
-          if (setWordMeans) {
-            this.setWordMeans()
+      if (this.$store.state.wordsForPractice.isWordDictionary && this.user) {
+          this.$store.dispatch('getWordsFromDB').then(() => {
+            this.dictionaryWords = []
+            var ids = this.randomIds(this.$store.state.appLogic.wordsForDictionary.length)
+            for (let id in ids) {
+              this.dictionaryWords[id] = this.$store.state.appLogic.wordsForDictionary[ids[id]]
+            }
+            this.start = true
+            this.wrongAnswers = {}
+            if (setWordMeans) {
+              this.setWordMeans()
+            }
+            return this.dictionaryWords
+          })
+      } else {
+        this.$store.dispatch('getSkyengMeanings', this.randomIds(10000)).then(() => {
+          if( this.$store.state.appLogic.meanings.length === 5) {
+            this.start = true
+            this.wrongAnswers = {}
+            if (setWordMeans) {
+              this.setWordMeans()
+            }
+            return this.$store.state.appLogic.meanings
+          } else {
+            this.getSkyengMeanings()
           }
-          return this.$store.state.appLogic.meanings
-        } else {
-          this.getSkyengMeanings()
-        }
-      })
+        })
+      }
     },
     setWordMeans () {
       this.answers = []
@@ -60,10 +77,10 @@ export default {
         return ''
       }
     },
-    randomIds () {
+    randomIds (num) {
       var randomNum = []
       for (var i=0; i<5; i++) {
-        var id = Math.floor(Math.random()*(100000))
+        var id = Math.floor(Math.random()*(num))
          randomNum[i]=id
       }
       return randomNum
