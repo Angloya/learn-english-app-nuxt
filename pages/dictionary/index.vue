@@ -52,9 +52,9 @@
         hover
         bordered
         responsive
-        :current-page="currentPage"
-        :per-page="10"
-        :items="stateWords" 
+        :current-page="words ? 1 : currentPage"
+        :per-page="words ? 1000 : 10"
+        :items="tableWords" 
         :fields="fields">
           <template slot="actions" slot-scope="row">
              <b-button size="sm" @click="getWordPage(row.item.id)" class="mr-1">
@@ -128,10 +128,21 @@ export default {
       return this.$store.state.appLogic.loading
     },
     wordsForDictionary () {
-      return this.words || this.stateWords.slice((this.currentPage - 1) * 10, this.currentPage * 10) || []
+      if (this.words) {
+        return this.words
+      } else {
+        if (this.stateWords) {
+          return this.stateWords.slice((this.currentPage - 1) * 10, this.currentPage * 10)
+        } else {
+          return []
+        }
+      }
+    },
+    tableWords () {
+       return this.words || this.$store.state.appLogic.wordsForDictionary
     },
     stateWords () {
-      return this.words || this.$store.state.appLogic.wordsForDictionary
+      return this.words || this.$store.getters.wordsForDictionary 
     }
   },
   methods: {
@@ -156,7 +167,7 @@ export default {
     },
     searchWordInDictionary () {
       if (this.searchWord) {
-         this.words =this.stateWords.filter((word) => {
+         this.words = this.stateWords.filter((word) => {
           return word.text.toLowerCase().includes(this.searchWord.toLowerCase()) || word.translation.text.toLowerCase().includes(this.searchWord.toLowerCase())
         })
       } else {
