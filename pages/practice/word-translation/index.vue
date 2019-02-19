@@ -4,7 +4,7 @@
       v-if="!start && infoPractice && !loading"
       :_practiceInfo="infoPractice"
       :_wrongAnswers="wrongAnswers"
-      @click="getSkyengMeanings" />
+      @click="getSkyengMeanings(true)" />
     <b-row class="justify-content-center">
       <word-for-learn v-if="start" 
         @change="checkAnswer"
@@ -54,23 +54,6 @@ export default {
     }
   },
   methods: {
-    setWordMeans () {
-      this.answers = []
-      this.answers = _.cloneDeep(this.meanings)
-      this.sortArray(this.answers)
-    },
-    getSkyengMeanings () {
-      this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
-        if( this.$store.state.appLogic.meanings.length === 5) {
-          this.start = true
-          this.wrongAnswers = {}
-          this.setWordMeans()
-          return this.$store.state.appLogic.meanings
-        } else {
-          this.getSkyengMeanings()
-        }
-      })
-    },
     setMeanId () {
       if (this.meanings && this.meanId != this.meanings.length - 1) {
         this.meanId += 1

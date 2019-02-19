@@ -56,17 +56,6 @@ export default {
     }
   },
   methods: {
-    getSkyengMeanings () {
-      this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
-        if( this.$store.state.appLogic.meanings.length === 5) {
-          this.start = true
-          this.wrongAnswers = {}
-          return this.$store.state.appLogic.meanings
-        } else {
-          this.getSkyengMeanings()
-        }
-      })
-    },
     checkAnswer (answer) {
       this.checkWord = true
       if (this.meanings[this.meanId].text == answer) {

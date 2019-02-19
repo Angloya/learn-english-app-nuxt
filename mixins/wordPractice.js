@@ -28,6 +28,25 @@ export default {
           }
         }
     },
+    getSkyengMeanings (setWordMeans) {
+      this.$store.dispatch('getSkyengMeanings', this.randomIds()).then(() => {
+        if( this.$store.state.appLogic.meanings.length === 5) {
+          this.start = true
+          this.wrongAnswers = {}
+          if (setWordMeans) {
+            this.setWordMeans()
+          }
+          return this.$store.state.appLogic.meanings
+        } else {
+          this.getSkyengMeanings()
+        }
+      })
+    },
+    setWordMeans () {
+      this.answers = []
+      this.answers = _.cloneDeep(this.meanings)
+      this.sortArray(this.answers)
+    },
     sortArray(array) {
       array.sort(this.compareRandom)
     },
