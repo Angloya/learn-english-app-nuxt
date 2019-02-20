@@ -3,6 +3,7 @@
     <practice-card
       v-if="!start && infoPractice && !loading"
       :_practiceInfo="infoPractice"
+      :_notEnoughWords="notEnoughWords"
       :_wrongAnswers="wrongAnswers"
       @click="getSkyengMeanings(true)" />
     <b-row class="justify-content-center">

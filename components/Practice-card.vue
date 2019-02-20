@@ -17,6 +17,13 @@
           begin to learn the words
       </b-button>
     </b-card>
+    <b-card v-if="_notEnoughWords"
+      :border-variant="isColorDark ? 'light' : 'dark'"
+      :bg-variant="isColorDark ? 'dark' : 'light'"
+      :text-variant="isColorDark ? 'light' : 'dark'"
+     title="You don't have enough words in the dictionary to train, you can learn random words">
+    <words-dictionary-setting :_isColorBlack="isColorDark"/>
+    </b-card>
     <wrongAnswers 
       :_wrongAnswers='_wrongAnswers' 
       v-if="_wrongAnswers"/>
@@ -25,11 +32,13 @@
 
 <script>
 import wrongAnswers from '~/components/wrong-answers.vue'
+import wordsDictionarySetting from '~/components/control/words-dictionary-setting.vue'
 
 export default {
   name: 'practice-card',
   components: {
-    wrongAnswers
+    wrongAnswers,
+    wordsDictionarySetting
   },
   props: {
     _practiceInfo: {
@@ -37,6 +46,10 @@ export default {
     },
     _wrongAnswers: {
       type: Object
+    },
+    _notEnoughWords: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

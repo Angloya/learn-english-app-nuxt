@@ -16,29 +16,18 @@
             class="vue-switcher"
             v-model="selectedColor"/>
       </b-card>
-      <b-card
-        :bg-variant="selectedColor ? 'dark' : 'light'"
-        :text-variant="selectedColor ? 'light' : 'dark'"
-        :border-variant="selectedColor ? 'light' : 'dark'"
-        header-border-variant="light"
-        :header="settings[1].header"
-        :sub-title="settings[1].title">
-          <toggle-button
-            @change="selectedAction(selectedDictionary, settings[1].name)"
-            :width="100"
-            :height="30"
-            :labels="{checked: settings[1].checked, unchecked: settings[1].unchecked}"
-            class="vue-switcher"
-            v-model="selectedDictionary"/>
-      </b-card>
+      <words-dictionary-setting :_isColorBlack="selectedColor"/>
     </no-ssr>
   </b-card-group>
 </template>
 
 <script>
-
+import wordsDictionarySetting from '~/components/control/words-dictionary-setting.vue'
 export default {
   name: 'settings',
+  components: {
+    wordsDictionarySetting
+  },
   data () {
     return {
       settings: [

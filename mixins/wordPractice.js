@@ -2,7 +2,8 @@ export default {
   data () {
     return {
       infoPractice: {},
-      dictionaryWords: []
+      dictionaryWords: null,
+      notEnoughWords: false
     }
   },
   created () {
@@ -17,6 +18,9 @@ export default {
     },
     loading () {
       return this.$store.state.appLogic.loading
+    },
+    isWordDictionary () {
+      return this.$store.state.wordsForPractice.isWordDictionary     
     }
   },
   methods: {
@@ -29,32 +33,36 @@ export default {
           }
         }
     },
+    startPractice (setWordMeans) {
+      this.start = true
+      this.wrongAnswers = {}
+      if (setWordMeans) {
+        this.setWordMeans()
+      }
+    },
     getSkyengMeanings (setWordMeans) {
-      if (this.$store.state.wordsForPractice.isWordDictionary && this.user) {
+      this.notEnoughWords = false
+      if (this.isWordDictionary && this.user) {
           this.$store.dispatch('getWordsFromDB').then(() => {
             this.dictionaryWords = []
+            if (this.$store.state.appLogic.wordsForDictionary.length > 5) {
             var ids = this.randomIds(this.$store.state.appLogic.wordsForDictionary.length)
             for (let id in ids) {
               this.dictionaryWords[id] = this.$store.state.appLogic.wordsForDictionary[ids[id]]
             }
-            this.start = true
-            this.wrongAnswers = {}
-            if (setWordMeans) {
-              this.setWordMeans()
-            }
+            this.startPractice(setWordMeans)
             return this.dictionaryWords
-          })
+          } else {
+            this.notEnoughWords = true
+          }
+        })
       } else {
         this.$store.dispatch('getSkyengMeanings', this.randomIds(10000)).then(() => {
           if( this.$store.state.appLogic.meanings.length === 5) {
-            this.start = true
-            this.wrongAnswers = {}
-            if (setWordMeans) {
-              this.setWordMeans()
-            }
+            this.startPractice(setWordMeans)
             return this.$store.state.appLogic.meanings
           } else {
-            this.getSkyengMeanings()
+            this.getSkyengMeanings(setWordMeans)
           }
         })
       }
@@ -87,13 +95,19 @@ export default {
     },
     setWrongAnswer (answer) {
       if (this.user && answer.id) {
+        delete answer.color
         this.$store.dispatch('addWordInDB', answer)
       }
+      answer.color = 'danger'
       this.wrongAnswers[answer.id] = answer
     },
     checkAnswer (answer) {
       clearTimeout(timerId)
       if (this.meanings[this.meanId].id == answer.id) {
+        if (this.isWordDictionary) {
+          answer.knowledge += 1
+          this.$store.dispatch('addWordInDB', answer)
+        }
         answer.color = 'success'
         this.keyColor = 'success'
       } else {

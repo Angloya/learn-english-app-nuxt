@@ -225,6 +225,9 @@ export default {
         })
     },
     addWordInDB ({ state }, data) {
+      if (!data.knowledge) {
+        data.knowledge = 0
+      }
       StoreDB.collection(state.user.id).doc(String(data.id)).set({
         data
       })

@@ -3,6 +3,7 @@
     <practice-card
       v-if="!start && infoPractice && !loading"
       :_practiceInfo="infoPractice"
+      :_notEnoughWords="notEnoughWords"
       :_wrongAnswers="wrongAnswers"
       @click="getSkyengMeanings(true)" />
     <b-row class="justify-content-center">
@@ -25,6 +26,7 @@ import WordForLearn from '~/components/Word-for-learn.vue'
 import cardWord from '~/components/CardWord.vue'
 import practiceCard from '~/components/Practice-card.vue'
 import _ from 'lodash'
+import { delay } from 'q';
 
 export default {
   name: 'translation-word',
