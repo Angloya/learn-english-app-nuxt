@@ -155,7 +155,7 @@ export default {
     },
     deleteWord (wordId, idx) {
       this.$store.dispatch('deleteWordsFromDB', wordId).then(() => {
-          return this.wordsForDictionary.splice(idx, 1)
+          return this.$store.getters.wordsForDictionary.splice(idx, 1)
         })
     },
     getMeaningImg (mean) {

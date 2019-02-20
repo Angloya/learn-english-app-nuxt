@@ -57,6 +57,7 @@ export default {
           }
         })
       } else {
+        this.dictionaryWords = null
         this.$store.dispatch('getSkyengMeanings', this.randomIds(10000)).then(() => {
           if( this.$store.state.appLogic.meanings.length === 5) {
             this.startPractice(setWordMeans)

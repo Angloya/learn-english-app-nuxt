@@ -18,7 +18,6 @@
       </b-button>
     </b-card>
     <b-card v-if="_notEnoughWords"
-      :border-variant="isColorDark ? 'light' : 'dark'"
       :bg-variant="isColorDark ? 'dark' : 'light'"
       :text-variant="isColorDark ? 'light' : 'dark'"
      title="You don't have enough words in the dictionary to train, you can learn random words">
