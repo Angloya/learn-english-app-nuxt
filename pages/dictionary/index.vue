@@ -4,7 +4,9 @@
     <loading v-if="loading"/>
     <b-row class="my-4 justify-content-center" v-if="!loading">
       <b-col cols="4" sm="2" md="1">Cards</b-col>
-        <toggle-button class="vue-switcher" v-model="enabledTableView"/>
+        <no-ssr>
+          <toggle-button class="vue-switcher" v-model="enabledTableView"/>
+        </no-ssr>
       <b-col cols="4" sm="2" md="1">Table</b-col>
     </b-row>
     <b-row class="my-4 justify-content-center" v-if="!loading">
@@ -47,8 +49,7 @@
         </b-button>
       </b-col>
     </b-row>
-    <b-row class="justify-content-center" v-if="!loading && enabledTableView">
-      <no-ssr>
+    <b-row class="justify-content-center" v-if="!loading && enabledTableView && stateWords">
        <b-table
         striped
         hover
@@ -64,7 +65,6 @@
         </b-button>
           </template>
        </b-table>
-      </no-ssr>
     </b-row>
     <b-row class="justify-content-center" v-if="!loading">
       <b-pagination
@@ -162,7 +162,7 @@ export default {
         })
     },
     getMeaningImg (mean) {
-      if (mean.images.length != 0) {
+      if (mean.images && mean.images.length != 0) {
         return mean.images[0].url
       } else {
         return ''
