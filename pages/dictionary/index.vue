@@ -35,6 +35,7 @@
           :_text="word.translation.text"
           :_transcription="word.transcription"
           :_audio="word.soundUrl"
+          :_counter="word.knowledge"
           :_isExtraButtonShow='true'
           @change="deleteWord(word.id, idx)"/>
         <b-button
@@ -47,6 +48,7 @@
       </b-col>
     </b-row>
     <b-row class="justify-content-center" v-if="!loading && enabledTableView">
+      <no-ssr>
        <b-table
         striped
         hover
@@ -62,6 +64,7 @@
         </b-button>
           </template>
        </b-table>
+      </no-ssr>
     </b-row>
     <b-row class="justify-content-center" v-if="!loading">
       <b-pagination

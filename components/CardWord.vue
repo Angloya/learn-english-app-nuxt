@@ -27,6 +27,10 @@
         <source :src="_audio" type="audio/mpeg">
       </audio>
     </b-card-body>
+    <b-card-body>
+      <span>degree of knowledge</span>
+      <b-progress :value="_counter" :max="10" animated />
+    </b-card-body>
     <b-card-footer v-if="_showAllMean">
       <b-button @click="$emit('click')">{{_showAllMean}}
         </b-button>
@@ -46,6 +50,10 @@ export default {
     _imageWord : {
       type: String,
       default: ''      
+    },
+    _counter: {
+      type: Number,
+      default: 0 
     },
     _title: { 
       type: String,
