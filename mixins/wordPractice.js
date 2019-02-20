@@ -87,9 +87,21 @@ export default {
     },
     randomIds (num) {
       var randomNum = []
-      for (var i=0; i<5; i++) {
-        var id = Math.floor(Math.random()*(num))
-         randomNum[i]=id
+      if (this.isWordDictionary) {
+        var randomId = {} 
+        for (var i=0; i<5;) {
+          var id = Math.floor(Math.random()*(num))
+          if (!randomId[id]) {
+            randomId[id]=id
+            randomNum[i]=id
+            i++
+          }
+        }
+      } else {
+        for (var i=0; i<5; i++) {
+          var id = Math.floor(Math.random()*(num))
+           randomNum[i]=id
+        }
       }
       return randomNum
     },
