@@ -128,7 +128,7 @@ export default {
         {
           key: 'knowledge',
           label: 'degree of knowledge',
-          sartable: true
+          sortable: true
         },
         { 
           key: 'actions',

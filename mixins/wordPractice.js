@@ -40,21 +40,32 @@ export default {
         this.setWordMeans()
       }
     },
-    getSkyengMeanings (setWordMeans) {
+    getWordsFromDB (setWordMeans) {
       this.notEnoughWords = false
+      this.dictionaryWords = []
+      var wordId = []
+      var words = this.$store.state.appLogic.wordsForDictionary
+      for (let word of words) {
+          word.knowledge != 10
+          wordId.push(word)
+      }
+      var ids = this.randomIds(wordId.length)
+      if (wordId.length > 4 && ids.length > 4) {
+        for (let id in ids) {
+          this.dictionaryWords[id] = wordId[ids[id]]
+        }
+        this.startPractice(setWordMeans)
+        return this.dictionaryWords
+      } else if (wordId.length > 4 && ids.length < 4){
+        this.getWordsFromDB(setWordMeans)
+      } else {
+        this.notEnoughWords = true
+      }
+    },
+    getSkyengMeanings (setWordMeans) {
       if (this.isWordDictionary && this.user) {
-          this.$store.dispatch('getWordsFromDB').then(() => {
-            this.dictionaryWords = []
-            if (this.$store.state.appLogic.wordsForDictionary.length > 5) {
-            var ids = this.randomIds(this.$store.state.appLogic.wordsForDictionary.length)
-            for (let id in ids) {
-              this.dictionaryWords[id] = this.$store.state.appLogic.wordsForDictionary[ids[id]]
-            }
-            this.startPractice(setWordMeans)
-            return this.dictionaryWords
-          } else {
-            this.notEnoughWords = true
-          }
+        this.$store.dispatch('getWordsFromDB').then(() => {
+          this.getWordsFromDB(setWordMeans)
         })
       } else {
         this.dictionaryWords = null
@@ -88,23 +99,12 @@ export default {
     },
     randomIds (num) {
       var randomNum = []
-      if (this.isWordDictionary) {
-        var randomId = {} 
-        for (var i=0; i<5;) {
-          var id = Math.floor(Math.random()*(num))
-          if (!randomId[id]) {
-            randomId[id]=id
-            randomNum[i]=id
-            i++
-          }
-        }
-      } else {
         for (var i=0; i<5; i++) {
           var id = Math.floor(Math.random()*(num))
            randomNum[i]=id
-        }
       }
-      return randomNum
+      let randomId = [...new Set(randomNum)]
+      return randomId
     },
     setWrongAnswer (answer) {
       if (this.user && answer.id) {
