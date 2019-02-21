@@ -24,7 +24,8 @@
     <emptySearch
       :_searchWord="searchWord"
       v-if="words && words.length == 0"/>
-    <b-row class="justify-content-center" v-if="!loading && !enabledTableView">
+    <b-row class="justify-content-center"
+      v-if="!loading && !enabledTableView">
       <b-col
         cols="auto"
         md="auto"
@@ -59,10 +60,26 @@
         :per-page="words ? 1000 : 10"
         :items="tableWords" 
         :fields="fields">
+        <template slot="knowledge" slot-scope="row">
+          <b-progress :value="row.item.knowledge" :max="10" animated />
+        </template>
           <template slot="actions" slot-scope="row">
-             <b-button size="sm" @click="getWordPage(row.item.id)" class="mr-1">
-           Learn more
-        </b-button>
+            <b-container>
+              <b-row class="justify-content-center">
+                <b-col
+                  cols="auto"
+                  md="auto">
+                  <b-button size="sm" @click="getWordPage(row.item.id)" class="mr-1">
+                  Learn more
+                  </b-button>
+                </b-col>
+                <b-col
+                  cols="auto"
+                  md="auto">
+                  <i class="material-icons md-dark" @click="deleteWord(row.item.id, row.index)">delete</i>
+                </b-col>
+              </b-row>
+            </b-container>
           </template>
        </b-table>
     </b-row>
@@ -107,6 +124,11 @@ export default {
           key: 'translation.text',
           label: 'Translation',
           sortable: false
+        },
+        {
+          key: 'knowledge',
+          label: 'degree of knowledge',
+          sartable: true
         },
         { 
           key: 'actions',
