@@ -46,18 +46,21 @@ export default {
       var wordId = []
       var words = this.$store.state.appLogic.wordsForDictionary
       for (let word of words) {
-          word.knowledge != 10
+        if (word.knowledge < 10) {
           wordId.push(word)
+        }
       }
       var ids = this.randomIds(wordId.length)
-      if (wordId.length > 4 && ids.length > 4) {
-        for (let id in ids) {
-          this.dictionaryWords[id] = wordId[ids[id]]
+      if (wordId.length > 4) {
+        if (ids.length > 4) {
+          for (let id in ids) {
+            this.dictionaryWords[id] = wordId[ids[id]]
+          }
+          this.startPractice(setWordMeans)
+          return this.dictionaryWords
+        } else {
+          this.getWordsFromDB(setWordMeans)
         }
-        this.startPractice(setWordMeans)
-        return this.dictionaryWords
-      } else if (wordId.length > 4 && ids.length < 4){
-        this.getWordsFromDB(setWordMeans)
       } else {
         this.notEnoughWords = true
       }
