@@ -6,7 +6,7 @@
     <b-container slot="header" class="px-0">
       <b-row class="text-center">
         <h3 v-if="_check"> {{_answer}}</h3>
-        <b-col class="px-0">
+        <b-col cols="1" class="px-0">
           <i slot="header"
             v-if="!_check"
             @click="resetwords"

@@ -78,13 +78,16 @@ export default {
           }
         )
     },
-    autoSignIn ({ commit }, payload) {
+    autoSignIn ({ commit, state }, payload) {
       commit('setLoading', true)
-      commit('setUser', {
-        id: payload.uid,
-        name: payload.displayName,
-        email: payload.email,
-        photoURL: payload.photoURL
+      this.dispatch('getDocFB', [payload.uid, 'knowledge']).then(() => {
+        commit('setUser', {
+          id: payload.uid,
+          name: payload.displayName,
+          email: payload.email,
+          photoURL: payload.photoURL,
+          knowledge: state.docsFB.knowledge
+        })
       })
       commit('setLoading', false)
     },
@@ -237,6 +240,20 @@ export default {
         .catch((error) => {
           console.error('Error writing document: ', error)
         })
+    },
+       getWordsFromDB ({ commit, state }) {
+      var words = []
+      commit('setLoading', true)
+      return StoreDB.collection(state.user.id).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) =>  {
+          let word = doc.data()
+          words.push(word.data)
+        })
+        commit('setWordsForDictionary', words)
+        commit('setLoading', false)
+      }).catch((error) => {
+        console.log('Error getting document:', error)
+      })
     },
     getWordsFromDB ({ commit, state }) {
       var words = []
