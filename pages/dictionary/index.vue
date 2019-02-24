@@ -35,7 +35,7 @@
         <cardWord
           :_imageWord="getMeaningImg(word)"
           :_title="word.text"
-          :_text="word.translation.text"
+          :_text="word.translation ? word.translation.text : ''"
           :_transcription="word.transcription"
           :_audio="word.soundUrl"
           :_counter="word.knowledge"

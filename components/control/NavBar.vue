@@ -25,7 +25,7 @@
         </template>
         <b-dropdown-item v-if="!user" to="/authUser/auth-signin">SignIn</b-dropdown-item>
         <b-dropdown-item v-if="!user" to="/authUser/auth-signup">SignUp</b-dropdown-item>
-        <b-dropdown-item v-b-popover.hover="user.email" :title="user.name" v-if="user" to="/profile">Profile</b-dropdown-item>
+        <b-dropdown-item v-b-popover.hover="`level: ${userKnowledge.level}`" :title="user.name" v-if="user" to="/profile">Profile</b-dropdown-item>
         <logout v-if="user"/>
       </b-nav-item-dropdown>
     </b-navbar-nav>
@@ -48,6 +48,11 @@ export default {
   computed: {
     user () {
       return this.$store.state.appLogic.user
+    },
+    userKnowledge () {
+      if (this.user.knowledge) {
+        return this.user.knowledge.data || {}
+      }
     },
     color () {
       if (this.$store.state.colorScheme.isColorDark) {

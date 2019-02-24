@@ -12,7 +12,7 @@
         <h4 class="m-3">{{ user.name }}</h4>
         <p class="m-3"><b>Your email: </b> {{ user.email }}</p>
       </b-col>
-    </b-row>
+      </b-row>
   </b-container>
 </template>
 
@@ -20,7 +20,7 @@
 export default {
   computed: {
     user () {
-         return this.$store.state.appLogic.user || {}
+      return this.$store.state.appLogic.user || {}
     },
     photoURL () {
       return this.user.photoURL || "/image/avatar.png"

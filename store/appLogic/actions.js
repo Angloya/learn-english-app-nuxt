@@ -231,6 +231,15 @@ export default {
       if (!data.knowledge) {
         data.knowledge = 0
       }
+      if (data.id == 'knowledge') {
+        if (!data.level) {
+          data.level = 1
+        } 
+        if (data.knowledge === 50) {
+          data.level +=1
+          data.knowledge = 0
+        }
+      }
       StoreDB.collection(state.user.id).doc(String(data.id)).set({
         data
       })
@@ -241,27 +250,15 @@ export default {
           console.error('Error writing document: ', error)
         })
     },
-       getWordsFromDB ({ commit, state }) {
-      var words = []
-      commit('setLoading', true)
-      return StoreDB.collection(state.user.id).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) =>  {
-          let word = doc.data()
-          words.push(word.data)
-        })
-        commit('setWordsForDictionary', words)
-        commit('setLoading', false)
-      }).catch((error) => {
-        console.log('Error getting document:', error)
-      })
-    },
     getWordsFromDB ({ commit, state }) {
       var words = []
       commit('setLoading', true)
       return StoreDB.collection(state.user.id).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) =>  {
-          let word = doc.data()
-          words.push(word.data)
+          if (doc.id != 'knowledge') {
+            let word = doc.data()
+            words.push(word.data)
+          }
         })
         commit('setWordsForDictionary', words)
         commit('setLoading', false)
