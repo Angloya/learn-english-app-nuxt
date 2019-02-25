@@ -25,7 +25,7 @@
         </template>
         <b-dropdown-item v-if="!user" to="/authUser/auth-signin">SignIn</b-dropdown-item>
         <b-dropdown-item v-if="!user" to="/authUser/auth-signup">SignUp</b-dropdown-item>
-        <b-dropdown-item v-b-popover.hover="`level: ${userKnowledge.level}`" :title="user.name" v-if="user" to="/profile">Profile</b-dropdown-item>
+        <b-dropdown-item v-b-popover.hover="`level: ${userKnowledge ? userKnowledge.level : '0'}`" :title="user.name" v-if="user" to="/profile">Profile</b-dropdown-item>
         <logout v-if="user"/>
       </b-nav-item-dropdown>
     </b-navbar-nav>

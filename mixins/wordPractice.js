@@ -122,13 +122,13 @@ export default {
       if (this.meanings[this.meanId].id == answer.id) {
         if (this.isWordDictionary) {
           answer.knowledge += 1
-          this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: user.knowledge += 1,})
+          this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: this.user.knowledge += 1,})
           this.$store.dispatch('addWordInDB', answer)
         }
-        if (this.user.knowledge.data) {
+        if (this.user.knowledge) {
           this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: this.user.knowledge.data.knowledge += 1,})
         } else {
-          this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: this.user.knowledge.data.knowledge = 0,})
+          this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: 1,})
         }
         answer.color = 'success'
         this.keyColor = 'success'
