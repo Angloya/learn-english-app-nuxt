@@ -61,7 +61,9 @@ export default {
         this.keyColor = ''
         this.setWordMeans()
       } else {
+        this.summation()
         this.start = false
+        this.meanId = 0
       }
     }
   },

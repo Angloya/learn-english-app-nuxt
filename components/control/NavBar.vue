@@ -2,6 +2,7 @@
 <b-navbar toggleable="md" :type="color" :variant="color" class="mb-4 border-bottom">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   <b-navbar-brand to="/">Learn english</b-navbar-brand>
+  <b-progress :value="userKnowledge ? userKnowledge.knowledgeDay : 0" class="w-25 my-2" variant="success" :max="5"/>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
       <b-nav-item to="/practice">Practice</b-nav-item>
@@ -45,12 +46,18 @@ export default {
       searchWord: ''
     }
   },
+  created () {
+    var today = new Date 
+    if (!this.user.knowledge && !this.user.knowledge.data.day && today.toISOString() ===  this.user.knowledge.data.day) {
+      this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: 1, day: today.toISOString(), knowledgeDay: 1})
+    }
+  },
   computed: {
     user () {
       return this.$store.state.appLogic.user
     },
     userKnowledge () {
-      if (this.user.knowledge) {
+      if (this.user && this.user.knowledge) {
         return this.user.knowledge.data || {}
       }
     },

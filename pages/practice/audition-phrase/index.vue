@@ -77,6 +77,7 @@ export default {
         this.keyColor = ''
         this.checkPhrase = false
       } else {
+        this.summation()
         this.start = false
         this.keyColor = ''
         this.checkPhrase = false
