@@ -255,9 +255,9 @@ export default {
       commit('setLoading', true)
       return StoreDB.collection(state.user.id).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) =>  {
-          if (doc.id != 'knowledge') {
+          if (doc.id != 'knowledge' && doc.id) {
             let word = doc.data()
-            words.push(word.data)
+            words.push(word)
           }
         })
         commit('setWordsForDictionary', words)

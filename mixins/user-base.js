@@ -17,7 +17,7 @@ export default {
         if (this.user.knowledge.maxTargetDay) {
           this.$store.commit('setMaxTargetDay', Number(this.maxTargetDay || this.user.knowledge.maxTargetDay))
         }
-        if (this.date !==  this.user.knowledge.day) {
+        if (!this.user.knowledge || this.date !==  this.user.knowledge.day) {
           this.$store.dispatch('addWordInDB', { id: 'knowledge', day: this.date, knowledgeDay: 0}).then(()=>{
             return this.user.knowledge || {}
           })
