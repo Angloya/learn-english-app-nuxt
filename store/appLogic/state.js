@@ -8,7 +8,8 @@ const state = () => ({
   docsFB: [],
   word: null,
   meanings: null,
-  wordsForDictionary: null
+  wordsForDictionary: null,
+  maxTargetDay: 5
 })
 
 export default state

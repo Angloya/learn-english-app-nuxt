@@ -31,5 +31,8 @@ export default {
   },
   setWordsForDictionary (state, payload) {
     state.wordsForDictionary = payload
-  }
+  },
+  setMaxTargetDay (state, payload) {
+    state.maxTargetDay = payload
+  },
 }

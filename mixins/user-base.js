@@ -1,16 +1,28 @@
 export default {
+  data () {
+    return {
+      maxDay: this.$store.getters.maxTargetDay
+    }
+  },
   computed: {
     user () {
       return this.$store.state.appLogic.user
     },
+    maxTargetDay () {
+      if (this.$store.getters.maxTargetDay)
+      return this.$store.getters.maxTargetDay
+    },
     userKnowledge () {
       if (this.user && this.user.knowledge) {
-        if (this.date !==  this.user.knowledge.data.day) {
+        if (this.user.knowledge.maxTargetDay) {
+          this.$store.commit('setMaxTargetDay', Number(this.maxTargetDay || this.user.knowledge.maxTargetDay))
+        }
+        if (this.date !==  this.user.knowledge.day) {
           this.$store.dispatch('addWordInDB', { id: 'knowledge', day: this.date, knowledgeDay: 0}).then(()=>{
-            return this.user.knowledge.data || {}
+            return this.user.knowledge || {}
           })
         } else {
-            return this.user.knowledge.data || {}
+            return this.user.knowledge || {}
         }
       }
     },
@@ -27,7 +39,7 @@ export default {
     summation () {
       if (this.userKnowledge) {
         if (this.userKnowledge.day && this.date ===  this.userKnowledge.day) {
-          this.$store.dispatch('addWordInDB', { id: 'knowledge', day: this.date, knowledgeDay: this.user.knowledge.data.knowledgeDay +=1})
+          this.$store.dispatch('addWordInDB', { id: 'knowledge', day: this.date, knowledgeDay: this.user.knowledge.knowledgeDay +=1})
         } else {
           this.$store.dispatch('addWordInDB', { id: 'knowledge', day: this.date, knowledgeDay: 1})
         }

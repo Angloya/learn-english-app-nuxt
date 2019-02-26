@@ -8,3 +8,29 @@
 .word-constructor-letter-button {
   height: 50px
 }
+.custom-range {
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+/* leave above out to not have the non .input-group ranges
+ * bordered when invalid or valid
+ */
+
+.custom-range.is-invalid,
+.was-validated .custom-range:invalid {
+  border-color: #dc3545;
+}
+.custom-range.is-invalid:focus,
+.was-validated .custom-range:invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 .2rem rgba(220,53,69,.25);
+}
+.custom-range.is-valid,
+.was-validated .custom-range:valid {
+  border-color: #28a745;
+}
+.custom-range.is-valid:focus,
+.was-validated .custom-range:valid:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 .2rem rgba(40,167,69,.25);
+}

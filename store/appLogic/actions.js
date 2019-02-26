@@ -240,9 +240,9 @@ export default {
           data.knowledge = 0
         }
       }
-      StoreDB.collection(state.user.id).doc(String(data.id)).set({
-        data
-      })
+      StoreDB.collection(state.user.id).doc(String(data.id)).set(
+        data, {merge:true}
+      )
         .then(() => {
           console.log('Document successfully written!')
         })

@@ -2,7 +2,7 @@
 <b-navbar toggleable="md" :type="color" :variant="color" class="mb-4 border-bottom">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   <b-navbar-brand to="/">Learn english</b-navbar-brand>
-  <b-progress :value="userKnowledge ? userKnowledge.knowledgeDay : 0" class="w-25 my-2" variant="success" :max="5"/>
+  <b-progress :value="userKnowledge ? userKnowledge.knowledgeDay : 0" class="w-25 my-2" variant="success" :max="maxTargetDay"/>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
       <b-nav-item to="/practice">Practice</b-nav-item>
