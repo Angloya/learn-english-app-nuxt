@@ -86,7 +86,8 @@ export default {
     }
   },
   mixins: [
-    require('~/mixins/wordPractice').default
+    require('~/mixins/wordPractice').default,
+    require('~/mixins/user-base').default
   ]
 }
 </script>

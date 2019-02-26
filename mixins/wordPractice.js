@@ -10,9 +10,6 @@ export default {
     this.getDBCards()
   },
   computed: {
-    user () {
-      return this.$store.state.appLogic.user
-    },
     practices () {
       return this.$store.state.appLogic.docsFB.practice || {}   
     },
@@ -117,24 +114,16 @@ export default {
       answer.color = 'danger'
       this.wrongAnswers[answer.id] = answer
     },
-    summation () {
-      var today = new Date 
-      if (this.user.knowledge && this.user.knowledge.data.day && today.toISOString() !==  this.user.knowledge.data.day) {
-        this.$store.dispatch('addWordInDB', { id: 'knowledge', day: today.toISOString(), knowledgeDay: this.user.knowledge.data.knowledgeDay +=1})
-      } else {
-        this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: 1, day: today.toISOString(), knowledgeDay: 1})
-      }
-    },
     checkAnswer (answer) {
       clearTimeout(timerId)
       if (this.meanings[this.meanId].id == answer.id) {
         if (this.isWordDictionary) {
           answer.knowledge += 1
-          this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: this.user.knowledge += 1,})
+          this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: this.userKnowledge.knowledge += 1,})
           this.$store.dispatch('addWordInDB', answer)
         }
-        if (this.user.knowledge) {
-          this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: this.user.knowledge.data.knowledge += 1 })
+        if (this.userKnowledge) {
+          this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: this.userKnowledge.knowledge += 1 })
         } else {
           this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: 1,})
         }

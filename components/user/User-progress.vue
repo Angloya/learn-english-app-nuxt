@@ -20,21 +20,8 @@ export default {
       maxKnowledge : 50
     }
   },
-  created (){
-    var today = new Date 
-    if (!this.user.knowledge && !this.user.knowledge.data.day && today.toISOString() ===  this.user.knowledge.data.day) {
-      this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: 1, day: today.toISOString(), knowledgeDay: 1})
-    }
-  },
-  computed: {
-    user () {
-      return this.$store.state.appLogic.user || {}
-    },
-    userKnowledge () {
-      if (this.user.knowledge) {
-        return this.user.knowledge.data || {}
-      }
-    }
-  }
+  mixins: [
+    require('~/mixins/user-base').default
+  ]
 }
 </script>

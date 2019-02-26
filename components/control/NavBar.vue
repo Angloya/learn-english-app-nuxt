@@ -46,21 +46,7 @@ export default {
       searchWord: ''
     }
   },
-  created () {
-    var today = new Date 
-    if (!this.user.knowledge && !this.user.knowledge.data.day && today.toISOString() ===  this.user.knowledge.data.day) {
-      this.$store.dispatch('addWordInDB', { id: 'knowledge',  knowledge: 1, day: today.toISOString(), knowledgeDay: 1})
-    }
-  },
   computed: {
-    user () {
-      return this.$store.state.appLogic.user
-    },
-    userKnowledge () {
-      if (this.user && this.user.knowledge) {
-        return this.user.knowledge.data || {}
-      }
-    },
     color () {
       if (this.$store.state.colorScheme.isColorDark) {
         return 'dark'
@@ -76,6 +62,9 @@ export default {
         this.searchWord = ''
       } 
     }
-  }
+  },
+  mixins: [
+    require('~/mixins/user-base').default
+  ]
 }
 </script>
