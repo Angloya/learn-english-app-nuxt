@@ -4,5 +4,8 @@ export default {
   },
   maxTargetDay: (state, getters) => {
     return state.maxTargetDay
-  }
+  }, 
+  meanings: (state, getters) => {
+    return state.meanings
+  }, 
 }

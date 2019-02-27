@@ -10,6 +10,9 @@ export default {
     this.getDBCards()
   },
   computed: {
+    meanings () {
+      return this.dictionaryWords || this.$store.getters.meanings || []
+    },
     practices () {
       return this.$store.state.appLogic.docsFB.practice || {}   
     },
@@ -81,7 +84,13 @@ export default {
     },
     setWordMeans () {
       this.answers = []
-      this.answers = _.cloneDeep(this.meanings)
+      var meanings = []
+      meanings = _.cloneDeep(this.meanings)
+      meanings.forEach(meaning => {
+        if (!meaning.wrong) {
+          this.answers.push(meaning)
+        }
+      })
       this.sortArray(this.answers)
     },
     sortArray(array) {
@@ -111,8 +120,11 @@ export default {
         delete answer.color
         this.$store.dispatch('addWordInDB', answer)
       }
+      answer.wrong = true
+      this.meanings.push(answer)
       answer.color = 'danger'
       this.wrongAnswers[answer.id] = answer
+      
     },
     checkAnswer (answer) {
       clearTimeout(timerId)
@@ -142,7 +154,7 @@ export default {
       }
       var timerId = setTimeout(() => {
         this.setMeanId()
-      }, 1000)
+      }, 2000)
     }
   }
 }

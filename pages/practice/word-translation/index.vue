@@ -49,11 +49,6 @@ export default {
       }
     }
   },
-  computed: {
-    meanings () {
-      return this.dictionaryWords || this.$store.state.appLogic.meanings || []
-    }
-  },
   methods: {
     setMeanId () {
       if (this.meanings && this.meanId != this.meanings.length - 1) {

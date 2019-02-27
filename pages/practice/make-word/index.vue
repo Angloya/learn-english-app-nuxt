@@ -51,11 +51,6 @@ export default {
       }
     }
   },
-  computed: {
-    meanings () {
-      return this.dictionaryWords || this.$store.state.appLogic.meanings || []
-    }
-  },
   methods: {
     checkAnswer (answer) {
       this.checkWord = true

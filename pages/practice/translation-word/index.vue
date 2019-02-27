@@ -13,7 +13,7 @@
         :_title="meaning.translation.text"
         :_audio="meaning.soundUrl"
         :_answerId="meaning.id"
-        :_answers="answers"
+        :_answers="answers.color"
         :_image="getMeaningImg(meaning)"
         :_show="show"
         :key="keyColor" />
@@ -50,9 +50,6 @@ export default {
     }
   },
   computed: {
-    meanings () {
-      return this.dictionaryWords || this.$store.state.appLogic.meanings || []
-    },
     meaning () {
       return this.meanings[this.meanId]
     }
