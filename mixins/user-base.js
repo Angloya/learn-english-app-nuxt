@@ -18,7 +18,7 @@ export default {
           this.$store.commit('setMaxTargetDay', Number(this.maxTargetDay || this.user.knowledge.maxTargetDay))
         }
         if (!this.user.knowledge || this.date !==  this.user.knowledge.day) {
-          this.$store.dispatch('addWordInDB', { id: 'knowledge', day: this.date, knowledgeDay: 0}).then(()=>{
+          this.$store.dispatch('addDocInDB', { id: 'knowledge', day: this.date, knowledgeDay: 0}).then(()=>{
             return this.user.knowledge || {}
           })
         } else {
@@ -39,9 +39,9 @@ export default {
     summation () {
       if (this.userKnowledge) {
         if (this.userKnowledge.day && this.date ===  this.userKnowledge.day) {
-          this.$store.dispatch('addWordInDB', { id: 'knowledge', day: this.date, knowledgeDay: this.user.knowledge.knowledgeDay +=1})
+          this.$store.dispatch('addDocInDB', { id: 'knowledge', day: this.date, knowledgeDay: this.user.knowledge.knowledgeDay +=1})
         } else {
-          this.$store.dispatch('addWordInDB', { id: 'knowledge', day: this.date, knowledgeDay: 1})
+          this.$store.dispatch('addDocInDB', { id: 'knowledge', day: this.date, knowledgeDay: 1})
         }
       }
     }

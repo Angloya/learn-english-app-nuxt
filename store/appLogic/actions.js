@@ -250,6 +250,17 @@ export default {
           console.error('Error writing document: ', error)
         })
     },
+    addDocInDB ({ state }, data) {
+      StoreDB.collection(state.user.id).doc(String(data.id)).set(
+        data, {merge:true}
+      )
+        .then(() => {
+          console.log('Document successfully written!')
+        })
+        .catch((error) => {
+          console.error('Error writing document: ', error)
+        })
+    },
     getWordsFromDB ({ commit, state }) {
       var words = []
       commit('setLoading', true)
