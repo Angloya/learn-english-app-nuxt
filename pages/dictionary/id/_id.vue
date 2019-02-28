@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import meaningInfo from '~/components/meaning-info.vue'
+import meaningInfo from '~/components/cards/meaning-info.vue'
 import Loading from '~/components/Loading.vue'
 
 export default {

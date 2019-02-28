@@ -44,7 +44,7 @@ export default {
   methods: {
     changeDayTarget () {
       if (this.userKnowledge) {
-        this.$store.dispatch('addWordInDB', { id: 'knowledge',  maxTargetDay: this.maxDay })
+        this.$store.dispatch('addDocInDB', { id: 'knowledge',  maxTargetDay: this.maxDay })
         this.$store.commit('setMaxTargetDay', Number(this.maxDay))
       }
     }

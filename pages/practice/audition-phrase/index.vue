@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import practiceCard from '~/components/Practice-card.vue'
-import phraseConstructor from '~/components/phrase-constructor.vue'
-import meaningInfo from '~/components/meaning-info.vue'
+import practiceCard from '~/components/cards/Practice-card.vue'
+import phraseConstructor from '~/components/cards/phrase-constructor.vue'
+import meaningInfo from '~/components/cards/meaning-info.vue'
 import _ from 'lodash'
 
 export default {

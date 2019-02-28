@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import cards from '~/components/Cards.vue'
+import cards from '~/components/cards/Cards.vue'
 import Loading from '~/components/Loading.vue'
 
 export default {

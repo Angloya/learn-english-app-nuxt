@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import wrongAnswers from '~/components/wrong-answers.vue'
+import wrongAnswers from '~/components/cards/wrong-answers.vue'
 import wordsDictionarySetting from '~/components/control/words-dictionary-setting.vue'
 
 export default {

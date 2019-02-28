@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import practiceCard from '~/components/Practice-card.vue'
-import cardWord from '~/components/CardWord.vue'
-import wordConstructor from '~/components/word-constructor.vue'
-import meaningInfo from '~/components/meaning-info.vue'
+import practiceCard from '~/components/cards/Practice-card.vue'
+import cardWord from '~/components/cards/CardWord.vue'
+import wordConstructor from '~/components/cards/word-constructor.vue'
+import meaningInfo from '~/components/cards/meaning-info.vue'
 import _ from 'lodash'
 
 export default {
