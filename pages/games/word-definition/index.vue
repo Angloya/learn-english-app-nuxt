@@ -3,15 +3,18 @@
   <b-card-group deck class="mb-3">
 
   </b-card-group>
+  <rules _title="game word-definition" _text="rules game"/>
 </b-container>
 </template>
 
 <script>
 import CardGameDefinition from '~/components/cards/card-game-definition.vue'
+import Rules from '~/components/games/Rules.vue'
 export default {
   name: 'game-word-definition',
   components: {
-    CardGameDefinition
+    CardGameDefinition,
+    Rules
   },
   data () {
     return {
