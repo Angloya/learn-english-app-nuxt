@@ -41,6 +41,7 @@ export default {
     return {
       start: false,
       meanId: 0,
+      wordsCount: 5,
       keyColor: '',
       wrongAnswers: null,
       checkWord: false,

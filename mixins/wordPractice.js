@@ -73,7 +73,7 @@ export default {
       } else {
         this.dictionaryWords = null
         this.$store.dispatch('getSkyengMeanings', this.randomIds(10000)).then(() => {
-          if( this.$store.state.appLogic.meanings.length === 5) {
+          if( this.$store.state.appLogic.meanings.length === this.wordsCount) {
             this.startPractice(setWordMeans)
             return this.$store.state.appLogic.meanings
           } else {
@@ -108,7 +108,7 @@ export default {
     },
     randomIds (num) {
       var randomNum = []
-        for (var i=0; i<5; i++) {
+        for (var i=0; i<this.wordsCount; i++) {
           var id = Math.floor(Math.random()*(num))
            randomNum[i]=id
       }

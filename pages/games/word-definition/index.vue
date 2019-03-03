@@ -12,6 +12,15 @@ export default {
   name: 'game-word-definition',
   components: {
     CardGameDefinition
-  }
+  },
+  data () {
+    return {
+      wordsCount: 10,
+    }
+  },
+  mixins: [
+    require('~/mixins/wordPractice').default,
+    require('~/mixins/user-base').default
+  ]
 }
 </script>

@@ -40,6 +40,7 @@ export default {
       start: false,
       meanId: 0,
       keyColor: '',
+      wordsCount: 5,
       wrongAnswers: null,
       answers: null,
       show: {
