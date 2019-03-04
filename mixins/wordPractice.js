@@ -83,6 +83,7 @@ export default {
       }
     },
     setWordMeans () {
+      debugger
       this.answers = []
       var meanings = []
       meanings = _.cloneDeep(this.meanings)
