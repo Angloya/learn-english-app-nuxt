@@ -2,8 +2,11 @@
 <b-container>
   <b-button @click="getSkyengMeanings(true)">start</b-button>
   <b-card-group deck class="mb-3">
-    {{meanings}}
-    <!-- <card-game-definition v-for="(mean, idx) in meanings" :key="idx"/> -->
+    <card-game-definition
+      v-for="(answer, idx) in answers"
+      :key="idx"
+      :_card="answer"
+    />
   </b-card-group>
   <rules _title="game word-definition" _text="rules game"/>
 </b-container>
@@ -27,9 +30,10 @@ export default {
       keyColor: '',
       wrongAnswers: null,
       checkWord: false,
+      answers: []
     }
   },
-    methods: {
+  methods: {
     checkAnswer (answer) {
       this.checkWord = true
       if (this.meanings[this.meanId].text == answer) {
@@ -39,16 +43,34 @@ export default {
         this.setWrongAnswer(this.meanings[this.meanId])
       }
     },
+    startPractice (setWordMeans) {
+      this.start = true
+      this.wrongAnswers = {}
+      this.getAnswers()
+    },
+    getAnswers () {
+      for (var mean of this.meanings) {
+        let word = {}
+        let definition = {}
+        word.id = mean.id
+        word.type = 'word'
+        word.text = mean.text
+        definition.id = mean.id
+        definition.type = 'definition'
+        definition.text = mean.definition.text
+        this.answers.push(definition)
+        this.answers.push(word)
+      }
+      this.sortArray(this.answers)
+    },
     setMeanId () {
       if (this.meanings && this.meanId != this.meanings.length - 1) {
         this.meanId += 1
         this.keyColor = ''
-        this.checkWord = false
       } else {
         this.summation()
         this.start = false
         this.keyColor = ''
-        this.checkWord = false
         this.meanId = 0
       }
     }
