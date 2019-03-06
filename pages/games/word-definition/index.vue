@@ -3,9 +3,14 @@
     <b-card no-body>
     <b-tabs card>
       <b-tab title="Game">
-          <b-card-group deck class="mb-3">
-
-  </b-card-group>
+        <b-button @click="getSkyengMeanings(true)">start</b-button>
+        <b-card-group deck class="mb-3">
+          <card-game-definition
+            v-for="(answer, idx) in answers"
+            :key="idx"
+            :_card="answer"
+          />
+        </b-card-group>
       </b-tab>
       <b-tab title="Rules">
           <rules _title="game word-definition" _text="rules game"/>
@@ -18,6 +23,7 @@
 <script>
 import CardGameDefinition from '~/components/cards/card-game-definition.vue'
 import Rules from '~/components/games/Rules.vue'
+import _ from 'lodash'
 export default {
   name: 'game-word-definition',
   components: {
@@ -27,6 +33,54 @@ export default {
   data () {
     return {
       wordsCount: 10,
+      start: false,
+      meanId: 0,
+      keyColor: '',
+      wrongAnswers: null,
+      checkWord: false,
+      answers: []
+    }
+  },
+  methods: {
+    checkAnswer (answer) {
+      this.checkWord = true
+      if (this.meanings[this.meanId].text == answer) {
+        this.keyColor = 'success'
+      } else {
+        this.keyColor = 'danger'
+        this.setWrongAnswer(this.meanings[this.meanId])
+      }
+    },
+    startPractice (setWordMeans) {
+      this.start = true
+      this.wrongAnswers = {}
+      this.getAnswers()
+    },
+    getAnswers () {
+      for (var mean of this.meanings) {
+        let word = {}
+        let definition = {}
+        word.id = mean.id
+        word.type = 'word'
+        word.text = mean.text
+        definition.id = mean.id
+        definition.type = 'definition'
+        definition.text = mean.definition.text
+        this.answers.push(definition)
+        this.answers.push(word)
+      }
+      this.sortArray(this.answers)
+    },
+    setMeanId () {
+      if (this.meanings && this.meanId != this.meanings.length - 1) {
+        this.meanId += 1
+        this.keyColor = ''
+      } else {
+        this.summation()
+        this.start = false
+        this.keyColor = ''
+        this.meanId = 0
+      }
     }
   },
   mixins: [
