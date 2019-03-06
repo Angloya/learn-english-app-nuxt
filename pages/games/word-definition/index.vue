@@ -1,9 +1,17 @@
 <template>
 <b-container>
-  <b-card-group deck class="mb-3">
+    <b-card no-body>
+    <b-tabs card>
+      <b-tab title="Game">
+          <b-card-group deck class="mb-3">
 
   </b-card-group>
-  <rules _title="game word-definition" _text="rules game"/>
+      </b-tab>
+      <b-tab title="Rules">
+          <rules _title="game word-definition" _text="rules game"/>
+      </b-tab>
+    </b-tabs>
+  </b-card>
 </b-container>
 </template>
 

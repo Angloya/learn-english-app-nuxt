@@ -1,5 +1,5 @@
 <template>
-  <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+  <b-card no-body class="overflow-hidden">
     <b-row no-gutters>
       <b-col md="6">
         <b-card-img src="/image/rules.jpg" class="rounded-0" />
