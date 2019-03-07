@@ -3,9 +3,11 @@
   <b-button @click="getSkyengMeanings(true)">start</b-button>
   <b-card-group deck class="mb-3">
     <card-game-definition
+      style="min-width: 15rem;"
       v-for="(answer, idx) in answers"
       :key="idx"
       :_card="answer"
+      @click="checkAnswer"
     />
   </b-card-group>
   <rules _title="game word-definition" _text="rules game"/>
@@ -24,18 +26,24 @@ export default {
   },
   data () {
     return {
-      wordsCount: 10,
+      wordsCount: 5,
       start: false,
       meanId: 0,
       keyColor: '',
       wrongAnswers: null,
       checkWord: false,
-      answers: []
+      answers: [],
+      answersForCheck: []
     }
   },
   methods: {
     checkAnswer (answer) {
       this.checkWord = true
+      if (this.answersForCheck.length === 2) {
+
+      } else {
+        this.answersForCheck.push(answer)
+      }
       if (this.meanings[this.meanId].text == answer) {
         this.keyColor = 'success'
       } else {
@@ -70,6 +78,7 @@ export default {
       } else {
         this.summation()
         this.start = false
+        this.answers = []
         this.keyColor = ''
         this.meanId = 0
       }
