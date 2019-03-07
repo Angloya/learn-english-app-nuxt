@@ -1,7 +1,6 @@
 <template>
 <b-container>
-  <rules _title="game word-definition" _text="rules game"/>
-    <b-card no-body>
+  <b-card no-body>
     <b-tabs card>
       <b-tab title="Game">
         <b-button @click="getSkyengMeanings(true)">start</b-button>
@@ -13,6 +12,7 @@
             :_card="answer"
             @click="checkAnswer"
           />
+        </b-card-group>
       </b-tab>
       <b-tab title="Rules">
           <rules _title="game word-definition" _text="rules game"/>
