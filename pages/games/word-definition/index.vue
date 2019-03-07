@@ -1,16 +1,24 @@
 <template>
 <b-container>
-  <b-button @click="getSkyengMeanings(true)">start</b-button>
-  <b-card-group deck class="mb-3">
-    <card-game-definition
-      style="min-width: 15rem;"
-      v-for="(answer, idx) in answers"
-      :key="idx"
-      :_card="answer"
-      @click="checkAnswer"
-    />
-  </b-card-group>
   <rules _title="game word-definition" _text="rules game"/>
+    <b-card no-body>
+    <b-tabs card>
+      <b-tab title="Game">
+        <b-button @click="getSkyengMeanings(true)">start</b-button>
+        <b-card-group deck class="mb-3">
+          <card-game-definition
+            style="min-width: 15rem;"
+            v-for="(answer, idx) in answers"
+            :key="idx"
+            :_card="answer"
+            @click="checkAnswer"
+          />
+      </b-tab>
+      <b-tab title="Rules">
+          <rules _title="game word-definition" _text="rules game"/>
+      </b-tab>
+    </b-tabs>
+  </b-card>
 </b-container>
 </template>
 
