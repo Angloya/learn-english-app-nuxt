@@ -3,7 +3,7 @@
   <b-card no-body>
     <b-tabs card>
       <b-tab title="Game">
-        <b-button @click="getSkyengMeanings(true)">start</b-button>
+        <b-button @click="getSkyengMeanings(true)" v-if="!start">start</b-button>
         <b-card-group deck class="mb-3">
           <card-game-definition
             style="min-width: 15rem;"
@@ -50,14 +50,16 @@ export default {
       if (this.answersForCheck.length === 2) {
 
       } else {
+        debugger
         this.answersForCheck.push(answer)
+        answer.selected = true
       }
-      if (this.meanings[this.meanId].text == answer) {
-        this.keyColor = 'success'
-      } else {
-        this.keyColor = 'danger'
-        this.setWrongAnswer(this.meanings[this.meanId])
-      }
+      // if (this.meanings[this.meanId].text == answer) {
+      //   this.keyColor = 'success'
+      // } else {
+      //   this.keyColor = 'danger'
+      //   this.setWrongAnswer(this.meanings[this.meanId])
+      // }
     },
     startPractice (setWordMeans) {
       this.start = true
