@@ -2,14 +2,13 @@
   <b-card 
     class="mx-0 my-0"
     v-if="_card"
-    :style="cardSelected"
     @click="$emit('click', _card)"
     :border-variant="isColorDark ? 'light' : 'dark'"
     :header="_card.type"
     :text-variant="isColorDark ? 'light' : 'dark'"
-    :bg-variant="isColorDark ? 'dark' : 'light'"
+    :bg-variant="colorCard"
     align="center">
-    <p class="card-text">{{_card.text}}
+    <p     :class="_card.selected ? 'bg-info text-white' : ''" class="card-text">{{_card.text}}
     </p>
   </b-card>
 </template>
@@ -23,17 +22,16 @@ export default {
       type: Object
     }
   },
-  watch: {
-    cardSelected () {
-      debugger
-    }
-  },
   computed: {
     isColorDark () {
       return this.$store.state.colorScheme.isColorDark
     },
-    cardSelected ()  {
-      return  this._card.selected
+    colorCard () {
+      if (this._card.selected) {
+        return 'info'
+      } else {
+        return this.isColorDark ? 'dark' : 'light'
+      }
     }
   }
 }

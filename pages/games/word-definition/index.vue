@@ -4,7 +4,7 @@
     <b-tabs card>
       <b-tab title="Game">
         <b-button @click="getSkyengMeanings(true)" v-if="!start">start</b-button>
-        <b-card-group deck class="mb-3">
+        <b-card-group deck class="mb-3" :key="meanId">
           <card-game-definition
             style="min-width: 15rem;"
             v-for="(answer, idx) in answers"
@@ -53,6 +53,7 @@ export default {
         debugger
         this.answersForCheck.push(answer)
         answer.selected = true
+        this.meanId += 1
       }
       // if (this.meanings[this.meanId].text == answer) {
       //   this.keyColor = 'success'
