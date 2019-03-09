@@ -29,7 +29,10 @@ export default {
     colorCard () {
       if (this._card.selected) {
         return 'info'
-      } else {
+      } else if (this._card.correct) {
+        return 'success'
+      }
+        else {
         return this.isColorDark ? 'dark' : 'light'
       }
     }

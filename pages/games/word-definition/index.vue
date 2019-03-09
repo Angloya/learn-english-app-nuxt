@@ -44,23 +44,38 @@ export default {
       answersForCheck: []
     }
   },
+  // beforeDestroy () {
+  //   clearTimeout(this.timeout)
+  // },
   methods: {
     checkAnswer (answer) {
       this.checkWord = true
-      if (this.answersForCheck.length === 2) {
-
-      } else {
-        debugger
-        this.answersForCheck.push(answer)
-        answer.selected = true
-        this.meanId += 1
+      if(!answer.correct && !answer.selected) {
+        if (this.answersForCheck.length === 1) {
+          this.answersForCheck.push(answer)
+          answer.selected = true
+            this.meanId += 1
+           this.timeout = setTimeout(() => {
+            if (this.answersForCheck[0].id === this.answersForCheck[1].id) {
+              this.answersForCheck.forEach(answerForCheck => {
+                answerForCheck.correct = true
+                answerForCheck.selected = false
+              })
+            } else {
+              this.answersForCheck.forEach(answerForCheck => {
+                answerForCheck.selected = false
+              })
+            }
+            this.meanId = 0
+            this.answersForCheck = []
+            }, 1000)
+        } else if (this.answersForCheck.length < 1) {
+          clearTimeout(this.timeout)
+          this.answersForCheck.push(answer)
+          answer.selected = true
+          this.meanId += 1
+        }
       }
-      // if (this.meanings[this.meanId].text == answer) {
-      //   this.keyColor = 'success'
-      // } else {
-      //   this.keyColor = 'danger'
-      //   this.setWrongAnswer(this.meanings[this.meanId])
-      // }
     },
     startPractice (setWordMeans) {
       this.start = true

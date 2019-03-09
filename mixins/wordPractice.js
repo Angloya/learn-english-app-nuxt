@@ -3,7 +3,8 @@ export default {
     return {
       infoPractice: {},
       dictionaryWords: null,
-      notEnoughWords: false
+      notEnoughWords: false,
+      timeout: null
     }
   },
   created () {
@@ -127,7 +128,7 @@ export default {
       
     },
     checkAnswer (answer) {
-      clearTimeout(timerId)
+      clearTimeout(this.timeout)
       if (this.meanings[this.meanId].id == answer.id) {
         if (this.isWordDictionary) {
           answer.knowledge += 1
@@ -152,7 +153,7 @@ export default {
         this.keyColor = 'danger'
         this.setWrongAnswer(answer)
       }
-      var timerId = setTimeout(() => {
+      this.timeout = setTimeout(() => {
         this.setMeanId()
       }, 2000)
     }
