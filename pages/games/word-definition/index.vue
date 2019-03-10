@@ -4,7 +4,7 @@
     <b-tabs card>
       <b-tab title="Game">
         <b-button @click="getSkyengMeanings(true)" v-if="!start">start</b-button>
-        <b-card-group deck class="mb-3" :key="meanId">
+        <b-card-group deck class="mb-3" :key="count" v-if="start">
           <card-game-definition
             style="min-width: 15rem;"
             v-for="(answer, idx) in answers"
@@ -37,6 +37,7 @@ export default {
       wordsCount: 5,
       start: false,
       meanId: 0,
+      count: 0,
       keyColor: '',
       wrongAnswers: null,
       checkWord: false,
@@ -44,36 +45,49 @@ export default {
       answersForCheck: []
     }
   },
-  // beforeDestroy () {
-  //   clearTimeout(this.timeout)
-  // },
-  methods: {
+  beforeDestroy () {
+    clearTimeout(this.timeout)
+  },
+  methods: { 
+    // добавить количество правильных слов и выремя, если все правилные то финишь
     checkAnswer (answer) {
       this.checkWord = true
       if(!answer.correct && !answer.selected) {
         if (this.answersForCheck.length === 1) {
           this.answersForCheck.push(answer)
           answer.selected = true
-            this.meanId += 1
+           this.count += 1
            this.timeout = setTimeout(() => {
             if (this.answersForCheck[0].id === this.answersForCheck[1].id) {
-              this.answersForCheck.forEach(answerForCheck => {
-                answerForCheck.correct = true
-                answerForCheck.selected = false
-              })
+              if (this.meanId < this.wordsCount) {
+                this.answersForCheck.forEach(answerForCheck => {
+                  answerForCheck.correct = true
+                  answerForCheck.selected = false
+                })
+                this.meanId +=1
+              } else {
+                this.answersForCheck.forEach(answerForCheck => {
+                  answerForCheck.correct = true
+                  answerForCheck.selected = false
+                })
+                this.start = false
+                this.meanId = 0
+                this.count = 0
+                this.answers = []
+              }
             } else {
               this.answersForCheck.forEach(answerForCheck => {
                 answerForCheck.selected = false
               })
             }
-            this.meanId = 0
+            this.count = 0
             this.answersForCheck = []
             }, 1000)
         } else if (this.answersForCheck.length < 1) {
           clearTimeout(this.timeout)
           this.answersForCheck.push(answer)
           answer.selected = true
-          this.meanId += 1
+          this.count += 1
         }
       }
     },
