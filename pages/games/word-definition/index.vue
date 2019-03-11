@@ -3,7 +3,10 @@
   <b-card no-body>
     <b-tabs card>
       <b-tab title="Game">
-        <b-button @click="getSkyengMeanings(true)" v-if="!start">start</b-button>
+        <b-card align="center">
+          <b-button @click="getSkyengMeanings(true)" v-if="!start">start</b-button>
+          <h2 v-if="start">{{gameTime}}</h2>
+        </b-card>
         <b-card-group deck class="mb-3" :key="count" v-if="start">
           <card-game-definition
             style="min-width: 15rem;"
@@ -49,7 +52,6 @@ export default {
     clearTimeout(this.timeout)
   },
   methods: { 
-    // добавить количество правильных слов и выремя, если все правилные то финишь
     checkAnswer (answer) {
       this.checkWord = true
       if(!answer.correct && !answer.selected) {
@@ -93,6 +95,8 @@ export default {
     },
     startPractice (setWordMeans) {
       this.start = true
+      this.gameTime = 60
+      this.timerGame()
       this.wrongAnswers = {}
       this.getAnswers()
     },

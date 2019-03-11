@@ -4,7 +4,9 @@ export default {
       infoPractice: {},
       dictionaryWords: null,
       notEnoughWords: false,
-      timeout: null
+      timeout: null,
+      setInterval: null,
+      gameTime: 60
     }
   },
   created () {
@@ -40,6 +42,17 @@ export default {
       if (setWordMeans) {
         this.setWordMeans()
       }
+    },
+    timerGame () {
+      this.setInterval = setInterval(() => {
+        if (this.gameTime > 0) {
+          this.gameTime -= 1
+        } else {
+          clearInterval(this.setInterval)
+          // this.message = "time's up"
+          this.start = false
+        }
+      }, 1000)
     },
     getWordsFromDB (setWordMeans) {
       this.notEnoughWords = false
