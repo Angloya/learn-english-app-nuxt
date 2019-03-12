@@ -49,7 +49,7 @@ export default {
           this.gameTime -= 1
         } else {
           clearInterval(this.setInterval)
-          // this.message = "time's up"
+          this.message = "time's up"
           this.start = false
         }
       }, 1000)

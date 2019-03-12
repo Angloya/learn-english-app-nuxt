@@ -6,6 +6,7 @@
         <b-card align="center">
           <b-button @click="getSkyengMeanings(true)" v-if="!start">start</b-button>
           <h2 v-if="start">{{gameTime}}</h2>
+          <h2 v-if="!start && message">{{message}}</h2>
         </b-card>
         <b-card-group deck class="mb-3" :key="count" v-if="start">
           <card-game-definition
@@ -45,7 +46,8 @@ export default {
       wrongAnswers: null,
       checkWord: false,
       answers: [],
-      answersForCheck: []
+      answersForCheck: [],
+      message: null
     }
   },
   beforeDestroy () {
@@ -66,13 +68,14 @@ export default {
                   answerForCheck.correct = true
                   answerForCheck.selected = false
                 })
-                this.meanId +=1
+                this.setMeanId()
               } else {
                 this.answersForCheck.forEach(answerForCheck => {
                   answerForCheck.correct = true
                   answerForCheck.selected = false
                 })
                 this.start = false
+                this.message = "You win"
                 this.meanId = 0
                 this.count = 0
                 this.answers = []
@@ -95,6 +98,7 @@ export default {
     },
     startPractice (setWordMeans) {
       this.start = true
+      this.message = null
       this.gameTime = 60
       this.timerGame()
       this.wrongAnswers = {}
@@ -122,6 +126,7 @@ export default {
       } else {
         this.summation()
         this.start = false
+        this.message = "You win"
         this.answers = []
         this.keyColor = ''
         this.meanId = 0
