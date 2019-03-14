@@ -25,7 +25,7 @@
       </b-progress>
     </b-row>
     <b-row class="justify-content-center">
-      <label for="range-1">Сhange daily target</label>
+      <h5>Сhange daily target</h5>
       <b-form-input @change="changeDayTarget()" class="custom-range w-75" type="range" id="range-1" v-model="maxDay" min="5" step="5" max="50" />
     </b-row>
     <b-row class="justify-content-center">
