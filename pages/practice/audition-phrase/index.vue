@@ -19,6 +19,7 @@
         :_check="checkPhrase"
         :key="keyColor" />
       </b-row>
+      <b-button @click="stopPractice" v-if="start">Stop the practice</b-button>
   </b-container>
 </template>
 
@@ -74,10 +75,7 @@ export default {
         this.checkPhrase = false
       } else {
         this.summation()
-        this.start = false
-        this.keyColor = ''
-        this.checkPhrase = false
-        this.meanId = 0
+        this.stopPractice()
       }
     }
   },

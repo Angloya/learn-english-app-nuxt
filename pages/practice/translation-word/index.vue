@@ -18,6 +18,7 @@
         :_show="show"
         :key="keyColor" />
       </b-row>
+      <b-button @click="stopPractice" v-if="start">Stop the practice</b-button>
   </b-container>
 </template>
 
@@ -63,8 +64,7 @@ export default {
         this.setWordMeans()
       } else {
         this.summation()
-        this.start = false
-        this.meanId = 0
+        this.stopPractice()
       }
     }
   },

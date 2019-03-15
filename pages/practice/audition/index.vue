@@ -18,6 +18,7 @@
         :_check="checkWord"
         :key="keyColor" />
       </b-row>
+      <b-button @click="stopPractice" v-if="start">Stop the practice</b-button>
     <meaning-info :_meaning="meanings[meanId]" v-if="start && checkWord"/>  
   </b-container>
 </template>
@@ -41,6 +42,7 @@ export default {
       start: false,
       meanId: 0,
       keyColor: null,
+      wordsCount: 5,
       wrongAnswers: null,
       checkWord: false,
       show: {
@@ -67,10 +69,7 @@ export default {
         this.checkWord = false
       } else {
         this.summation()
-        this.start = false
-        this.keyColor = ''
-        this.checkWord = false
-        this.meanId = 0
+        this.stopPractice()
       }
     }
   },

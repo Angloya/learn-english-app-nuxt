@@ -54,6 +54,12 @@ export default {
         }
       }, 1000)
     },
+    stopPractice () {
+      this.start = false
+      this.keyColor = ''
+      this.checkPhrase = false
+      this.meanId = 0
+    },
     getWordsFromDB (setWordMeans) {
       this.notEnoughWords = false
       this.dictionaryWords = []
