@@ -13,7 +13,7 @@
         :_title="meaning.translation.text"
         :_audio="meaning.soundUrl"
         :_answerId="meaning.id"
-        :_answers="answers.color"
+        :_answers="answers"
         :_image="getMeaningImg(meaning)"
         :_show="show"
         :key="keyColor" />
