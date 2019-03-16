@@ -22,6 +22,7 @@
           <rules _title="game word-definition" _text="rules game"/>
       </b-tab>
     </b-tabs>
+    <b-button @click="stopGame" v-if="start">Stop the game</b-button>
   </b-card>
 </b-container>
 </template>
@@ -38,7 +39,7 @@ export default {
   },
   data () {
     return {
-      wordsCount: 5,
+      wordsCount: 6,
       start: false,
       meanId: 0,
       count: 0,
@@ -74,11 +75,8 @@ export default {
                   answerForCheck.correct = true
                   answerForCheck.selected = false
                 })
-                this.start = false
+                this.stopGame()
                 this.message = "You win"
-                this.meanId = 0
-                this.count = 0
-                this.answers = []
               }
             } else {
               this.answersForCheck.forEach(answerForCheck => {
@@ -104,6 +102,13 @@ export default {
       this.wrongAnswers = {}
       this.getAnswers()
     },
+    stopGame () {
+      this.start = false
+      this.meanId = 0
+      this.count = 0
+      this.answers = []
+      clearTimeout(this.timeout)
+    },
     getAnswers () {
       for (var mean of this.meanings) {
         let word = {}
@@ -122,14 +127,10 @@ export default {
     setMeanId () {
       if (this.meanings && this.meanId != this.meanings.length - 1) {
         this.meanId += 1
-        this.keyColor = ''
       } else {
         this.summation()
-        this.start = false
+        this.stopGame()
         this.message = "You win"
-        this.answers = []
-        this.keyColor = ''
-        this.meanId = 0
       }
     }
   },
