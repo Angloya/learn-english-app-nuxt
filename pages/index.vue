@@ -1,5 +1,8 @@
 <template>
   <b-container>
+    <b-row class="justify-content-center"> 
+      <h4 class="text-center">On the site you can to learn new english words and improve your English</h4>
+    </b-row>
     <b-row class="justify-content-center">
     <b-carousel
       id="carousel1"
@@ -7,24 +10,23 @@
       controls
       indicators
       background="#с4с4с4"
-      :interval="4000"
+      :interval="3000"
       img-width="850"
       img-height="620"
       v-model="slide"
       @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd">
+      @sliding-end="onSlideEnd"
+      >
+      <div
+        v-for="(slide,idx) in slides"
+        :key="idx"
+        @click="onSelectSlide(slide.name)">
       <b-carousel-slide 
-        caption="Practice"
-        text="..."
-        img-src="/image/practice.png"
-        to="/practice"
+        :caption="slide.caption"
+        :text="slide.text"
+        :img-src="slide.src"
       />
-      <b-carousel-slide  img-src="/image/games.png">
-        <h1>Games</h1>
-      </b-carousel-slide>
-      <b-carousel-slide img-src="/image/dictionary.png" 
-      caption="dictionary"
-        text="..."/>
+      </div>
     </b-carousel>
     </b-row>
   </b-container>
@@ -35,7 +37,27 @@
     data() {
       return {
         slide: 0,
-        sliding: null
+        sliding: null,
+        slides: [
+          {
+            src: "/image/practice.png",
+            name: 'practice',
+            caption: 'practice',
+            text: '...'
+          },
+          {
+            src: "/image/games.png",
+            name: 'games',
+            caption: 'Games',
+            text: '...'
+          },
+          {
+            src: "/image/dictionary.png",
+            name: 'dictionary',
+            caption: 'dictionary',
+            text: '...'
+          }
+        ]
       }
     },
     created () {
@@ -47,6 +69,9 @@
       },
       onSlideEnd(slide) {
         this.sliding = false
+      },
+      onSelectSlide(name) {
+        this.$router.push("/" + name)
       }
     }
   }
