@@ -2,7 +2,6 @@
 <b-navbar toggleable="md" :type="color" :variant="color" class="mb-4 border-bottom">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   <b-navbar-brand to="/">Learn english</b-navbar-brand>
-  <b-progress :value="userKnowledge ? userKnowledge.knowledgeDay : 0" class="w-25 my-2" variant="success" :max="maxTargetDay"/>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
       <b-nav-item to="/practice">Practice</b-nav-item>
@@ -25,6 +24,7 @@
         <template slot="button-content">
           User
         </template>
+        <b-progress :value="userKnowledge ? userKnowledge.knowledgeDay : 0" class=" mx-2 my-2" variant="success" :max="maxTargetDay"/>
         <b-dropdown-item v-if="!user" to="/authUser/auth-signin">SignIn</b-dropdown-item>
         <b-dropdown-item v-if="!user" to="/authUser/auth-signup">SignUp</b-dropdown-item>
         <b-dropdown-item v-b-popover.hover="`level: ${userKnowledge ? userKnowledge.level : '0'}`" :title="user.name" v-if="user" to="/profile">Profile</b-dropdown-item>
