@@ -174,7 +174,7 @@ export default {
       }
       this.timeout = setTimeout(() => {
         this.setMeanId()
-      }, 2000)
+      }, 1000)
     }
   }
 }
