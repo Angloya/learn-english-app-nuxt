@@ -82,6 +82,7 @@ export default {
               this.answersForCheck.forEach(answerForCheck => {
                 answerForCheck.selected = false
               })
+              this.gameTime -=5
             }
             this.count = 0
             this.answersForCheck = []
