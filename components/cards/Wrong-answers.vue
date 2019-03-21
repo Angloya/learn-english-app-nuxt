@@ -1,6 +1,6 @@
 <template>
   <b-container 
-    class="mt-3 text-center"  v-if="_wrongAnswers.length" >
+    class="mt-3 text-center" v-if="!isAnswersEmpty" >
     <h2 v-if="user">Words added to your dictionary</h2>
     <h2 v-else>Wrong answers</h2>
     <b-row class="justify-content-center">
@@ -38,6 +38,12 @@ export default {
   computed: {
     user () {
       return this.$store.state.appLogic.user
+    },
+    isAnswersEmpty () {
+      for (var answer in this._wrongAnswers) {
+        return false 
+      } 
+      return true
     }
   }
 }
