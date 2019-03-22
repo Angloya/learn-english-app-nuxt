@@ -5,6 +5,14 @@
     style="min-height: 100vh;"
     :class="color"
     :key="key">
+    <b-breadcrumb>
+      <b-breadcrumb-item
+      v-for="(item, idx) in breadcrumb"
+      :text="item"
+      no-prefetch
+      :to="'/' + item"
+      :key="idx"/>
+    </b-breadcrumb>
     <navBar/>
     <nuxt />
   </b-container>
@@ -18,7 +26,20 @@ export default {
   }, 
   data () {
     return {
-      key: ''
+      key: '',
+      breadcrumb: []
+    }
+  },
+  created () {
+    if (process.browser) {
+      this.$store.dispatch('colorScheme/restore')
+      this.$store.dispatch('wordsForPractice/restore')
+      this.routePath()
+    }
+  },
+  watch: {
+    $route () {
+      this.routePath()
     }
   },
   computed: {
@@ -32,10 +53,9 @@ export default {
       }
     }
   },
-  created () {
-    if (process.browser) {
-      this.$store.dispatch('colorScheme/restore')
-      this.$store.dispatch('wordsForPractice/restore')
+ methods: {
+    routePath () {
+      this.breadcrumb = this.$route.path.split('/')
     }
   }
 }
