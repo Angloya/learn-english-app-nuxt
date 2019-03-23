@@ -10,7 +10,8 @@
       v-for="(item, idx) in breadcrumb"
       :text="item"
       no-prefetch
-      :to="'/' + item"
+      :active="getactivePath(item)"
+      :to="getRoutePath(item)"
       :key="idx"/>
     </b-breadcrumb>
     <navBar/>
@@ -53,9 +54,36 @@ export default {
       }
     }
   },
- methods: {
+   methods: {
     routePath () {
-      this.breadcrumb = this.$route.path.split('/')
+      this.breadcrumb = []
+      if (this.isEmptyObject(this.$route.params)) {
+        this.breadcrumb = this.$route.path.split('/')
+        this.breadcrumb[0] = 'main page'
+      } else {
+        var path = this.$route.path.split('/')
+        this.breadcrumb = path.slice(0,-2)
+        this.breadcrumb[this.breadcrumb.length] = this.$route.params.id || this.$route.params.word
+        this.breadcrumb[0] = 'main page' 
+      }
+    },
+    getRoutePath (item) {
+      if (this.breadcrumb[this.breadcrumb.length - 1] !== item) {
+        return item !== 'main page' ? '/' + item : '/'
+      } else {
+        return ''
+      }
+    },
+    getactivePath (item) {
+      return this.breadcrumb[this.breadcrumb.length - 1] === item
+    },
+    isEmptyObject(obj) {
+      for (var i in obj) {
+          if (obj.hasOwnProperty(i)) {
+              return false;
+          }
+      }
+      return true;
     }
   }
 }

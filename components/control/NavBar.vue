@@ -59,7 +59,7 @@ export default {
   methods: {
     getWordFromDictionary () {
       if (this.searchWord) {
-        this.$router.push("/dictionary/" + this.searchWord.toLowerCase())
+        this.$router.push("/dictionary/word/" + this.searchWord.toLowerCase())
         this.searchWord = ''
       } 
     }
