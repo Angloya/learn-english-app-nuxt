@@ -10,6 +10,7 @@
       v-for="(item, idx) in breadcrumb"
       :text="item"
       no-prefetch
+      class="breadcrumb-item"
       :active="getactivePath(item)"
       :to="getRoutePath(item)"
       :key="idx"/>
