@@ -50,7 +50,7 @@
         </b-button>
       </b-col>
     </b-row>
-    <b-row class="justify-content-center" v-if="!loading && enabledTableView && stateWords">
+    <b-row class="justify-content-center" v-if="!loading && enabledTableView && stateWords && stateWords.length !== 0">
        <b-table
         striped
         hover
