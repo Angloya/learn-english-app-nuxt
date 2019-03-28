@@ -42,5 +42,8 @@
   text-transform: uppercase;
 }
 .breadcrumb-item + .breadcrumb-item::before {
-  content: '--->' !important;
+  content: url('/image/right-arrow.png') !important;
+}
+.breadcrumb-item::before {
+  margin-top: 5px;
 }

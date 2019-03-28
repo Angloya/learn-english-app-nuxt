@@ -8,12 +8,21 @@
     <b-breadcrumb v-if="breadcrumb[1] !== ''">
       <b-breadcrumb-item
       v-for="(item, idx) in breadcrumb"
-      :text="item"
       no-prefetch
-      class="breadcrumb-item"
+      class="breadcrumb-item d-flex justify-content-center align-items-center"
       :active="getactivePath(item)"
       :to="getRoutePath(item)"
-      :key="idx"/>
+      :key="idx">
+      <b-button variant="outline-primary">
+      <span class="d-flex justify-content-center align-items-center">
+      {{item}}
+      <i
+        class="material-icons md-light"
+        v-if="item === 'main page'">
+        home</i>
+        </span>
+      </b-button>
+      </b-breadcrumb-item>
     </b-breadcrumb>
     <navBar/>
     <nuxt />
