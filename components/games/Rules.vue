@@ -6,9 +6,7 @@
       </b-col>
       <b-col md="6">
         <b-card-body :title="_title">
-          <b-card-text>
-            {{_text}}
-          </b-card-text>
+          {{_text}}
         </b-card-body>
       </b-col>
     </b-row>

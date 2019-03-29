@@ -5,7 +5,7 @@
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
       <b-nav-item to="/practice">Practice</b-nav-item>
-      <b-nav-item v-if="user" to="/games">Games</b-nav-item>
+      <b-nav-item to="/games">Games</b-nav-item>
       <b-nav-item v-if="user" to="/dictionary">Dictionary</b-nav-item>
     </b-navbar-nav>
     <!-- Right aligned nav items -->
