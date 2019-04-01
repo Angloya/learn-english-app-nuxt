@@ -19,7 +19,9 @@
         </b-card-group>
       </b-tab>
       <b-tab title="Rules">
-          <rules _title="game word-definition" _text="rules game"/>
+          <rules
+          _title="word-definition"
+          _text="In the game you need to choose word and connect it with its definition.You have 60 seconds. When you make the mistake the game time reduce by 5 second."/>
       </b-tab>
     </b-tabs>
     <b-button @click="stopGame" v-if="start">Stop the game</b-button>
