@@ -5,6 +5,7 @@
     style="min-height: 100vh;"
     :class="color"
     :key="key">
+    <no-ssr>
     <b-breadcrumb v-if="breadcrumb[1] !== ''">
       <b-breadcrumb-item
       v-for="(item, idx) in breadcrumb"
@@ -24,6 +25,7 @@
       </b-button>
       </b-breadcrumb-item>
     </b-breadcrumb>
+    </no-ssr>
     <navBar/>
     <nuxt />
   </b-container>

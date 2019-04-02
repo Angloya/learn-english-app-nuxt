@@ -39,7 +39,8 @@ module.exports = {
   */
   plugins: [
     '~/plugins/fireauth',
-    { src: '~/plugins/toggle-button', ssr: false }
+    { src: '~/plugins/toggle-button', ssr: false },
+    { src: '~/plugins/vue-translate-plugin', ssr: false }
   ],
 
   /*

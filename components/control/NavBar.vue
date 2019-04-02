@@ -17,7 +17,7 @@
       </b-nav-form>
       <b-nav-item-dropdown text="Lang" right>
         <b-dropdown-item :variant="color"  href="#">EN</b-dropdown-item>
-        <b-dropdown-item :variant="color"  href="#">RU</b-dropdown-item>
+        <b-dropdown-item :variant="color" @click="showAppInSpanish" href="#">RU</b-dropdown-item>
       </b-nav-item-dropdown>
       <b-nav-item-dropdown right>
         <!-- Using button-content slot -->
@@ -62,6 +62,9 @@ export default {
         this.$router.push("/dictionary/word/" + this.searchWord.toLowerCase())
         this.searchWord = ''
       } 
+    },
+    showAppInSpanish() {
+      this.$translate.setLang('spanish');
     }
   },
   mixins: [
