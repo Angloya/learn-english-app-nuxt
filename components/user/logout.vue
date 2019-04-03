@@ -1,5 +1,5 @@
 <template>
-    <b-dropdown-item @click="logout">Signout</b-dropdown-item>
+    <b-dropdown-item @click="logout" v-translate>Signout</b-dropdown-item>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <b-row class="justify-content-center"> 
-      <h4 class="text-center">On the site you can to learn new english words and improve your English</h4>
+      <h4 class="text-center" v-translate>About site</h4>
     </b-row>
     <b-row class="justify-content-center">
     <b-carousel

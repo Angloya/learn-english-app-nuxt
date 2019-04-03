@@ -9,7 +9,7 @@
       :text-variant="isColorDark ? 'light' : 'dark'"
       :bg-variant="isColorDark ? 'dark' : 'light'"
       align="center">
-      <p class="card-text">{{card.text}}
+      <p class="card-text" v-translate>{{card.text}}
       </p>
     </b-card>
   </b-card-group>

@@ -8,7 +8,7 @@
     :text-variant="isColorDark ? 'light' : 'dark'"
     :bg-variant="colorCard"
     align="center">
-    <p     :class="_card.selected ? 'bg-info text-white' : ''" class="card-text">{{_card.text}}
+    <p :class="_card.selected ? 'bg-info text-white' : ''" class="card-text">{{_card.text}}
     </p>
   </b-card>
 </template>

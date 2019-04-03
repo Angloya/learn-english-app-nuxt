@@ -5,13 +5,13 @@
     :text-variant="isColorDark ? 'light' : 'dark'"
     :header-border-variant="isColorDark ? 'dark' : 'light'">
     <b-tabs card class="border-bottom">
-      <b-tab title="Progress">
+      <b-tab :title="t('Progress')">
         <user-progress/>
       </b-tab>
-      <b-tab title="Settigns">
+      <b-tab :title="t('Settigns')">
         <settings/>
       </b-tab>
-      <b-tab title="Update profile">
+      <b-tab :title="t('Update profile')">
         <update-profile/>
       </b-tab>
     </b-tabs>
