@@ -1,21 +1,21 @@
 <template>
   <b-container>
     <b-form class="mb-3" @submit.prevent="updateProfile">
-      <h3 class="mb-3">Update Profile</h3>
+      <h3 class="mb-3" v-translate>Update Profile</h3>
       <b-col class="mb-3">
         <b-row class="mb-3">
-          <b-form-input v-model="displayName" placeholder="Your name"/>
+          <b-form-input v-model="displayName" :placeholder="t('Your name')"/>
         </b-row>
         <b-row class="mb-3">
           <b-form-file
           v-model="file"
           :state="Boolean(file)"
-          placeholder="Choose a image..."
+          :placeholder="t('Choose a image') + '...'"
           accept=".jpg, .jpeg, .png">
           </b-form-file>
         </b-row>
       </b-col>
-      <b-button class="mb-4" variant="light" @click.prevent="updateProfile">Save</b-button>
+      <b-button class="mb-4" variant="light" @click.prevent="updateProfile">{{t('Save')}}</b-button>
       <b-progress
       v-if="progressShow"
       :value="progress"

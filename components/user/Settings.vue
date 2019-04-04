@@ -32,20 +32,20 @@ export default {
     return {
       settings: [
         {
-          header: 'Color scheme',
-          title: 'You can choose the color scheme of the site',
+          header: this.t('Color scheme'),
+          title: this.t('You can choose the color scheme of the site'),
           model: this.selectedColor || false,
           name: 'selectedColor',
-          checked: 'white',
-          unchecked: 'black'
+          checked: this.t('white'),
+          unchecked: this.t('black')
         },
                 {
-          header: 'Words from the dictionary',
-          title: 'Use words from the dictionary in the exercises',
+          header: this.t('Words from the dictionary'),
+          title: this.t('Use words from the dictionary in the exercises'),
           model: this.selectedDictionary || false,
           name: 'selectedDictionary',
-          unchecked: 'dictionary',
-          checked: 'random'
+          unchecked: this.t('Dictionary'),
+          checked: this.t('random')
         }
       ]
     }
