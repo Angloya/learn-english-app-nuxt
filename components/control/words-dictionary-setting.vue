@@ -26,12 +26,12 @@ export default {
   },
   data () {
     return {
-      header: 'Words from the dictionary',
-      title: 'Use words from the dictionary in the exercises',
+      header: this.t('Words from the dictionary'),
+      title: this.t('Use words from the dictionary in the exercises'),
       model: this.selectedDictionary || false,
       name: 'selectedDictionary',
-      unchecked: 'dictionary',
-      checked: 'random'
+      unchecked: this.t('dictionary'),
+      checked: this.t('random')
     }
   },
   computed: {

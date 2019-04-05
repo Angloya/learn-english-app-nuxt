@@ -32,7 +32,13 @@ Vue.locales({
     'Update Profile': 'Update Profile',
     'Choose a image': 'Choose a image',
     'Save': 'Save',
-    'Your name': 'Your name'
+    'Your name': 'Your name',
+    'Login with': 'Login with',
+    'Your email': 'Your email',
+    'Your password': 'Your password',
+    'Login': 'Login',
+    'Reset': 'Reset',
+    'Forgot password? enter your email and reset your password!': 'Forgot password? enter your email and reset your password!'
 
   },
   russian: {

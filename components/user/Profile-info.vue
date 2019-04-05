@@ -10,7 +10,7 @@
       </b-col>
       <b-col cols="auto" md="auto">
         <h4 class="m-3">{{ user.name }}</h4>
-        <p class="m-3"><b>Your email: </b> {{ user.email }}</p>
+        <p class="m-3"><b>{{t('Your email')}}: </b> {{ user.email }}</p>
       </b-col>
       </b-row>
   </b-container>

@@ -10,7 +10,7 @@
         label="Email"
         v-model="email"
         type="email"
-        placeholder="Your email"
+        :placeholder="t('Your email')"
         required/>
       </b-col>
         <b-col cols="auto">
@@ -20,23 +20,23 @@
         label="Password"
         v-model="password"
         type="password"
-        placeholder="Your password"
+        :placeholder="t('Your password')"
         required/>
               </b-col>
                     </b-row>
       </b-form-group>
          <b-row align-h="center">
         <b-col cols="auto">
-      <b-button class="mr-1" @click="onSignin" variant="light">Login</b-button>
+      <b-button class="mr-1" @click="onSignin" variant="light" v-translate>Login</b-button>
       </b-col>
       <b-col cols="auto">
-      <b-button type="reset" @click="resetForm" variant="danger">Reset</b-button>
+      <b-button type="reset" @click="resetForm" variant="danger" v-translate>Reset</b-button>
        </b-col>
        </b-row>
     </b-form>
     <span class="font-weight-light" v-if="error">{{error.message}}</span>
-    <p>Forgot password? enter your email and reset your password!</p>
-    <b-button type="submit" variant="danger" @click.prevent="onResetPassword">Reset</b-button>
+    <p v-translate>Forgot password? enter your email and reset your password!</p>
+    <b-button type="submit" variant="danger" @click.prevent="onResetPassword" v-translate>Reset</b-button>
   </b-container>
 </template>
 
