@@ -45,7 +45,8 @@
           class="mt-1"
           style="min-width: 10rem;"
           size="sm"
-          @click="getWordPage(word.id)">
+          @click="getWordPage(word.id)"
+          v-translate>
            Learn more
         </b-button>
       </b-col>
@@ -69,7 +70,7 @@
                 <b-col
                   cols="auto"
                   md="auto">
-                  <b-button size="sm" @click="getWordPage(row.item.id)" class="mr-1">
+                  <b-button size="sm" @click="getWordPage(row.item.id)" class="mr-1" v-translate>
                   Learn more
                   </b-button>
                 </b-col>

@@ -38,7 +38,20 @@ Vue.locales({
     'Your password': 'Your password',
     'Login': 'Login',
     'Reset': 'Reset',
-    'Forgot password? enter your email and reset your password!': 'Forgot password? enter your email and reset your password!'
+    'Forgot password? enter your email and reset your password!': 'Forgot password? enter your email and reset your password!',
+    'Enter email': 'Enter email',
+    'Enter password': 'Enter password',
+    'Confirm Password': 'Confirm Password',
+    'Enter Name': 'Enter Name',
+    'Submit': 'Submit',
+    'Words added to your dictionary': 'Words added to your dictionary',
+    'Wrong answers': 'Wrong answers',
+    "Sorry we can't find the word": "Sorry we can't find the word",
+    'For more features, it is recommended to log in': 'For more features, it is recommended to log in',
+    'Learn more': 'Learn more',
+    'Return to the dictionary for future reference': 'Return to the dictionary for future reference',
+    'start': 'Start',
+    'Stop the game': 'Stop the game'
 
   },
   russian: {

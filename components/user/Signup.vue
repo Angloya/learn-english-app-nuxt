@@ -1,6 +1,6 @@
 <template>
   <b-form @keyup.enter="onSignup" class="text-center">
-    <b-form-group class='col' label="Signup">
+    <b-form-group class='col' :label="t('Signup')">
       <b-form-input
       name="email"
       label="Email"
@@ -8,7 +8,7 @@
       id="email"
       v-model="email"
       type="email"
-      placeholder="Enter email"
+      :placeholder="t('Enter email')"
       required/>
       <b-form-input
       name="password"
@@ -16,13 +16,13 @@
       id="password"
       v-model="password"
       type="password"
-      placeholder="Enter password"
+      :placeholder="t('Enter password')"
       required/>
       <b-form-input
       name="confirmPassword"
       class="mb-2"
       label="Confirm Password"
-      placeholder="Confirm Password"
+      :placeholder="t('Confirm Password')"
       id="confirmPassword"
       v-model="confirmPassword"
       type="password"
@@ -33,12 +33,12 @@
       v-model="userName"
       class="mb-2"
       type="text"
-      placeholder="Enter Name"
+      :placeholder="t('Enter Name')"
       required/>
       <span class="font-weight-light" v-if="error">{{error.message}}</span>
     </b-form-group>
-    <b-button @click="onSignup" variant="light" class="mr-1">Submit</b-button>
-    <b-button type="reset" @click="resetForm" variant="danger">Reset</b-button>
+    <b-button @click="onSignup" variant="light" class="mr-1" v-translate>Submit</b-button>
+    <b-button type="reset" @click="resetForm" variant="danger" v-translate>Reset</b-button>
   </b-form>
 </template>
 

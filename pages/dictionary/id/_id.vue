@@ -1,6 +1,6 @@
 <template>
   <b-container class="text-center">
-    <h2  class="my-2">Dictionary</h2>
+    <h2 v-translate class="my-2">Dictionary</h2>
     <loading v-if="loading"/>
     <meaning-info :_meaning="meaning" v-if="!loading"/>
   </b-container>

@@ -1,8 +1,8 @@
 <template>
   <b-container 
     class="mt-3 text-center" v-if="_wrongAnswers.length" >
-    <h2 v-if="user">Words added to your dictionary</h2>
-    <h2 v-else>Wrong answers</h2>
+    <h2 v-if="user" v-translate>Words added to your dictionary</h2>
+    <h2 v-else v-translate>Wrong answers</h2>
     <b-row class="justify-content-center">
       <b-col
         cols="auto"

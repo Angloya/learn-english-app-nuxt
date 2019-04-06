@@ -4,7 +4,7 @@
     <b-tabs card>
       <b-tab title="Game">
         <b-card align="center">
-          <b-button @click="getSkyengMeanings(true)" v-if="!start">start</b-button>
+          <b-button @click="getSkyengMeanings(true)" v-if="!start" v-translate>start</b-button>
           <h2 v-if="start">{{gameTime}}</h2>
           <h2 v-if="!start && message">{{message}}</h2>
         </b-card>
@@ -24,7 +24,7 @@
           _text="In the game you need to choose word and connect it with its definition.You have 60 seconds. When you make the mistake the game time reduce by 5 second."/>
       </b-tab>
     </b-tabs>
-    <b-button @click="stopGame" v-if="start">Stop the game</b-button>
+    <b-button @click="stopGame" v-if="start" v-translate>Stop the game</b-button>
   </b-card>
 </b-container>
 </template>
