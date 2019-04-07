@@ -1,6 +1,7 @@
 <template>
   <b-form @keyup.enter="onSignup" class="text-center">
-    <b-form-group class='col' :label="t('Signup')">
+    <h4 v-translate>Signup</h4>
+    <b-form-group class='col'>
       <b-form-input
       name="email"
       label="Email"
@@ -8,32 +9,35 @@
       id="email"
       v-model="email"
       type="email"
-      :placeholder="t('Enter email')"
+      placeholder="Enter email"
       required/>
       <b-form-input
+      v-translate
       name="password"
       class="mb-2"
       id="password"
       v-model="password"
       type="password"
-      :placeholder="t('Enter password')"
+      placeholder="Enter password"
       required/>
       <b-form-input
+      v-translate
       name="confirmPassword"
       class="mb-2"
       label="Confirm Password"
-      :placeholder="t('Confirm Password')"
+      placeholder="Confirm Password"
       id="confirmPassword"
       v-model="confirmPassword"
       type="password"
       :rules="[comparePasswords]"/>
       <b-form-input
+      v-translate
       name="text"
       id="userName"
       v-model="userName"
       class="mb-2"
       type="text"
-      :placeholder="t('Enter Name')"
+      placeholder="Enter Name"
       required/>
       <span class="font-weight-light" v-if="error">{{error.message}}</span>
     </b-form-group>

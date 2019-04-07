@@ -3,7 +3,6 @@ import VueTranslate from 'vue-translate-plugin'
 
 if (process.client) {
   Vue.use(VueTranslate);
-}
 
 Vue.locales({
   english: {
@@ -34,15 +33,9 @@ Vue.locales({
     'Save': 'Save',
     'Your name': 'Your name',
     'Login with': 'Login with',
-    'Your email': 'Your email',
-    'Your password': 'Your password',
     'Login': 'Login',
     'Reset': 'Reset',
     'Forgot password? enter your email and reset your password!': 'Forgot password? enter your email and reset your password!',
-    'Enter email': 'Enter email',
-    'Enter password': 'Enter password',
-    'Confirm Password': 'Confirm Password',
-    'Enter Name': 'Enter Name',
     'Submit': 'Submit',
     'Words added to your dictionary': 'Words added to your dictionary',
     'Wrong answers': 'Wrong answers',
@@ -57,4 +50,5 @@ Vue.locales({
   russian: {
     'About site': 'На данном сайте вы можете узнать новые англиский слова и повысить свой уровень английского языка',
   }
-});
+})
+}

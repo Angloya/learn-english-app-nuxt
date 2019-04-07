@@ -1,8 +1,9 @@
 <template>
   <b-container class="text-center">
     <b-form class="mb-4" @keyup.enter="onSignin">
-      <b-form-group class='col' label="Signin">
-              <b-row align-h="center">
+      <h4 v-translate>Signin</h4>
+      <b-form-group class='col'>
+      <b-row align-h="center">
       <b-col cols="auto">
         <b-form-input
         class="mb-2"
@@ -10,7 +11,7 @@
         label="Email"
         v-model="email"
         type="email"
-        :placeholder="t('Your email')"
+        placeholder="Your email"
         required/>
       </b-col>
         <b-col cols="auto">
@@ -20,10 +21,10 @@
         label="Password"
         v-model="password"
         type="password"
-        :placeholder="t('Your password')"
+        placeholder="Your password"
         required/>
-              </b-col>
-                    </b-row>
+      </b-col>
+      </b-row>
       </b-form-group>
          <b-row align-h="center">
         <b-col cols="auto">

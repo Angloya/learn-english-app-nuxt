@@ -1,6 +1,6 @@
 <template>
   <div class="login-with-google">
-    <b-button variant="light" @click.prevent="onSigninGoogle" class="google">{{t('Login with')}}
+    <b-button variant="light" @click.prevent="onSigninGoogle" class="google"><span v-translate>Login with</span>
       <img src="/image/google.png">oogle
     </b-button>
   </div>
