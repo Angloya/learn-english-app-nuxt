@@ -44,7 +44,9 @@ Vue.locales({
     'Learn more': 'Learn more',
     'Return to the dictionary for future reference': 'Return to the dictionary for future reference',
     'start': 'Start',
-    'Stop the game': 'Stop the game'
+    'Stop the game': 'Stop the game',
+    'Stop the practice': 'Stop the practice',
+    'begin to learn the words': 'begin to learn the words'
 
   },
   russian: {

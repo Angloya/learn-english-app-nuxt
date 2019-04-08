@@ -13,7 +13,7 @@
         {{_practiceInfo.text}}
       </p>
       <b-button
-        @click="$emit('click')"> 
+        @click="$emit('click')" v-translate> 
           begin to learn the words
       </b-button>
     </b-card>
