@@ -13,14 +13,14 @@
         {{_practiceInfo.text}}
       </p>
       <b-button
-        @click="$emit('click')" v-translate> 
-          begin to learn the words
+        @click="$emit('click')"> 
+          {{t('begin to learn the words')}}
       </b-button>
     </b-card>
     <b-card v-if="_notEnoughWords"
       :bg-variant="isColorDark ? 'dark' : 'light'"
       :text-variant="isColorDark ? 'light' : 'dark'"
-     title="You don't have enough words in the dictionary to train, you can learn random words">
+      :title="t('You do not have enough words in the dictionary to train, you can learn random words')">
     <words-dictionary-setting :_isColorBlack="isColorDark"/>
     </b-card>
     <wrongAnswers 

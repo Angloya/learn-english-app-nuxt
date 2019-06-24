@@ -14,7 +14,7 @@
       </p>
       <b-button
         @click="$emit('click')"> 
-          begin to learn the words
+          {{t('begin to learn the words')}}
       </b-button>
     </b-card>
     <b-card v-if="_notEnoughWords"

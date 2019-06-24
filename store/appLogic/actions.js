@@ -205,7 +205,7 @@ export default {
     },
     getSkyengWord ({ commit }, word) {
       commit('setLoading', true)
-      return axios.get("http://dictionary.skyeng.ru/api/public/v1/words/search?_format=json&search=" + word).then(response => {
+      return axios.get("https://dictionary.skyeng.ru/api/public/v1/words/search?_format=json&search=" + word).then(response => {
         commit('setWord', response.data)
         commit('setLoading', false)
         return response.data
@@ -217,7 +217,7 @@ export default {
     },
     getSkyengMeanings ({ commit }, ids) {
       commit('setLoading', true)
-      return axios.get("http://dictionary.skyeng.ru/api/public/v1/meanings?_format=json&ids=" + ids).then(response => {
+      return axios.get("https://dictionary.skyeng.ru/api/public/v1/meanings?_format=json&ids=" + ids).then(response => {
         commit('setMeanings', response.data)
         commit('setLoading', false)
         return response.data

@@ -7,7 +7,7 @@
       <b-row class="text-center"  v-if="!_check">
         <b-col cols="10" class="px-0">
           <h3 slot="header">
-          Listen to the word
+          {{t('Listen to the word')}}
           </h3>
         </b-col>
         <b-col class="px-0">
@@ -46,14 +46,14 @@
         v-if="!_check"
         size="lg"
         @click="$emit('change', answer)">
-        Check
+        {{t('Check')}}
       </b-button>
       <b-button
         variant="light"
         v-if="_check"
         size="lg"
         @click="$emit('next')">
-        continue
+        {{t('continue')}}
       </b-button>
     </b-card-body>
   </b-card>
