@@ -24,8 +24,8 @@
     <emptySearch
       :_searchWord="searchWord"
       v-if="words && words.length == 0"/>
-    <b-row class="my-4 justify-content-center" v-if="!stateWords || (stateWords && stateWords.length === 0)"> 
-      {{t('Dictionary is empty')}}
+    <b-row class="my-4 justify-content-center" v-if="!stateWords || (stateWords && stateWords.length === 0)" v-translate> 
+      Dictionary is empty
     </b-row>
     <b-row class="justify-content-center"
       v-if="!loading && !enabledTableView">

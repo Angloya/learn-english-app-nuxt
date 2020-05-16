@@ -3,7 +3,9 @@ const pkg = require('./package')
 
 module.exports = {
   mode: 'universal',
-
+  router: {
+    middleware: 'router-auth'
+  },
   /*
   ** Headers of the page
   */
@@ -23,9 +25,6 @@ module.exports = {
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
-  router: {
-    middleware: 'router-auth'
-  },
   /*
   ** Global CSS
   */
