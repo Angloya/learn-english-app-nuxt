@@ -64,6 +64,7 @@ export default {
           this.answersForCheck.push(answer)
           answer.selected = true
            this.count += 1
+          if (process.client) {
            this.timeout = setTimeout(() => {
             if (this.answersForCheck[0].id === this.answersForCheck[1].id) {
               if (this.meanId < this.wordsCount) {
@@ -89,6 +90,7 @@ export default {
             this.count = 0
             this.answersForCheck = []
             }, 1000)
+          }
         } else if (this.answersForCheck.length < 1) {
           clearTimeout(this.timeout)
           this.answersForCheck.push(answer)
