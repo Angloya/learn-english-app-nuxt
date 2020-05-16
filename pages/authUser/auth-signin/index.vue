@@ -11,13 +11,13 @@
 
 <script>
 import signin from '~/components/user/Signin.vue'
-import LoginWithGoogle from '~/components/user/LoginWithGoogle.vue'
+import loginWithGoogle from '~/components/user/loginWithGoogle.vue'
 
 export default {
   name: 'auth-signin',
   components: {
     signin,
-    LoginWithGoogle
+    loginWithGoogle
   }
 }
 </script>

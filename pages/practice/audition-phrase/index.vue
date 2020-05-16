@@ -26,7 +26,7 @@
 <script>
 import practiceCard from '~/components/cards/Practice-card.vue'
 import phraseConstructor from '~/components/cards/phrase-constructor.vue'
-import meaningInfo from '~/components/cards/meaning-info.vue'
+import meaningInfo from '~/components/cards/Meaning-info.vue'
 import _ from 'lodash'
 
 export default {

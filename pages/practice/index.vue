@@ -7,7 +7,7 @@
 
 <script>
 import cards from '~/components/cards/Cards.vue'
-import Loading from '~/components/Loading.vue'
+import Loading from '~/components/loading.vue'
 
 export default {
   name: 'practice',

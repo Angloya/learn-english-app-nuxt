@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import meaningInfo from '~/components/cards/meaning-info.vue'
-import Loading from '~/components/Loading.vue'
+import meaningInfo from '~/components/cards/Meaning-info.vue'
+import Loading from '~/components/loading.vue'
 
 export default {
   name: 'dictionary-word-id',

@@ -11,13 +11,13 @@
 
 <script>
 import signup from '~/components/user/Signup.vue'
-import LoginWithGoogle from '~/components/user/LoginWithGoogle.vue'
+import loginWithGoogle from '~/components/user/loginWithGoogle.vue'
 
 export default {
   name: 'auth-signup',
   components: {
     signup,
-    LoginWithGoogle
+    loginWithGoogle
   }
 }
 </script>

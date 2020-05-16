@@ -26,8 +26,8 @@
 <script>
 import practiceCard from '~/components/cards/Practice-card.vue'
 import cardWord from '~/components/cards/CardWord.vue'
-import wordAudio from '~/components/cards/word-audio.vue'
-import meaningInfo from '~/components/cards/meaning-info.vue'
+import wordAudio from '~/components/cards/Word-audio.vue'
+import meaningInfo from '~/components/cards/Meaning-info.vue'
 
 export default {
   name: 'audition',

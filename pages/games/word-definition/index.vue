@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import CardGameDefinition from '~/components/cards/card-game-definition.vue'
+import CardGameDefinition from '~/components/cards/Card-game-definition.vue'
 import Rules from '~/components/games/Rules.vue'
 import _ from 'lodash'
 export default {

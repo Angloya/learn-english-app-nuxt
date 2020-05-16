@@ -99,7 +99,7 @@
 
 <script>
 import cardWord from '~/components/cards/CardWord.vue'
-import Loading from '~/components/Loading.vue'
+import Loading from '~/components/loading.vue'
 import emptySearch from '~/components/EmptySearch.vue'
 import { delay } from 'q'
 

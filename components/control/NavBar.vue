@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Logout from '~/components/user/Logout.vue'
+import Logout from '~/components/user/logout.vue'
 export default {
   name: 'navbar',
   components: {
