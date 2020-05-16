@@ -44,18 +44,15 @@ export default {
       }
     },
     timerGame () {
-      if (process.client) {
-        this.setInterval = setTimeout(() => {
-          if (this.gameTime > 0) {
-            this.gameTime -= 1
-            this.timerGame()
-          } else {
-            clearTimeout(this.setInterval)
-            this.message = "time's up"
-            this.start = false
-          }
-        }, 1000)
-      }
+      this.setInterval = setInterval(() => {
+        if (this.gameTime > 0) {
+          this.gameTime -= 1
+        } else {
+          clearInterval(this.setInterval)
+          this.message = "time's up"
+          this.start = false
+        }
+      }, 1000)
     },
     stopPractice () {
       this.start = false
