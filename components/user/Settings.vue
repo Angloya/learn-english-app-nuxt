@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import wordsDictionarySetting from '~/components/control/words-dictionary-setting.vue'
+import wordsDictionarySetting from './../../components/control/words-dictionary-setting.vue'
 export default {
   name: 'settings',
   components: {

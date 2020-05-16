@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import CardGameDefinition from '~/components/cards/card-game-definition.vue'
-import Rules from '~/components/games/Rules.vue'
+import CardGameDefinition from './../../../components/cards/card-game-definition.vue'
+import Rules from './../../../components/games/Rules.vue'
 import _ from 'lodash'
 export default {
   name: 'game-word-definition',

@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import UpdateProfile from '~/components/user/Update-profile.vue'
-import Settings from '~/components/user/Settings.vue'
-import UserProgress from '~/components/user/User-progress.vue'
+import UpdateProfile from './../../components/user/Update-profile.vue'
+import Settings from './../../components/user/Settings.vue'
+import UserProgress from './../../components/user/User-progress.vue'
 
 export default {
   name: 'tabs-profile',

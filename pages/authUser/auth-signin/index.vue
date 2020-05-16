@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import signin from '~/components/user/Signin.vue'
-import LoginWithGoogle from '~/components/user/LoginWithGoogle.vue'
+import signin from './../../../components/user/Signup'
+import LoginWithGoogle from './../../../components/user/LoginWithGoogle.vue'
 
 export default {
   name: 'auth-signin',
