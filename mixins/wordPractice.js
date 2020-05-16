@@ -175,11 +175,9 @@ export default {
         this.keyColor = 'danger'
         this.setWrongAnswer(answer)
       }
-      if (process.client) {
-        this.timeout = setTimeout(() => {
-          this.setMeanId()
-        }, 1000)
-      }
+      this.timeout = setTimeout(() => {
+        this.setMeanId()
+      }, 1000)
     }
   }
 }
