@@ -2,16 +2,13 @@ const pkg = require('./package')
 
 
 module.exports = {
-  mode: 'SPA',
+  mode: 'universal',
   router: {
     middleware: 'router-auth'
   },
   /*
   ** Headers of the page
   */
- generate: {
-  fallback: true
-},
   head: {
     title: pkg.name,
     meta: [
