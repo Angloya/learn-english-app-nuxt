@@ -24,7 +24,7 @@
           _text="In the game you need to choose word and connect it with its definition.You have 60 seconds. When you make the mistake the game time reduce by 5 second."/>
       </b-tab>
     </b-tabs>
-    <b-button @click="stopGame" v-if="start" v-translate>Stop the game</b-button>
+    <b-button @click="stopGame" v-if="start" v-translate></b-button>
   </b-card>
 </b-container>
 </template>
@@ -41,7 +41,7 @@ export default {
   },
   data () {
     return {
-      wordsCount: 6,
+      wordsCount: 4,
       start: false,
       meanId: 0,
       count: 0,

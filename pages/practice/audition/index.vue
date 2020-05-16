@@ -18,7 +18,7 @@
         :_check="checkWord"
         :key="keyColor" />
       </b-row>
-      <b-button @click="stopPractice" v-if="start" v-translate>Stop the practice</b-button>
+      <b-button class="my-2" @click="stopPractice" v-if="start" v-translate>Stop the practice</b-button>
     <meaning-info :_meaning="meanings[meanId]" v-if="start && checkWord"/>  
   </b-container>
 </template>

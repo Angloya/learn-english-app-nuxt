@@ -1,6 +1,6 @@
 <template>
   <b-card 
-    class="mx-0 my-0"
+    class="mx-2 my-2"
     v-if="_card"
     @click="$emit('click', _card)"
     :border-variant="isColorDark ? 'light' : 'dark'"

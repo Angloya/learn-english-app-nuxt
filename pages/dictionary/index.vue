@@ -2,14 +2,14 @@
   <b-container class="text-center">
     <h2  class="my-2">Dictionary</h2>
     <loading v-if="loading"/>
-    <b-row class="my-4 justify-content-center" v-if="!loading">
+    <b-row class="my-4 justify-content-center" v-if="!loading && stateWords && stateWords.length">
       <b-col cols="4" sm="2" md="1">Cards</b-col>
         <no-ssr>
           <toggle-button class="vue-switcher" v-model="enabledTableView"/>
         </no-ssr>
       <b-col cols="4" sm="2" md="1">Table</b-col>
     </b-row>
-    <b-row class="my-4 justify-content-center" v-if="!loading">
+    <b-row class="my-4 justify-content-center" v-if="!loading && stateWords && stateWords.length">
       <b-col cols="8" sm="8" md="4">
         <b-form @keyup.enter.prevent="searchWordInDictionary" class="d-flex justify-content-center align-items-center">
           <b-form-input @input="searchWordInDictionary" size="md" class="my-3" v-model="searchWord" type="text" placeholder="Search"/>
@@ -24,6 +24,9 @@
     <emptySearch
       :_searchWord="searchWord"
       v-if="words && words.length == 0"/>
+    <b-row class="my-4 justify-content-center" v-if="!stateWords || (stateWords && stateWords.length === 0)"> 
+      {{t('Dictionary is empty')}}
+    </b-row>
     <b-row class="justify-content-center"
       v-if="!loading && !enabledTableView">
       <b-col
@@ -45,9 +48,8 @@
           class="mt-1"
           style="min-width: 10rem;"
           size="sm"
-          @click="getWordPage(word.id)"
-          v-translate>
-           Learn more
+          @click="getWordPage(word.id)">
+           {{t('Learn more')}}
         </b-button>
       </b-col>
     </b-row>
@@ -70,8 +72,8 @@
                 <b-col
                   cols="auto"
                   md="auto">
-                  <b-button size="sm" @click="getWordPage(row.item.id)" class="mr-1" v-translate>
-                  Learn more
+                  <b-button size="sm" @click="getWordPage(row.item.id)" class="mr-1">
+                   {{t('Learn more')}}
                   </b-button>
                 </b-col>
                 <b-col

@@ -19,7 +19,7 @@
         :_check="checkPhrase"
         :key="keyColor" />
       </b-row>
-      <b-button @click="stopPractice" v-if="start" v-translate>Stop the practice</b-button>
+      <b-button @click="stopPractice" class="my-2" v-if="start" v-translate>Stop the practice</b-button>
   </b-container>
 </template>
 
