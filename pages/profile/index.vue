@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import ProfileInfo from './../../components/user/Profile-info.vue'
-import TabsProfile from './../../components/control/Tabs-profile.vue'
+import ProfileInfo from '~/components/user/Profile-info.vue'
+import TabsProfile from '~/components/control/Tabs-profile.vue'
 
 export default {
   name: 'Profile',

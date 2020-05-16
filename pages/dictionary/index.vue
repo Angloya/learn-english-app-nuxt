@@ -98,9 +98,9 @@
 </template>
 
 <script>
-import cardWord from './../../components/cards/CardWord.vue'
-import Loading from './../../components/Loading.vue'
-import emptySearch from './../../components/EmptySearch.vue'
+import cardWord from '~/components/cards/CardWord.vue'
+import Loading from '~/components/Loading.vue'
+import emptySearch from '~/components/EmptySearch.vue'
 import { delay } from 'q'
 
 export default {

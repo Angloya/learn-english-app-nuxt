@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import cardWord from './../../components/cards/CardWord.vue'
+import cardWord from '~/components/cards/CardWord.vue'
 
 export default {
   name: 'wrong-answers',

@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import WordForLearn from './../../../components/cards/Word-for-learn.vue'
-import cardWord from './../../../components/cards/CardWord.vue'
-import practiceCard from './../../../components/cards/Practice-card.vue'
+import WordForLearn from '~/components/cards/Word-for-learn.vue'
+import cardWord from '~/components/cards/CardWord.vue'
+import practiceCard from '~/components/cards/Practice-card.vue'
 import _ from 'lodash'
 import { delay } from 'q';
 
